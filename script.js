@@ -1,126 +1,150 @@
-// Array of YouTube video IDs and corresponding song titles
 const playlist = [
-    { id: 'JxZ9RTjPNKs', title: 'Crossroad (PSYQUI Remix) (feat. Luschel)1' },
-    { id: 'Tv5s9_UAmdU', title: 'PSYQUI Medley 2' },
-    { id: '6Dh-RL__uN4', title: 'Lasagna 3' }
-    ];
-
-    let player; // Reference to the YouTube player instance
-    let currentIndex = 0; // Index of the current video
-    let shuffledIndices; // Shuffled indices of the playlist
-    let isPlaying = false; // Flag to track the playback state
-
-    // Function to shuffle the indices of the playlist
-    function shuffleIndices() {
+    { id: 'JxZ9RTjPNKs', title: 'Crossroad (PSYQUI Remix) (feat. Luschel)1', type: 'youtube' },
+    { id: 'Tv5s9_UAmdU', title: 'PSYQUI Medley 2', type: 'youtube' },
+    { id: '6Dh-RL__uN4', title: 'Lasagna 3', type: 'youtube' },
+    { id: 'start-up-feat.such-psyqui.mp3', title: 'start up 4', type: 'local' },
+    { id: 'your-voice-so.feat.such-psyqui.mp3', title: 'your voice so 5', type: 'local' }
+  ];
+  
+  let player;
+  let currentIndex = 0;
+  let shuffledIndices;
+  let isPlaying = false;
+  let vol = 50;
+  
+  function shuffleIndices() {
     shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
     for (let i = playlist.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
     }
+  }
+  
+  function createPlayer() {
+    if (playlist[shuffledIndices[currentIndex]].type === 'youtube') {
+      createYouTubePlayer();
+    } else if (playlist[shuffledIndices[currentIndex]].type === 'local') {
+      createLocalPlayer();
     }
+    updateCurrentSong();
+  }
+  
+  function createYouTubePlayer() {
+    player = new YT.Player('player', {
+      height: '0',
+      width: '0',
+      videoId: playlist[shuffledIndices[currentIndex]].id,
+      playerVars: {
+        'controls': 0,
+        'disablekb': 1,
+        'rel': 0,
+        'modestbranding': 1
+      },
+      events: {
+        onReady: function (event) {
+          event.target.setVolume(vol);
+          if (isPlaying) {
+            event.target.playVideo();
+          }
+        },
+        onStateChange: function (event) {
+          if (event.data === YT.PlayerState.ENDED) {
+            playNextSong();
+          }
+        }
+      }
+    });
+  }
+  
+  function createLocalPlayer() {
+    const audioPlayer = new Audio(playlist[shuffledIndices[currentIndex]].id);
+    audioPlayer.addEventListener('ended', function () {
+      playNextSong();
+    });
+    player = audioPlayer;
+    player.volume = vol / 300;
+    player.play();
+  }
+  
+  function togglePlayback() {
+    updateCurrentSong();
+    if (player) {
+      if (isPlaying) {
+        if (player.pauseVideo && typeof player.pauseVideo === 'function') {
+          player.pauseVideo(); // Pause YouTube video
+        } else if (player.pause && typeof player.pause === 'function') {
+          player.pause(); // Pause local audio
+        }
+        isPlaying = false;
+      } else {
+        if (player.playVideo && typeof player.playVideo === 'function') {
+          player.playVideo(); // Play YouTube video
+        } else if (player.play && typeof player.play === 'function') {
+          player.play(); // Play local audio
+        }
+        isPlaying = true;
+      }
+    }
+  }
+  
+  function playNextSong() {
+    if (player) {
+      if (player.pauseVideo && typeof player.pauseVideo === 'function') {
+        player.pauseVideo(); // Pause YouTube video
+        player.destroy(); // Destroy YouTube player
+      } else if (player.pause && typeof player.pause === 'function') {
+        player.pause(); // Pause local audio
+      }
+    }
+    if (currentIndex + 1 < playlist.length) {
+      currentIndex++;
+    } else {
+      shuffleIndices();
+      currentIndex = 0;
+    }
+    player = null;
+    createPlayer();
+  }
+  
+  function skipVideo() {
+    if (player) {
+      if (player.pauseVideo && typeof player.pauseVideo === 'function') {
+        player.pauseVideo(); // Pause YouTube video
 
-    // Load the YouTube IFrame Player API asynchronously
-    function loadYouTubeAPI() {
+      } else if (player.pause && typeof player.pause === 'function') {
+        player.pause(); // Pause local audio
+      }
+    }
+    playNextSong();
+  }
+  
+  function changeVolume(volume) {
+    vol = volume;
+    if (player) {
+      if (player.setVolume) {
+        player.setVolume(volume); // Set YouTube video volume
+      } else {
+        player.volume = volume / 300; // Set local audio volume
+      }
+    }
+  }
+  
+  function updateCurrentSong() {
+    const currentSongElement = document.getElementById('currentSong');
+    currentSongElement.textContent = `Now Playing: ${playlist[shuffledIndices[currentIndex]].title}`;
+  }
+  
+  function loadYouTubeAPI() {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
-
-    // Create and initialize the YouTube player
-    function createYouTubePlayer(videoId, index) {
-    player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: playlist[shuffledIndices[index]].id,
-        playerVars: {
-        'controls': 0, // Hide YouTube player controls
-        'disablekb': 1, // Disable keyboard control of the YouTube player
-        'rel': 0, // Disable related videos at the end
-        'modestbranding': 1 // Hide YouTube logo in the player
-        },
-        events: {
-        onReady: function(event) {
-            event.target.setVolume(50); // Set default volume to 50
-            if (isPlaying) {
-            event.target.playVideo();
-            }
-            updateCurrentSong(); // Update the currently playing song
-        },
-        onStateChange: function(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-            // Play the next video
-            if (currentIndex + 1 < playlist.length) {
-                currentIndex++;
-                player.loadVideoById(playlist[shuffledIndices[currentIndex]].id);
-            } else {
-                // Loop the playlist and reshuffle
-                currentIndex = 0;
-                shuffleIndices();
-                player.loadVideoById(playlist[shuffledIndices[currentIndex]].id);
-            }
-            updateCurrentSong(); // Update the currently playing song
-            }
-        }
-        }
-    });
-    }
-
-    // Function to start or pause the playback
-    function togglePlayback() {
-    if (player) {
-        if (isPlaying) {
-        player.pauseVideo();
-        isPlaying = false;
-        } else {
-        player.playVideo();
-        isPlaying = true;
-        }
-        updateCurrentSong(); // Update the currently playing song
-    }
-    }
-
-    // Function to skip to the next video
-    function skipVideo() {
-    if (player && currentIndex + 1 < playlist.length) {
-        currentIndex++;
-        player.loadVideoById(playlist[shuffledIndices[currentIndex]].id);
-        if (!isPlaying) {
-        player.pauseVideo();
-        }
-        updateCurrentSong(); // Update the currently playing song
-    } else if (currentIndex + 1 === playlist.length) {
-        currentIndex = 0;
-        shuffleIndices();
-        player.loadVideoById(playlist[shuffledIndices[currentIndex]].id);
-        if (!isPlaying) {
-        player.pauseVideo();
-        }
-        updateCurrentSong(); // Update the currently playing song
-    }
-    }
-    
-    // Function to change the volume
-    function changeVolume(volume) {
-    if (player) {
-        player.setVolume(volume);
-    }
-    }
-
-    // Function to update the currently playing song
-    function updateCurrentSong() {
-    const currentSongElement = document.getElementById('currentSong');
-    currentSongElement.textContent = `Now Playing: ${playlist[shuffledIndices[currentIndex]].title}`;
-    }
-
-    // Function to handle YouTube API state changes
-    function onYouTubePlayerAPIReady() {
-    // Shuffle the indices of the playlist
+  }
+  
+  function onYouTubePlayerAPIReady() {
     shuffleIndices();
-
-    // Create and initialize the YouTube player
-    createYouTubePlayer(playlist[0].id, 0);
-    }
-
-    // Load the YouTube API
-    loadYouTubeAPI();
+    createPlayer();
+  }
+  
+  loadYouTubeAPI();
+  
