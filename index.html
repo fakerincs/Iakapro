@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Play Embedded Audio</title>
+</head>
+<body>
+  <div id="player"></div>
+
+  <button onclick="togglePlayback()">Play/Pause</button>
+  <button onclick="skipVideo()">Skip</button>
+  
+  <input type="range" min="0" max="100" value="50" onchange="changeVolume(this.value)">
+  
+  <div id="currentSong"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
