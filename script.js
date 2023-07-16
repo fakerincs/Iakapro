@@ -33,8 +33,8 @@ const skipButtonCooldown = 600; // Cooldown duration in milliseconds
   
   function createYouTubePlayer() {
     player = new YT.Player('player', {
-      height: '200',
-      width: '200',
+      height: '50',
+      width: '50',
       videoId: playlist[shuffledIndices[currentIndex]].id,
       playerVars: {
         'controls': 0,
