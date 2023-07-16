@@ -153,6 +153,14 @@ const skipButtonCooldown = 600; // Cooldown duration in milliseconds
   function onYouTubePlayerAPIReady() {
     shuffleIndices();
     createPlayer();
+    if (player) {
+        if (player.pauseVideo && typeof player.pauseVideo === 'function') {
+          player.pauseVideo(); // Pause YouTube video
+  
+        } else if (player.pause && typeof player.pause === 'function') {
+          player.pause(); // Pause local audio
+        }
+    }
   }
   
   loadYouTubeAPI();
