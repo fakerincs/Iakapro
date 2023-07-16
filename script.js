@@ -11,7 +11,9 @@ const playlist = [
   let shuffledIndices;
   let isPlaying = false;
   let vol = 50;
-  
+  let isSkipButtonDisabled = false;
+const skipButtonCooldown = 600; // Cooldown duration in milliseconds
+
   function shuffleIndices() {
     shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
     for (let i = playlist.length - 1; i > 0; i--) {
@@ -104,9 +106,16 @@ const playlist = [
     }
     player = null;
     createPlayer();
+
+    // Disable the skip button for the cooldown duration
+  isSkipButtonDisabled = true;
+  setTimeout(() => {isSkipButtonDisabled = false;}, skipButtonCooldown);
   }
   
   function skipVideo() {
+    if (isSkipButtonDisabled) {
+        return; // Skip button is disabled due to cooldown
+    }
     if (player) {
       if (player.pauseVideo && typeof player.pauseVideo === 'function') {
         player.pauseVideo(); // Pause YouTube video
