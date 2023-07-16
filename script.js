@@ -12,7 +12,12 @@ const playlist = [
   { id: 'concentration-psyqui.mp3', title: 'Concentration', type: 'local' },
   { id: 'tears-psyqui.mp3', title: 'Tears', type: 'local' },
   { id: 'inside-of-me-psyqui.mp3', title: 'Inside of Me', type: 'local' },
-  { id: '-awakening-psyqui.mp3', title: 'ヒ​カ​リ​の​方​へ (Awakening)', type: 'local' }
+  { id: '-awakening-psyqui.mp3', title: 'ヒ​カ​リ​の​方​へ (Awakening)', type: 'local' },
+  { id: '3ad4NsEy1tg', title: 'テレキャスター･ストライプ', type: 'youtube' },
+  { id: 'phwvj0_XM4k', title: 'JET', type: 'youtube' },
+  { id: '2QIp-YGau7o', title: 'Allure', type: 'youtube' },
+  { id: 'HheTl6I28jw', title: 'Style', type: 'youtube' },
+  { id: 'XAvAvWzJJl8', title: 'Keshin', type: 'youtube' }
 
 ];
 
