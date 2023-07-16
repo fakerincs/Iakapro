@@ -46,7 +46,11 @@ const skipButtonCooldown = 600; // Cooldown duration in milliseconds
         onReady: function (event) {
           event.target.setVolume(vol);
           if (isPlaying) {
-            event.target.playVideo();
+            if (isMobileDevice()) {
+              showPlayButton();
+            } else {
+              event.target.playVideo();
+            }
           }
         },
         onStateChange: function (event) {
@@ -80,7 +84,11 @@ const skipButtonCooldown = 600; // Cooldown duration in milliseconds
         isPlaying = false;
       } else {
         if (player.playVideo && typeof player.playVideo === 'function') {
-          player.playVideo(); // Play YouTube video
+          if (isMobileDevice()) {
+            hidePlayButton();
+          } else {
+            player.playVideo(); // Play YouTube video
+          }
         } else if (player.play && typeof player.play === 'function') {
           player.play(); // Play local audio
         }
@@ -88,6 +96,7 @@ const skipButtonCooldown = 600; // Cooldown duration in milliseconds
       }
     }
   }
+  
   
   function playNextSong() {
     if (player) {
@@ -153,6 +162,27 @@ const skipButtonCooldown = 600; // Cooldown duration in milliseconds
   function onYouTubePlayerAPIReady() {
     shuffleIndices();
     createPlayer();
+  }
+
+  function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+  
+  function showPlayButton() {
+    const playButton = document.getElementById('playButton');
+    playButton.style.display = 'block';
+  }
+  
+  function hidePlayButton() {
+    const playButton = document.getElementById('playButton');
+    playButton.style.display = 'none';
+  }
+  
+  function playYouTubeVideo() {
+    const playButton = document.getElementById('playButton');
+    playButton.style.display = 'none';
+    player.playVideo();
+    isPlaying = true;
   }
   
   loadYouTubeAPI();
