@@ -1,7 +1,4 @@
 const playlist = [
-  { id: 'JxZ9RTjPNKs', title: 'Crossroad (PSYQUI Remix) (feat. Luschel)', type: 'youtube' },
-  { id: 'Tv5s9_UAmdU', title: 'PSYQUI Medley', type: 'youtube' },
-  { id: '6Dh-RL__uN4', title: 'Lasagna', type: 'youtube' },
   { id: 'start-up-feat.such-psyqui.mp3', title: 'Start Up', type: 'local' },
   { id: 'your-voice-so.feat.such-psyqui.mp3', title: 'Your Voice So', type: 'local' },
   { id: 'no-one-psyqui.mp3', title: 'No One', type: 'local' },
@@ -13,11 +10,28 @@ const playlist = [
   { id: 'tears-psyqui.mp3', title: 'Tears', type: 'local' },
   { id: 'inside-of-me-psyqui.mp3', title: 'Inside of Me', type: 'local' },
   { id: '-awakening-psyqui.mp3', title: 'ヒ​カ​リ​の​方​へ (Awakening)', type: 'local' },
+  { id: 'JxZ9RTjPNKs', title: 'Crossroad (PSYQUI Remix) (feat. Luschel)', type: 'youtube' },
+  { id: 'Tv5s9_UAmdU', title: 'PSYQUI Medley', type: 'youtube' },
+  { id: '6Dh-RL__uN4', title: 'Lasagna', type: 'youtube' },
   { id: '3ad4NsEy1tg', title: 'テレキャスター･ストライプ', type: 'youtube' },
-  { id: 'phwvj0_XM4k', title: 'JET', type: 'youtube' },
+  { id: 'JETM.mp3', title: 'JET', type: 'local' },
   { id: '2QIp-YGau7o', title: 'Allure', type: 'youtube' },
   { id: 'HheTl6I28jw', title: 'Style', type: 'youtube' },
-  { id: 'XAvAvWzJJl8', title: 'Keshin', type: 'youtube' }
+  { id: 'Keshin.mp3', title: 'Keshin', type: 'local' },
+  { id: 'BE-rpIWS7cQ', title: 'twilight', type: 'youtube' },
+  { id: 'VAQpxmxSwoE', title: 'Alone With U', type: 'youtube' },//r
+  { id: '65xliANyPf0', title: 'Twist', type: 'youtube' },
+  { id: 'cqxkQkq9oic', title: 'ミカヅキBIGWAVE - I Wanna Be With You', type: 'youtube' },
+  { id: 'pH7-g9X6PwQ', title: 'GHOST VS. GHOUL MASHUP', type: 'youtube' },
+  { id: 'KeuylVL92Ys', title: 'RuLu - サルベージ feat.Such', type: 'youtube' },
+  { id: 'XIaNSrhRRmo', title: 'Tenkitsune - Little Fox Wonderland', type: 'youtube' }, //r
+  { id: '8Wr98RC6SNU', title: 'Cortado', type: 'youtube' },//r
+  { id: 'jtlOpoqKZb4', title: 'Give You My World (Extended Mix)', type: 'youtube' },//r
+  { id: 'W6FVH3dwb_Q', title: 'w / WWW (feat. 星宮とと)', type: 'youtube' },
+  { id: '', title: '', type: 'youtube' },
+
+
+
 
 ];
 
@@ -48,8 +62,8 @@ function createPlayer() {
 
 function createYouTubePlayer() {
   player = new YT.Player('player', {
-    height: '50',
-    width: '50',
+    height: '100',
+    width: '100',
     videoId: playlist[shuffledIndices[currentIndex]].id,
     playerVars: {
       'controls': 0,
