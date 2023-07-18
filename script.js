@@ -133,168 +133,120 @@ const playlist = [
   { id: 'xVnpaW6vB_g', title: '[Arcaea] Be There (HiTECH NINJA Remix) - PSYQUI【REMIX】', type: 'youtube' },
   { id: 'aMrIKN-yLKw', title: 'PSYQUI feat.Such - C & B', type: 'youtube' },
   { id: '0t0MO2s8qUk', title: 'PSYQUI - Up n Up', type: 'youtube' },
-  { id: '', title: '', type: 'youtube' },
+  
 
 
 
 
 ];
 
-let player;
+
+let svol = 50
+let shuffledIndices = [];
 let currentIndex = 0;
-let shuffledIndices;
-let isPlaying = false;
-let vol = 50;
-let isSkipButtonDisabled = false;
-const skipButtonCooldown = 600; // Cooldown duration in milliseconds
+let player;
+let playerl;
+
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
-  for (let i = playlist.length - 1; i > 0; i--) {
+  for (let i = shuffledIndices.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
   }
 }
 
 function createPlayer() {
-  if (playlist[shuffledIndices[currentIndex]].type === 'youtube') {
-    createYouTubePlayer();
-  } else if (playlist[shuffledIndices[currentIndex]].type === 'local') {
-    createLocalPlayer();
-  }
-  updateCurrentSong();
-}
-
-function createYouTubePlayer() {
-  player = new YT.Player('player', {
-    height: '100',
-    width: '100',
-    videoId: playlist[shuffledIndices[currentIndex]].id,
-    playerVars: {
-      'controls': 0,
-      'disablekb': 0,
-      'rel': 0,
-      'modestbranding': 1
-    },
-    events: {
-      onReady: function (event) {
-        event.target.setVolume(vol);
-        if (isPlaying) {
-          event.target.playVideo();
-        }
-      },
-      onStateChange: function (event) {
-        if (event.data === YT.PlayerState.ENDED) {
-          playNextSong();
-        }
+  const currentMedia = playlist[shuffledIndices[currentIndex]];
+  if (currentIndex != 0){ 
+    if (playlist[shuffledIndices[currentIndex - 1]].type === 'youtube'){
+      if (!player.paused()) {
+        player.pause();
       }
+    } else if (!playerl.paused){
+      playerl.pause();
     }
-  });
-}
+  }
 
-function createLocalPlayer() {
-  const audioPlayer = new Audio(playlist[shuffledIndices[currentIndex]].id);
-  audioPlayer.addEventListener('ended', function () {
-    playNextSong();
+
+  if (currentMedia.type === 'youtube') {
+    player.src({
+      src: `https://www.youtube.com/watch?v=${currentMedia.id}`,
+      type: 'video/youtube',
+    });
+    player.load();
+    player.play();
+    player.on('ended', playNextSong);
+  } else if (currentMedia.type === 'local') {
+    playerl = new Audio(currentMedia.id);
+    playerl.volume = (svol / 300);
+    playerl.autoplay = true;
+    playerl.addEventListener('ended', playNextSong);
+
+  }
+
+  // Display the current song title
+  const currentSongElement = document.getElementById('currentSong');
+  currentSongElement.textContent = `Now Playing: ${currentMedia.title}`;
+
+  // Play/Pause button functionality
+  const playPauseButton = document.getElementById('playPauseButton');
+  playPauseButton.addEventListener('click', togglePlayback);
+
+  // Skip button functionality
+  const skipButton = document.getElementById('skipButton');
+  skipButton.addEventListener('click', skipMedia);
+
+  // Volume slider functionality
+  const volumeSlider = document.getElementById('volumeSlider');
+  volumeSlider.addEventListener('input', () => {
+    changeVolume(volumeSlider.value);
   });
-  player = audioPlayer;
-  player.volume = vol / 300;
-  player.play();
 }
 
 function togglePlayback() {
-  updateCurrentSong();
-  if (player) {
-    if (isPlaying) {
-      if (player.pauseVideo && typeof player.pauseVideo === 'function') {
-        player.pauseVideo(); // Pause YouTube video
-      } else if (player.pause && typeof player.pause === 'function') {
-        player.pause(); // Pause local audio
-      }
-      isPlaying = false;
+  if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    if (player.paused()) {
+      player.play();
     } else {
-      if (player.playVideo && typeof player.playVideo === 'function') {
-        player.playVideo(); // Play YouTube video
-      } else if (player.play && typeof player.play === 'function') {
-        player.play(); // Play local audio
-      }
-      isPlaying = true;
+      player.pause();
     }
+  } else if (playerl.paused){
+      playerl.play();
+  } else {
+    playerl.pause();
   }
 }
 
 function playNextSong() {
-  if (player) {
-    if (player.pauseVideo && typeof player.pauseVideo === 'function') {
-      player.pauseVideo(); // Pause YouTube video
-      player.destroy(); // Destroy YouTube player
-    } else if (player.pause && typeof player.pause === 'function') {
-      player.pause(); // Pause local audio
-    }
-  }
-  if (currentIndex + 1 < playlist.length) {
-    currentIndex++;
-  } else {
+  currentIndex++;
+  if (currentIndex >= playlist.length) {
     shuffleIndices();
     currentIndex = 0;
   }
-  player = null;
   createPlayer();
-
-  // Disable the skip button for the cooldown duration
-isSkipButtonDisabled = true;
-setTimeout(() => {isSkipButtonDisabled = false;}, skipButtonCooldown);
 }
 
-function skipVideo() {
-  if (isSkipButtonDisabled) {
-      return; // Skip button is disabled due to cooldown
+function skipMedia() {
+  if (player.currentTime !== undefined) {
+    player.currentTime = player.duration - 1; // Skip to the end of the media
   }
-  if (player) {
-    if (player.pauseVideo && typeof player.pauseVideo === 'function') {
-      player.pauseVideo(); // Pause YouTube video
-
-    } else if (player.pause && typeof player.pause === 'function') {
-      player.pause(); // Pause local audio
-    }
-  }
-  playNextSong();
+  playNextSong()
 }
 
 function changeVolume(volume) {
-  vol = volume;
-  if (player) {
-    if (player.setVolume) {
-      player.setVolume(volume); // Set YouTube video volume
-    } else {
-      player.volume = volume / 300; // Set local audio volume
-    }
+  svol = volume
+  player.volume(volume / 100);
+  if (playerl){
+    playerl.volume = (volume / 300);
   }
 }
 
-function updateCurrentSong() {
-  const currentSongElement = document.getElementById('currentSong');
-  currentSongElement.textContent = `Now Playing: ${playlist[shuffledIndices[currentIndex]].title}`;
-}
+shuffleIndices();
+player = videojs('player', {
+  techOrder: ['youtube'],
+  autoplay: true,
+  controls: true,
+});
 
-function loadYouTubeAPI() {
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  const firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-}
-
-function onYouTubePlayerAPIReady() {
-  shuffleIndices();
-  createPlayer();
-  if (player) {
-      if (player.pauseVideo && typeof player.pauseVideo === 'function') {
-        player.pauseVideo(); // Pause YouTube video
-
-      } else if (player.pause && typeof player.pause === 'function') {
-        player.pause(); // Pause local audio
-      }
-  }
-}
-
-loadYouTubeAPI();
+createPlayer();
