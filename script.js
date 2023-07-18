@@ -41,7 +41,7 @@ const playlist = [
   { id: 'gFhdZJ2NXF0', title: 'PSYQUI - Stepper', type: 'youtube' },
   { id: '1cGQotpn8r4', title: 'TUYU - Goodbye to Rock you', type: 'youtube' },
   { id: 'lGFEqEFJ410', title: 'TUYU - Trapped in the Past', type: 'youtube' },
-  { id: 'M7FH1dL51oU', title: 'Being low as dirt, taking whats important from me', type: 'youtube' },//test
+  { id: 'M7FH1dL51oU', title: 'Being low as dirt, taking whats important from me', type: 'youtube' },//test failed
   { id: 'Y4Y3zKDoUZo', title: 'Cloud Finding (feat. Kanata.N)', type: 'youtube' },//
   { id: '6I_tof5opzM', title: 'EmoCosine - This Club is Not 4 U', type: 'youtube' },
   { id: 'Wk1Kdiprhsg', title: 'Internet Pajamas Party', type: 'youtube' },
@@ -64,21 +64,21 @@ const playlist = [
   { id: 'hhnYYMgnPGQ', title: 'rejection - 曖昧アティチュード feat.中村さんそ', type: 'youtube' },
   { id: 'fs6IikbafoM', title: 'EmoCosine - Thinkin About U', type: 'youtube' },
   { id: 'FCWoBAm7PRQ', title: 'PSYQUI - センチメンタルハートボーイ(ft. Such)', type: 'youtube' },
-  { id: 'dxK5R81k0Ow', title: 'Its gonna be alright (feat. shully)', type: 'youtube' },
+  { id: 'dxK5R81k0Ow', title: 'Its gonna be alright (feat. shully)', type: 'youtube' },//qodiwjqoijd
   { id: 'yufJUbGnIBQ', title: 'alpha (LADYS ONLY Remix) (feat. 星宮とと)', type: 'youtube' },
   { id: 'zwpc0szX8gg', title: 'Cloud Diver (PSYQUI Remix)', type: 'youtube' },
   { id: '9vGJi6Mk-lw', title: '星宮とと+TEMPLIME - 水槽 (EmoCosine Remix)', type: 'youtube' },
   { id: 'CFyYffB3b3U', title: 'FunFunFun - GROWN UP ( PSYQUI Remix )', type: 'youtube' },
   { id: 'q6pGsAphEII', title: '[PSYQUI] Too Late', type: 'youtube' },
-  { id: 'SuwW2Ot_RXc', title: 'PSYQUI - Education', type: 'youtube' },//source
+  { id: 'Education.mp3', title: 'PSYQUI - Education', type: 'local' },//source
   { id: 'uSYTsSWaGrg', title: '0光年の孤独 (PSYQUI Remix)', type: 'youtube' },
   { id: 'jhaVY9CTIB8', title: 'PSYQUI - Chatroom', type: 'youtube' },
   { id: 'entorTv54tk', title: 'Spacelectro - EAT!EAT!EAT! feat. ももかみ (PSYQUI Remix)', type: 'youtube' },
   { id: '5qePUkd7ZEk', title: 'PSYQUI - Lightning', type: 'youtube' },
-  { id: 'bncPyfarr8o', title: '就寝御礼 (Original Mix)', type: 'youtube' },
+  { id: '-feat.psyqui-psyqui.mp3', title: '就寝御礼 (Original Mix)', type: 'local' },
   { id: 'Um5N4IOnCJM', title: 'ヒカリの方へ (Original Mix)', type: 'youtube' },
   { id: 'olWvy0PiLfA', title: 'TUYU - Compared Child', type: 'youtube' },
-  { id: 'JprsKeAStcw', title: 'tofubeats - CAND¥¥¥LAND feat. LIZ (Pas Lam System Remix)', type: 'youtube' },
+  { id: 'candyland.mp3', title: 'tofubeats - CAND¥¥¥LAND feat. LIZ (Pas Lam System Remix)', type: 'local' },
   { id: 'JXaaQU8aRt4', title: 'Recalled Collapse (feat. Such)', type: 'youtube' },
   { id: 'aKittTLhf_g', title: 'PSYQUI - Dont You Want Me (ft. Such) Mameyudoufu Remix', type: 'youtube' },
   { id: 'JIUr4PhqDlI', title: 'PSYQUI feat. Such - Hype (sky_delta Remix)', type: 'youtube' },
@@ -91,7 +91,7 @@ const playlist = [
   { id: 'RBbi0FLKCeo', title: 'DJ Noriken feat. Kanae Asaba - Turn It Up', type: 'youtube' },
   { id: '0sNwatRwVJY', title: 'Srav3R - Future Raver (feat. PSYQUI)', type: 'youtube' },
   { id: 'hp2ql_mkp6k', title: 'VK (feat. DJ勝也)', type: 'youtube' },
-  { id: 'vi12HVqzhQw', title: 'PSYQUI - Multitalents', type: 'youtube' },//Uig9poGUsrA
+  { id: 'vi12HVqzhQw', title: 'PSYQUI - Multitalents', type: 'youtube' },
   { id: 'VQ6xRWxDfpM', title: 'Moony eyes (feat. Such)', type: 'youtube' },
   { id: 'mVSnyJtmAGU', title: 'Too Spicy', type: 'youtube' },
   { id: 'VTMeQcgOdK0', title: 'Night Club Junkie', type: 'youtube' },
@@ -109,12 +109,12 @@ const playlist = [
   { id: 'Z4OyvjUXZ3E', title: 'Moonheart (Mameyudoufu Remix)', type: 'youtube' },
   { id: 'mXUbv6wu-9w', title: 'Neko Hacker - Chocolate Adventure feat. Nanahira', type: 'youtube' },
   { id: 'uszWCvnWPP0', title: 'Changing the Future', type: 'youtube' },
-  { id: 'kPUBMCJMKDg', title: 'Are you kidding me (feat. mami)', type: 'youtube' },
+  { id: 'kPUBMCJMKDg', title: 'Are you kidding me (feat. mami)', type: 'youtube' },//duwfhwiiuwhfeiwhfuiewhfw
   { id: 'kJiigDCiJ50', title: 'Ayiko - Teichopsia (Drop 2 replaced with Drop 1)', type: 'youtube' },
   { id: 'OxiTrdB_x5k', title: 'Yunomi (ft. Happy Kuru Kuru)  はんぶんこ花火 (Jotori Remix)', type: 'youtube' },
   { id: 'l7reWEL1Zz4', title: 'tokiwa - Continue feat. 小鳥遊めぐみ ♪', type: 'youtube' },
   { id: 'rwxX90-KZOY', title: 'Still in my heart (feat. ぷにぷに電機)', type: 'youtube' },
-  { id: '4A4ZiZwPejY', title: 'Mihka! X Kyoto Black  Kodokushi (孤独死)', type: 'youtube' },
+  { id: 'xgxNp2pF3JQ', title: 'Mihka! X Kyoto Black  Kodokushi (孤独死)', type: 'youtube' },
   { id: 'aLXpjx2olPY', title: 'Mihka! x Kyoto Black - Kodokushi (VIP)', type: 'youtube' },
   { id: 'OfRLaX-62NY', title: 'Purukichi - Saturator ft. セトナツメ', type: 'youtube' },
   { id: 'jRWUoKBAhv4', title: 'PSYQUI - Mend Your Ways', type: 'youtube' },
@@ -139,13 +139,12 @@ const playlist = [
 
 
 ];
-
-
 let svol = 50
 let shuffledIndices = [];
 let currentIndex = 0;
 let player;
 let playerl;
+let first = true;
 
 
 function shuffleIndices() {
@@ -167,18 +166,17 @@ function createPlayer() {
       playerl.pause();
     }
   }
-
-
+  
   if (currentMedia.type === 'youtube') {
     player.src({
-      src: `https://www.youtube.com/watch?v=${currentMedia.id}`,
+      src: `https://www.youtube.com/embed/${currentMedia.id}`,
       type: 'video/youtube',
-      autoplay: 'muted',
+      autoplay: 'any',
       preload: 'auto',
-      audioOnlyMode: true
+      //audioOnlyMode: true
     });
-    player.load();
-    player.play();
+    //player.load();
+    //player.ready(player.play());
     player.volume(svol / 100);
     var myMiddleware = function(player) {//i CANNOT believe this worked
       return {
@@ -188,11 +186,12 @@ function createPlayer() {
       };
     };
     videojs.use('*', myMiddleware);
-    player.on('ended', playNextSong);
+    
   } else if (currentMedia.type === 'local') {
     playerl = new Audio(currentMedia.id);
     playerl.volume = (svol / 300);
-    playerl.autoplay = true;
+    playerl.play();
+
     playerl.addEventListener('ended', playNextSong);
 
   }
@@ -216,6 +215,8 @@ function createPlayer() {
   });
 }
 
+
+
 function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     if (player.paused()) {
@@ -232,19 +233,26 @@ function togglePlayback() {
 
 function playNextSong() {
   currentIndex++;
+
   if (currentIndex >= playlist.length) {
     shuffleIndices();
     currentIndex = 0;
+    console.log('impossible')
   }
   createPlayer();
 }
 
 function skipMedia() {
-  if (player.currentTime() !== undefined) {
-    player.currentTime(player.duration() - 1);
+
+  if (playlist[shuffledIndices[currentIndex]].type === 'local'){
+    if (playerl.currentTime !== undefined) {
+      playerl.currentTime = playerl.duration - 1;
+    }
   }
-  else {
-    playNextSong()
+  else{
+    if (player.currentTime() !== undefined) {
+      player.currentTime(player.duration() - 1);
+    }
   }
 }
 
@@ -259,11 +267,17 @@ function changeVolume(volume) {
 shuffleIndices();
 player = videojs('player', {
   techOrder: ['youtube'],
-  autoplay: 'muted',
+  autoplay: 'any',
   preload: 'auto',
-  audioOnlyMode: true
-
-
+  inactivityTimeout: 0,
+  //audioOnlyMode: true
 });
 
+
+function ender(){
+  if(playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    playNextSong();
+  }
+}
+player.on('ended', ender);
 createPlayer();
