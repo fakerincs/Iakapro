@@ -70,12 +70,12 @@ const playlist = [
   { id: '9vGJi6Mk-lw', title: '星宮とと+TEMPLIME - 水槽 (EmoCosine Remix)', type: 'youtube' },
   { id: 'CFyYffB3b3U', title: 'FunFunFun - GROWN UP ( PSYQUI Remix )', type: 'youtube' },
   { id: 'q6pGsAphEII', title: '[PSYQUI] Too Late', type: 'youtube' },
-  { id: 'IAgTv8b20Dg', title: 'PSYQUI - Education', type: 'youtube' },
+  { id: 'SuwW2Ot_RXc', title: 'PSYQUI - Education', type: 'youtube' },//source
   { id: 'uSYTsSWaGrg', title: '0光年の孤独 (PSYQUI Remix)', type: 'youtube' },
   { id: 'jhaVY9CTIB8', title: 'PSYQUI - Chatroom', type: 'youtube' },
   { id: 'entorTv54tk', title: 'Spacelectro - EAT!EAT!EAT! feat. ももかみ (PSYQUI Remix)', type: 'youtube' },
   { id: '5qePUkd7ZEk', title: 'PSYQUI - Lightning', type: 'youtube' },
-  { id: 'mEQZNRT6Pqk', title: '就寝御礼 (Original Mix)', type: 'youtube' },
+  { id: 'bncPyfarr8o', title: '就寝御礼 (Original Mix)', type: 'youtube' },
   { id: 'Um5N4IOnCJM', title: 'ヒカリの方へ (Original Mix)', type: 'youtube' },
   { id: 'olWvy0PiLfA', title: 'TUYU - Compared Child', type: 'youtube' },
   { id: 'JprsKeAStcw', title: 'tofubeats - CAND¥¥¥LAND feat. LIZ (Pas Lam System Remix)', type: 'youtube' },
@@ -173,9 +173,21 @@ function createPlayer() {
     player.src({
       src: `https://www.youtube.com/watch?v=${currentMedia.id}`,
       type: 'video/youtube',
+      autoplay: 'muted',
+      preload: 'auto',
+      audioOnlyMode: true
     });
     player.load();
     player.play();
+    player.volume(svol / 100);
+    var myMiddleware = function(player) {//i CANNOT believe this worked
+      return {
+        setMuted: function(muted) {
+          return false;
+        }
+      };
+    };
+    videojs.use('*', myMiddleware);
     player.on('ended', playNextSong);
   } else if (currentMedia.type === 'local') {
     playerl = new Audio(currentMedia.id);
@@ -228,10 +240,12 @@ function playNextSong() {
 }
 
 function skipMedia() {
-  if (player.currentTime !== undefined) {
-    player.currentTime = player.duration - 1; // Skip to the end of the media
+  if (player.currentTime() !== undefined) {
+    player.currentTime(player.duration() - 1);
   }
-  playNextSong()
+  else {
+    playNextSong()
+  }
 }
 
 function changeVolume(volume) {
@@ -245,8 +259,11 @@ function changeVolume(volume) {
 shuffleIndices();
 player = videojs('player', {
   techOrder: ['youtube'],
-  autoplay: true,
-  controls: true,
+  autoplay: 'muted',
+  preload: 'auto',
+  audioOnlyMode: true
+
+
 });
 
 createPlayer();
