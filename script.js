@@ -187,7 +187,7 @@ const playlist = [
   { id: 'D199Zpv6d6M', title: 'ポルカドットスティングレイ「ヒミツ」*polka', type: 'youtube' },
   { id: 'r48R3iD3lqk', title: '幽霊', type: 'youtube' },
   { id: '_gWn38pnmqI', title: 'snooze / wotaku feat. SHIKI', type: 'youtube' },
-  { id: 'ojQv1TchM_A', title: 'Oshama Scramble! (uncut edition)', type: 'youtube' },
+  { id: 'ojQv1TchM_A', title: 'Oshama Scramble! (uncut edition)', type: 'youtube' },//dwqdqwdw
   { id: 'lqhqX1pd9_A', title: '秘密のメリーゴーランド (feat. somunia)', type: 'youtube' },
   { id: '63hvgikEJO0', title: 'White Canvas (feat. 藍月なくる)', type: 'youtube' },
   { id: 'tpp5TUsrBQI', title: 't+pazolite - Rush Away', type: 'youtube' },
@@ -294,9 +294,12 @@ function createPlayer() {
     videojs.use('*', myMiddleware);
     
   } else if (currentMedia.type === 'local') {
+    
     playerl = new Audio(currentMedia.id);
-    playerl.volume = (svol / 300);
+    playerl.muted = true;
     playerl.play();
+    playerl.muted = false;
+    playerl.volume = (svol / 300);
 
     playerl.addEventListener('ended', playNextSong);
 
