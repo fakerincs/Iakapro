@@ -347,6 +347,7 @@ const playlist = [
   { id: 'TsNc66xsF1o', title: 'Geoxor - Nana', type: 'youtube' },
   { id: 'oklzVH8FfVQ', title: 'Geoxor - Virtual', type: 'youtube' },
   { id: 'aMntbdEiCr4', title: 'Panda Eyes x Geoxor - Lucid Dream', type: 'youtube' },
+  { id: 'Recording.mp3', title: 'start', type: 'local' },
 
   
 
@@ -366,10 +367,11 @@ let first = true;
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
-  for (let i = shuffledIndices.length - 1; i > 0; i--) {
+  for (let i = shuffledIndices.length - 2; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
   }
+  [shuffledIndices[0], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[0]];
 }
 
 function createPlayer() {
