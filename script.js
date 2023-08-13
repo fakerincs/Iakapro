@@ -371,7 +371,7 @@ function shuffleIndices() {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
   }
-  [shuffledIndices[0], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[0]];
+  [shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
 }
 
 function createPlayer() {
