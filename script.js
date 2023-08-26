@@ -348,6 +348,8 @@ const playlist = [
   { id: 'oklzVH8FfVQ', title: 'Geoxor - Virtual', type: 'youtube' },
   { id: 'aMntbdEiCr4', title: 'Panda Eyes x Geoxor - Lucid Dream', type: 'youtube' },
   { id: 'Recording.mp3', title: 'start', type: 'local' },
+  { id: 'EHyoAXILbA8', title: 'Snails House  Moe Shop - Pastel', type: 'youtube' },
+  { id: 'byAn2Cl9iiM', title: 'Psyqui - Screwdriverrrr', type: 'youtube' },
 
   
 
