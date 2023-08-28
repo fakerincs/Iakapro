@@ -7,7 +7,17 @@
 </head>
 <body>
   <nav>
-    <a href="lists.html">lists</a>
+    <input id='password' type='text'  />
+    <a href="lists.html" onclick="javascript:return validatePass()"></a>
+    <script>
+    function validatePass(){
+        if(document.getElementById('password').value == 'dontllook'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    </script>
   </nav>
   <div id="playerContainer">
     <video id="player" class="video-js">
