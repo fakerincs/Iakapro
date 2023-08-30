@@ -392,7 +392,7 @@ function createPlayer() {
       type: 'video/youtube',
       autoplay: 'any',//these dont actuall chagne anything
       preload: 'auto',
-      //audioOnlyMode: true
+      audioOnlyMode: true
     });
     //player.load();
     //player.ready(player.play());
