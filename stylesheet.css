@@ -31,10 +31,10 @@
       padding: 14px 22px;
     }
   
-    #volumeSlider {
-      width: 0%;
+    /*#volumeSlider {
+      width: 90%; slider doesnt work
       max-width: 100%;
-    }
+    }*/
   }
   
   @media (min-width: 1082px) {
