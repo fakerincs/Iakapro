@@ -24,14 +24,6 @@ let playerl;
 let first = true;
 
 
-function shuffleIndices() {
-  shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
-  for (let i = shuffledIndices.length - 2; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
-  }
-  [shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
-}
 
 function createPlayer() {
   const currentMedia = playlist[shuffledIndices[currentIndex]];
@@ -116,9 +108,7 @@ function playNextSong() {
   currentIndex++;
 
   if (currentIndex >= playlist.length) {
-    shuffleIndices();
     currentIndex = 0;
-    console.log('impossible')
   }
   createPlayer();
 }
