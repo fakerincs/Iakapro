@@ -2,7 +2,7 @@ const playlist = [
   
   { id: 'JxZ9RTjPNKs', title: 'Crossroad (PSYQUI Remix) (feat. Luschel)', type: 'youtube' },
   { id: 'Tv5s9_UAmdU', title: 'PSYQUI Medley', type: 'youtube' },
-  { id: '6Dh-RL__uN4', title: 'Lasagna', type: 'youtube' },
+  { id: 'qkBB5LrcwZ4', title: 'icesawder Stardom', type: 'youtube' }
   { id: '3ad4NsEy1tg', title: 'テレキャスター･ストライプ', type: 'youtube' },
   { id: '2QIp-YGau7o', title: 'Allure', type: 'youtube' },
   { id: 'Recording.mp3', title: 'start', type: 'local' },
