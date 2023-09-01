@@ -80,6 +80,13 @@ function createPlayer() {
   volumeSlider.addEventListener('input', () => {
     changeVolume(volumeSlider.value);
   });
+
+  // Playlist slider functionality
+  const indexSlider = document.getElementById('indexSlider');
+  indexSlider.addEventListener('input', () => {
+    changeVolume(indexSlider.value);
+    playNextSong(indexSLider.value);
+  });
 }
 
 
@@ -98,7 +105,16 @@ function togglePlayback() {
   }
 }
 
-function playNextSong() {
+
+function playNextSong(index = -1) {
+  if (index != -1) {
+    currentIndex = index;
+    if (currentIndex >= playlist.length) {
+      currentIndex = playlist.length - 1;
+    }
+    createPlayer();
+    return;
+  }
   currentIndex++;
   if (currentIndex >= playlist.length) {
     currentIndex = 0;
