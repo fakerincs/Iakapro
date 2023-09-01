@@ -492,6 +492,7 @@ player = videojs('player', {
   autoplay: 'any',
   preload: 'auto',
   inactivityTimeout: 0,
+  width: 1,
   audioOnlyMode: true
 });
 
