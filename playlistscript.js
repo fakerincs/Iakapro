@@ -58,7 +58,7 @@ function createPlayer() {
     playerl.muted = false;
     playerl.volume = (svol / 300);
 
-    playerl.addEventListener('ended', playNextSong);
+    playerl.addEventListener('ended', playNextSong(-1);
 
   }
 
@@ -104,7 +104,7 @@ function togglePlayback() {
 }
 
 
-function playNextSong(index = -1) {
+function playNextSong(index) {
   if (index !== -1) {
     currentIndex = index;
     if (currentIndex >= playlist.length) {
@@ -154,7 +154,7 @@ player = videojs('player', {
 
 function ender(){
   if(playlist[shuffledIndices[currentIndex]].type === 'youtube'){
-    playNextSong();
+    playNextSong(-1);
   }
 }
 player.on('ended', ender);
