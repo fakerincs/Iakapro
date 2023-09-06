@@ -84,8 +84,7 @@ function createPlayer() {
   // Playlist slider functionality
   const indexSlider = document.getElementById('indexSlider');
   indexSlider.addEventListener('input', () => {
-    changeVolume(indexSlider.value);
-    playNextSong(indexSLider.value);
+    playNextSong(indexSlider.value);
   });
 }
 
