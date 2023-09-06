@@ -1,5 +1,4 @@
 const playlist = [
-  
   { id: 'JxZ9RTjPNKs', title: 'Crossroad (PSYQUI Remix) (feat. Luschel)', type: 'youtube' },
   { id: 'Tv5s9_UAmdU', title: 'PSYQUI Medley', type: 'youtube' },
   { id: 'qkBB5LrcwZ4', title: 'icesawder Stardom', type: 'youtube' }
@@ -12,7 +11,7 @@ let shuffledIndices = [];
 let currentIndex = 0;
 let player;
 let playerl;
-let first = true;
+
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
@@ -106,7 +105,7 @@ function togglePlayback() {
 
 
 function playNextSong(index = -1) {
-  if (index != -1) {
+  if (index !== -1) {
     currentIndex = index;
     if (currentIndex >= playlist.length) {
       currentIndex = playlist.length - 1;
