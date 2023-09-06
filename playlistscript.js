@@ -104,7 +104,8 @@ function togglePlayback() {
 }
 
 
-function playNextSong(index) {
+function playNextSong() {
+  index = -1;
   if (index !== -1) {
     currentIndex = index;
     if (currentIndex >= playlist.length) {
