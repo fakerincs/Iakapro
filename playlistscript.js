@@ -79,13 +79,13 @@ function createPlayer() {
   volumeSlider.addEventListener('input', () => {
     changeVolume(volumeSlider.value);
   });
-
+/*
   // Playlist slider functionality
   const indexSlider = document.getElementById('indexSlider');
   indexSlider.addEventListener('input', () => {
     playNextSong(indexSlider.value);
   });
-}
+}*/
 
 
 
