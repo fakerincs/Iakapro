@@ -148,7 +148,9 @@ player = videojs('player', {
   autoplay: 'any',
   preload: 'auto',
   inactivityTimeout: 0,
-  audioOnlyMode: true
+  audioOnlyMode: true,
+  width: 80,
+  height: 100,
 });
 
 
