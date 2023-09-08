@@ -149,7 +149,7 @@ player = videojs('player', {
   preload: 'auto',
   inactivityTimeout: 0,
   //audioOnlyMode: true,
-  width: 80,
+  width: 130,
   height: 100,
 });
 
