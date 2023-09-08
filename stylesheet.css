@@ -2,6 +2,8 @@
 #playPauseButton, #skipButton {
     font-size: 16px;
     padding: 10px 18px;
+    border-radius: 8;
+    border-width: thin;
   }
   
   #volumeSlider {
