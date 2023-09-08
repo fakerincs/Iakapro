@@ -58,7 +58,7 @@ function createPlayer() {
     playerl.muted = false;
     playerl.volume = (svol / 300);
 
-    playerl.addEventListener('ended', playNextSong();
+    playerl.addEventListener('ended', playNextSong());
 
   }
 
