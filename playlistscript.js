@@ -4,7 +4,7 @@ const playlist = [
   { id: 'qkBB5LrcwZ4', title: 'icesawder Stardom', type: 'youtube' },
   { id: '3ad4NsEy1tg', title: 'テレキャスター･ストライプ', type: 'youtube' },
   { id: '2QIp-YGau7o', title: 'Allure', type: 'youtube' },
-  { id: 'Recording.mp3', title: 'start', type: 'local' }
+  //{ id: 'Recording.mp3', title: 'start', type: 'local' }
 ];
 let svol = 50
 let shuffledIndices = [];
@@ -15,7 +15,7 @@ let playerl;
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
-  [shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
+  //[shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
 }
 
 function createPlayer() {
@@ -36,7 +36,7 @@ function createPlayer() {
       type: 'video/youtube',
       autoplay: 'any',//these dont actuall chagne anything
       preload: 'auto',
-      audioOnlyMode: true
+      //audioOnlyMode: true
     });
     //player.load();
     //player.ready(player.play());
@@ -148,7 +148,7 @@ player = videojs('player', {
   autoplay: 'any',
   preload: 'auto',
   inactivityTimeout: 0,
-  audioOnlyMode: true,
+  //audioOnlyMode: true,
   width: 80,
   height: 100,
 });
