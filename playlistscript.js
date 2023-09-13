@@ -36,7 +36,7 @@ function createPlayer() {
       type: 'video/youtube',
       autoplay: 'any',//these dont actuall chagne anything
       preload: 'auto',
-      //audioOnlyMode: true
+      audioOnlyMode: true
     });
     //player.load();
     //player.ready(player.play());
@@ -149,9 +149,9 @@ player = videojs('player', {
   autoplay: 'any',
   preload: 'auto',
   inactivityTimeout: 0,
-  //audioOnlyMode: true,
-  width: 130,
-  height: 100,
+  audioOnlyMode: true,
+  //width: 130,
+  //height: 100,
 });
 
 
