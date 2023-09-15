@@ -6,7 +6,7 @@ const playlist = [
   { id: '2QIp-YGau7o', title: 'Allure', type: 'youtube' },
   //{ id: 'Recording.mp3', title: 'start', type: 'local' }
 ];
-let svol = 50
+let svol = 50;
 let shuffledIndices = [];
 let currentIndex = 0;
 let player;
