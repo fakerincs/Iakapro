@@ -114,11 +114,13 @@ function playNextSong(index = -1) {
     createPlayer();
     return;
   }
-  currentIndex++;
-  if (currentIndex >= playlist.length) {
-    currentIndex = 0;
+  else {
+    currentIndex++;
+    if (currentIndex >= playlist.length) {
+      currentIndex = 0;
+    }
+    createPlayer();
   }
-  createPlayer();
 }
 
 function skipMedia() {
