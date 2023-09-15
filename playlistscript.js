@@ -107,7 +107,7 @@ function togglePlayback() {
 
 function playNextSong(index = -1) {
   if (index !== -1) {
-    currentIndex = index;
+    currentIndex = index -1;
     if (currentIndex >= playlist.length) {
       currentIndex = playlist.length - 1;
     }
