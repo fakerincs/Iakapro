@@ -11,7 +11,7 @@ let shuffledIndices = [];
 let currentIndex = 0;
 let player;
 let playerl;
-document.getElementById("indexSlider").max = playlist.length;
+document.getElementById("indexSlider").max = playlist.length - 1;
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
