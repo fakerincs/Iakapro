@@ -79,6 +79,7 @@ function createPlayer() {
   // Playlist slider functionality
   const indexSlider = document.getElementById('indexSlider');
   indexSlider.addEventListener('change', () => {
+    currentSongElement.textContent = `Now Playing: ${playlist[shuffledIndices[indexSlider.value]].title}`;
     if (start) {
       setTimeout(handleSlider, 100);
       start = false;
