@@ -12,6 +12,13 @@ let currentIndex = 0;
 let player;
 let playerl;
 document.getElementById("indexSlider").max = playlist.length - 1;
+var myMiddleware = function(player) {//i CANNOT believe this worked
+  return {
+    setMuted: function(muted) {
+      return false;
+    }
+  };
+};
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
@@ -41,13 +48,7 @@ function createPlayer() {
     //player.load();
     //player.ready(player.play());
     player.volume(svol / 100);
-    var myMiddleware = function(player) {//i CANNOT believe this worked
-      return {
-        setMuted: function(muted) {
-          return false;
-        }
-      };
-    };
+    
     videojs.use('*', myMiddleware);
     
   } else if (currentMedia.type === 'local') {
