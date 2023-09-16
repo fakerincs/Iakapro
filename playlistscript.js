@@ -82,8 +82,8 @@ function createPlayer() {
 
   // Playlist slider functionality
   const indexSlider = document.getElementById('indexSlider');
-  indexSlider.addEventListener('input', () => {
-    setTimeout(playNextSong(), 7000, indexSlider.value);
+  indexSlider.addEventListener('change', () => {
+    playNextSong(indexSlider.value);
   });
 }
 
