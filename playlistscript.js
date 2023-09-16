@@ -12,13 +12,7 @@ let currentIndex = 0;
 let player;
 let playerl;
 document.getElementById("indexSlider").max = playlist.length - 1;
-var myMiddleware = function(player) {//i CANNOT believe this worked
-  return {
-    setMuted: function(muted) {
-      return false;
-    }
-  };
-};
+
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
@@ -156,7 +150,13 @@ player = videojs('player', {
   //height: 100,
 });
 
-
+var myMiddleware = function(player) {//i CANNOT believe this worked
+  return {
+    setMuted: function(muted) {
+      return false;
+    }
+  };
+};
 function ender(){
   if(playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     playNextSong();
