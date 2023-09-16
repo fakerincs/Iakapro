@@ -78,7 +78,7 @@ function createPlayer() {
   // Playlist slider functionality
   const indexSlider = document.getElementById('indexSlider');
   indexSlider.addEventListener('change', () => {
-    playNextSong(indexSlider.value);
+    setTimeOut(playNextSong, 1000, indexSlider.value);
   });
 }
 
