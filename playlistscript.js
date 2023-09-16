@@ -83,7 +83,7 @@ function createPlayer() {
   // Playlist slider functionality
   const indexSlider = document.getElementById('indexSlider');
   indexSlider.addEventListener('input', () => {
-    setTimeout(playNextSong(), 1200, indexSlider.value);
+    setTimeout(playNextSong(), 7000, indexSlider.value);
   });
 }
 
