@@ -11,6 +11,7 @@ let shuffledIndices = [];
 let currentIndex = 0;
 let player;
 let playerl;
+let start = true;
 document.getElementById("indexSlider").max = playlist.length - 1;
 
 
@@ -78,11 +79,18 @@ function createPlayer() {
   // Playlist slider functionality
   const indexSlider = document.getElementById('indexSlider');
   indexSlider.addEventListener('change', () => {
-    setTimeout(playNextSong, 10000, indexSlider.value);
+    if (start) {
+      setTimeout(handleSlider, 100);
+      start = false;
+    }
+    tempdex = indexSlider.value;
   });
 }
 
-
+function handleSlider() {
+  playNextSong(tempdex);
+  start = true;
+}
 
 function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
