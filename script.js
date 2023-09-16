@@ -354,7 +354,7 @@ const playlist = [
   { id: 'nnXClR0uSjc', title: '笑えない - PSYQUI feat.mikanzil', type: 'youtube' },
   { id: '66VXgLCqRLM', title: 'Malt - Seasons', type: 'youtube' },
   { id: 'hiZyhFmRX74', title: 'okz - Pieces', type: 'youtube' },
-  { id: 'pp1vpZgyEbY', title: 'MAQUINA - Don't Need To Hide', type: 'youtube' },
+  { id: 'pp1vpZgyEbY', title: 'MAQUINA - Dont Need To Hide', type: 'youtube' },
   
 
 
