@@ -350,7 +350,11 @@ const playlist = [
   { id: 'Recording.mp3', title: 'start', type: 'local' },
   { id: 'EHyoAXILbA8', title: 'Snails House  Moe Shop - Pastel', type: 'youtube' },
   { id: 'byAn2Cl9iiM', title: 'Psyqui - Screwdriverrrr', type: 'youtube' },
-
+  { id: 'CXQN1eVmzMA', title: 'Psyqui - Fiction / HACHI × KMNZ LITA', type: 'youtube' },
+  { id: 'nnXClR0uSjc', title: '笑えない - PSYQUI feat.mikanzil', type: 'youtube' },
+  { id: '66VXgLCqRLM', title: 'Malt - Seasons', type: 'youtube' },
+  { id: 'hiZyhFmRX74', title: 'okz - Pieces', type: 'youtube' },
+  { id: 'pp1vpZgyEbY', title: 'MAQUINA - Don't Need To Hide', type: 'youtube' },
   
 
 
