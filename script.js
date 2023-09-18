@@ -347,7 +347,6 @@ const playlist = [
   { id: 'TsNc66xsF1o', title: 'Geoxor - Nana', type: 'youtube' },
   { id: 'oklzVH8FfVQ', title: 'Geoxor - Virtual', type: 'youtube' },
   { id: 'aMntbdEiCr4', title: 'Panda Eyes x Geoxor - Lucid Dream', type: 'youtube' },
-  { id: 'Recording.mp3', title: 'start', type: 'local' },
   { id: 'EHyoAXILbA8', title: 'Snails House  Moe Shop - Pastel', type: 'youtube' },
   { id: 'byAn2Cl9iiM', title: 'Psyqui - Screwdriverrrr', type: 'youtube' },
   { id: 'CXQN1eVmzMA', title: 'Psyqui - Fiction / HACHI × KMNZ LITA', type: 'youtube' },
@@ -355,6 +354,7 @@ const playlist = [
   { id: '66VXgLCqRLM', title: 'Malt - Seasons', type: 'youtube' },
   { id: 'hiZyhFmRX74', title: 'okz - Pieces', type: 'youtube' },
   { id: 'pp1vpZgyEbY', title: 'MAQUINA - Dont Need To Hide', type: 'youtube' },
+  { id: 'Recording.mp3', title: 'start', type: 'local' },
   
 
 
