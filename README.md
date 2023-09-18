@@ -5,7 +5,7 @@ The goal of this website was to automaticly play music in the background of a mo
 
 
 Usage(mobile, ios):
-As a warning the method to autoplay is very finniky and can change based on browser or device. I personally use firefox on my phone(solely to play music from this website). If it autoplays fine in the background, you don't need to do the following process.
+As a warning the method to autoplay is very finicky and can change based on browser or device. I personally use firefox on my phone(solely to play music from this website). If it autoplays fine in the background, you don't need to do the following process.
 
 (After first use/website refreshed) Open the website press play so audio starts playing(refresh if needed), and then press play twice so it stops and starts playing again(this is to have the video show up as playing on the system, i.e. it shows up on lock screen). You can then either go to the home screen, or turn off the phone(if you aren't going to use the phone). I would recommend always going to home first in case you want to use other apps. From there, the audio should pause. You can simply start it again by pressing the play button anywhere(not the website) like on your headphones, lock screen, or the two other screens when you swipe up or down(idk what it is called). After the first song ends, you should need to press the play button again (to activate the filler media)(I found using this filler is the most consistent in using autoplay). After this, you shouldn't need to press anything else, and it should autoplay. However, if a local song(non yt) comes up, you may need to press the play button again(NOT THE BUTTON ON WEBSITE, if you go back on the website, it may stop automaticly playing and you may need to redo the process). 
 
