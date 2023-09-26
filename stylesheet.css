@@ -19,6 +19,16 @@
   #currentSong {
     font-size: 20px;
   }
+
+#playerinfo {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    border: 3px solid green;
+    border-radius: 30px;
+    
+    
+}
   
   /* Media queries for responsive layout */
   @media (max-width: 1081px) {
