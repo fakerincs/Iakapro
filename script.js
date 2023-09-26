@@ -426,7 +426,7 @@ function createPlayer() {
 
   // Display the current song title
   const currentSongElement = document.getElementById('currentSong');
-  currentSongElement.textContent = `Now Playing: ${currentMedia.title}`;
+  currentSongElement.textContent = `${currentMedia.title}`;
 
   // Play/Pause button functionality
   const playPauseButton = document.getElementById('playPauseButton');
