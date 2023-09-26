@@ -1,4 +1,5 @@
 const playlist = [
+  { id: 'qkBB5LrcwZ4', title: 'icesawder Stardom', type: 'youtube' },
   { id: '4n1Kh04GRww', title: 'Crossroad (PSYQUI Remix) (feat. Luschel)', type: 'youtube' },
   { id: 'Tv5s9_UAmdU', title: 'PSYQUI Medley', type: 'youtube' },
   { id: 'qkBB5LrcwZ4', title: 'icesawder Stardom', type: 'youtube' },
