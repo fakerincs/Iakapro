@@ -349,7 +349,7 @@ const playlist = [
   { id: 'aMntbdEiCr4', title: 'Panda Eyes x Geoxor - Lucid Dream', type: 'youtube' },
   { id: 'EHyoAXILbA8', title: 'Snails House  Moe Shop - Pastel', type: 'youtube' },
   { id: 'byAn2Cl9iiM', title: 'Psyqui - Screwdriverrrr', type: 'youtube' },
-  { id: 'CXQN1eVmzMA', title: 'Psyqui - Fiction / HACHI × KMNZ LITA', type: 'youtube' },
+  { id: 'CXQN1eVmzMA', title: 'Psyqui - Fiction / HACHI  KMNZ LITA', type: 'youtube' },
   { id: 'nnXClR0uSjc', title: '笑えない - PSYQUI feat.mikanzil', type: 'youtube' },
   { id: '66VXgLCqRLM', title: 'Malt - Seasons', type: 'youtube' },
   { id: 'hiZyhFmRX74', title: 'okz - Pieces', type: 'youtube' },
