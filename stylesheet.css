@@ -1,76 +1,71 @@
 /* Styles for buttons and text */
 #playPauseButton, #skipButton {
-    font-size: 16px;
-    padding: 10px 18px;
-    border-radius: 10px;
-    border-width: thin;
-  }
-  
-  #volumeSlider {
-    width: 60%;
-    max-width: 400px;
-  }
-
-  #indexSlider {
-    width: 80%;
-    max-width: 500px;
-  }
-  
-  #currentSong {
-    font-size: 20px;
-  }
-div {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 100%;
+  font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border-width: thin;
 }
 
+
+#indexSlider {
+  width: 80%;
+}
+
+#currentSong {
+
+  font-size: 20px;
+}
+
+div, a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+}
+
+
 #playerinfo {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-    border: 3px solid green;
-    border-radius: 30px;
-    
+  margin-top: 3%;
+  padding-left: 10px;
+  /*display: block;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  border: 3px solid green;
+  background-color: rgba(93, 218, 124, 0.322);
+  border-radius: 30px;*/
+
 }
 
 #password {
-    padding: 10px;
+    padding-top: 10px;
 }
   
-  /* Media queries for responsive layout */
-  @media (max-width: 1081px) {
-    /* Styles for mobile */
-    #playerContainer {
-      max-width: 100%;
-      margin: 0;
-    }
-  
-    #playPauseButton, #skipButton {
-      font-size: 20px;
-      padding: 14px 22px;
-    }
-  
-    /*#volumeSlider {
-      width: 90%; slider doesnt work
-      max-width: 100%;
-    }*/
-  }
-  
-  @media (min-width: 1082px) {
-    /* Styles for desktop */
-    #playerContainer {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-  
-    #playPauseButton, #skipButton {
-      font-size: 16px;
-      padding: 10px 18px;
-    }
-  
-    #volumeSlider {
-      width: 80%;
-      max-width: 200px;
-    }
-  }
+
+#playerContainer {
+
+  padding: 10px;
+  position: absolute;
+  right: 0%;
+  display: block;
+  margin: 0 auto;
+  bottom: 0%;
+}
+
+#controls {
+  width: 100%;
+  font-size: 16px;
+  padding-bottom: 10px;
+  position: fixed;
+
+  bottom: 0;
+}
+
+#volumeSlider {
+  width:calc(100% - 600px);
+  margin-left: 10px;
+}
+#indexSlider {
+  width:calc(100% - 388px);
+  margin-left: 10px;
+}
+
   

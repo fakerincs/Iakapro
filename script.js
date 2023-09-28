@@ -165,7 +165,7 @@ const playlist = [
   { id: 'PzHg1Jzt1QQ', title: 'Zekk - Tomoyo', type: 'youtube' },
   { id: 'wC0wBXF_DYs', title: 'PSYQUI - Hype / Your voice so... feat. Such (Guitar Cover)', type: 'youtube' },
   { id: 'jlGF26v_y_M', title: 'PSYQUI - Raise Your Hands (feat. Such) Guitar Cover', type: 'youtube' },
-  { id: 'dlraZy9f4Jk', title: 'PSYQUI - Pallet (feat. mikanzil) Guitar Cover', type: 'youtube' },
+  { id: 'dlraZy9f4Jk', title: 'PSYQUI - Pallet (feat. mikanzil) Guitar Cover', type: 'youtube' },//needs conformation
   { id: 'qU9l7thm848', title: 'PSYQUI - エンドロール (ft. Mikanzil) | J-Pop', type: 'youtube' },
   { id: '1Ss2H3Xt0D8', title: 'PSYQUI - Bye or not (feat. mikanzil) Guitar Cover', type: 'youtube' },
   { id: 'lEM-ChiVSyY', title: 'Mameyudoufu - Esperanza', type: 'youtube' },
@@ -174,7 +174,7 @@ const playlist = [
   { id: 'HEART BEAT.mp3', title: 'HEART BEAT', type: 'local' },
   { id: '8x09xhZ_H7Q', title: 'PSYQUI - Remorse', type: 'youtube' },
   { id: 'ug65BPPf2_M', title: 'No Time', type: 'youtube' },
-  { id: 'PUog0Kdm40I', title: 'ヒステリックナイトガール - PSYQUI (Cover) / KMNZ LIZ', type: 'youtube' },
+  { id: 'PUog0Kdm40I', title: 'ヒステリックナイトガール - PSYQUI (Cover) / KMNZ LIZ', type: 'youtube' },//????
   { id: '_PVj_PSOU_I', title: 'ヒステリックナイトガール - PSYQUI [cover] / BOOGEY VOXX', type: 'youtube' },
   { id: 'uZIPat_lipM', title: 'ENERGY', type: 'youtube' },
   { id: 'PSD9yp8O6Yo', title: 'LASTING', type: 'youtube' },
