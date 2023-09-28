@@ -56,10 +56,15 @@ div, a {
 #volumeSlider {
   width:calc(100% - 600px);
   margin-left: 10px;
+  max-width: 500px;
+  min-width: 100px;
 }
 #indexSlider {
+
   width:calc(100% - 388px);
   margin-left: 10px;
+  max-width: 712px;
+  min-width: 100px;
 }
 
   

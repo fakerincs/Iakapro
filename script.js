@@ -142,7 +142,6 @@ const playlist = [
   { id: '96mkdArkesA', title: 'Your voice so... (android52 Remix) (feat. Such)', type: 'youtube' },
   { id: 'kxVALRdEvH0', title: 'Daydream (feat. mega & Sithu Aye)', type: 'youtube' },
   { id: 'i7ouv9AyB_o', title: 'Dont you want me (feat. Such)', type: 'youtube' },
-  { id: 'CHmBc9ZmFzw', title: 'Flamenco House', type: 'youtube' },//
   { id: 'c-ia2aYKByw', title: 'REDALiCE vs USAO - SAIKYO STRONGER', type: 'youtube' },
   { id: 'FnAPrsJGFrU', title: 'Count', type: 'youtube' },
   { id: '_2XVuSaPxEE', title: 'Gloomy Flash (feat. mami)', type: 'youtube' },//
@@ -354,6 +353,23 @@ const playlist = [
   { id: '66VXgLCqRLM', title: 'Malt - Seasons', type: 'youtube' },
   { id: 'hiZyhFmRX74', title: 'okz - Pieces', type: 'youtube' },
   { id: 'pp1vpZgyEbY', title: 'MAQUINA - Dont Need To Hide', type: 'youtube' },
+  { id: 'QhNE4Ky5Je4', title: 'OUKIISH feat. Marpril - シンフォニア', type: 'youtube' },
+  { id: '2_JtzW-GHUc', title: 'okz - Sw33ts', type: 'youtube' },
+  { id: 'YPrKQBCJD5U', title: 'KONPEKI ft.カミるれ - ETERNAL HERO', type: 'youtube' },
+  { id: 'svH3tRDC1Mw', title: 'Author wind - Arcade Blaster', type: 'youtube' },
+  { id: '_anjTBIQ60k', title: 'Altermis - Akatsuki', type: 'youtube' },
+  { id: 'XpSJU0s1eck', title: 'Juwubi - I F*PTOO MUCH ON ANIME GIRLS', type: 'youtube' },
+  { id: 'MBSXPyaz17g', title: 'dark cat - CRAZY MILK', type: 'youtube' },
+  { id: 'e7oViSudek8', title: 'Dark Cat  Banana Street', type: 'youtube' },
+  { id: 'xa5lZ-v8Aiw', title: 'PSYQUI - Still Lonesome', type: 'youtube' },
+  { id: '7PYe57MwxPI', title: 'dark cat - BUBBLE TEA (feat. juu & cinders)', type: 'youtube' },
+  { id: 'Unart5lZCTQ', title: 'No Stopping Us', type: 'youtube' },
+  { id: 'vtQMR8wYkdQ', title: 'Beautiful Future', type: 'youtube' },
+  { id: 'rFSrVcsicEU', title: 'Karma D-Live ~ BOOGEY VOXX vs PSYQUI (東方/Touhou Vocal Arrange)', type: 'youtube' },
+  { id: 'Xu7qgXfjuDU', title: 'PSYQUI - In the past', type: 'youtube' },
+  { id: 'KHKX6dvhJuw', title: 'Marpril - Spiral Fortune [CHUNITHM]', type: 'youtube' },
+  { id: 'Xj8FxsY6c4U', title: 'lapix - blue love (ft. YUCe) (PSYQUI Remix)', type: 'youtube' },
+  { id: 'tlqlCOdNMnQ', title: 'PSYQUI - J/F (JunknFootwork)', type: 'youtube' },
   { id: 'Recording.mp3', title: 'start', type: 'local' },
   
 
