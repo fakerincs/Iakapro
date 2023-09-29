@@ -151,6 +151,8 @@ function changeVolume(volume) {
   }
 }
 
+
+
 shuffleIndices();
 player = videojs('player', {
   techOrder: ['youtube'],
@@ -161,6 +163,15 @@ player = videojs('player', {
   //width: 130,
   //height: 100,
 });
+function generateUpcoming(){
+  let upcoming = document.getElementById("upcoming");
+  for (i=0; i < Math.floor(window.outerHeight/10); i++){
+    upcoming.insertAdjacentHTML("beforeend", "<li>" + `${playlist[shuffledIndices[currentIndex]].title}(${playlist[shuffledIndices[currentIndex]].type})` + "</li>");
+  }
+}
+generateUpcoming();
+
+
 
 var myMiddleware = function(player) {//i CANNOT believe this worked
   return {

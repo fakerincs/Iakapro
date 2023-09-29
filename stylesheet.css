@@ -12,8 +12,30 @@
 }
 
 #currentSong {
+  font-size: 25px;
+}
 
-  font-size: 20px;
+#upcoming {
+  max-width: 80%;
+  height:400px; 
+  white-space:nowrap;
+  overflow-y: scroll; 
+  border-radius: 7px;
+  background-color: rgba(127, 255, 212, 0.342);
+}
+
+::-webkit-scrollbar{
+  width:5px;
+  border-radius: 4px;
+  background-color: rgba(100, 100, 100, 0.26);
+}
+::-webkit-scrollbar-thumb {
+  background: #0b85b62f; 
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38ad7cd3; 
+
 }
 
 div, a {
@@ -23,7 +45,7 @@ div, a {
 
 
 #playerinfo {
-  margin-top: 3%;
+  margin-top: 2%;
   padding-left: 10px;
 
 
