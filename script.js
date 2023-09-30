@@ -370,6 +370,8 @@ const playlist = [
   { id: 'KHKX6dvhJuw', title: 'Marpril - Spiral Fortune [CHUNITHM]', type: 'youtube' },
   { id: 'Xj8FxsY6c4U', title: 'lapix - blue love (ft. YUCe) (PSYQUI Remix)', type: 'youtube' },
   { id: 'tlqlCOdNMnQ', title: 'PSYQUI - J/F (JunknFootwork)', type: 'youtube' },
+  { id: '1iKZhsc8WGs', title: 'Moe Shop - Charm (w/ Puniden)', type: 'youtube' },
+  { id: 'y-27yTRTJtE', title: 'Moe Shop - Cerise', type: 'youtube' },
   { id: 'Recording.mp3', title: 'start', type: 'local' },
   
 
@@ -517,6 +519,13 @@ player = videojs('player', {
   //width: 1,
   audioOnlyMode: true
 });
+function generateUpcoming(){
+  let upcoming = document.getElementById("upcoming");
+  for (i=0; i < Math.floor(playlist.length); i++){
+    upcoming.insertAdjacentHTML("beforeend", "<li>" + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</li>");
+  }
+}
+generateUpcoming();
 
 
 function ender(){

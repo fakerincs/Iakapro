@@ -16,12 +16,25 @@
 }
 
 #upcoming {
-  max-width: 80%;
-  height:400px; 
+  padding-top: 10px;
+  width: 90%;
+  height:70%;
+  position:absolute;
+  display: inline-block;
   white-space:nowrap;
-  overflow-y: scroll; 
+  overflow-y: scroll;
   border-radius: 7px;
   background-color: rgba(127, 255, 212, 0.342);
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li{
+  padding-left: 10px;
+  line-height: 30px;
+  border-top: 1px solid #ccc;
 }
 
 ::-webkit-scrollbar{
@@ -67,11 +80,15 @@ div, a {
 }
 
 #controls {
+  border-top: 1px solid #8a8a8a79;
+  background-color: rgba(0, 22, 150, 0.459);
   width: 100%;
   font-size: 16px;
   padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
   position: fixed;
-
+  left: 0px;
   bottom: 0;
 }
 
