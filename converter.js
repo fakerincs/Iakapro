@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
                     }).then(() => {
                         const youtube = gapi.client.youtube;
-
+                        console.log('Google API client then.');
                         for (const row of rows) {
+                            console.log('sareching.');
                             const [artist, title] = row.split(',');
                             youtube.search.list(
                                 {
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         console.error('Error searching for video:', err);
                                     } else {
                                         if (response.data.items.length > 0) {
+                                            console.log('good.');
                                             const videoId = response.data.items[0].id.videoId;
                                             videoIds.push({
                                                 id: videoId,
