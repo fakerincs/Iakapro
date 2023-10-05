@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Initialize the Google API client
                 gapi.load('client', () => {
+                    console.log('Google API client loaded.');
                     gapi.client.init({
                         apiKey: API_KEY,
                         discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
