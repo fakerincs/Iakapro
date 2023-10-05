@@ -24,7 +24,7 @@
       });
       function validatePass(){
           if(document.getElementById('password').value == 'dontlook'){
-              return true;
+              return true; 
           }else{
               return false;
           }
@@ -32,6 +32,12 @@
     </script>
   </nav>
   <br>
+
+  <input type="text" id="userInput" placeholder="https://open.spotify.com/playlist/1GHHKkb8wqS66hwhrnQFBC?si=e1cdc2c795874000">
+  <button id="convert">convert </button>
+  <script src="converter.js"></script>
+  
+  <ul id="tohtml"></ul>
 
 
   <div id = "playerinfo">
@@ -42,6 +48,7 @@
     <div id = "upcomingnav">
       <ul id="upcoming"></ul>
     </div>
+    
 
     
     <div id="controls">
