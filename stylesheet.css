@@ -6,7 +6,9 @@
   border-width: thin;
 }
 
-
+nav{
+  background-color: rgba(0, 0, 0, 0.184);
+}
 #indexSlider {
   width: 80%;
 }
