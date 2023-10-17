@@ -4,13 +4,15 @@
   padding: 10px 18px;
   border-radius: 10px;
   border-width: thin;
+  background-color: #0000008f;
 }
 
 nav{
   background-color: rgba(0, 0, 0, 0.184);
 }
 body{
-  background-color:rgb(9, 0, 43);
+  background-color:rgb(0, 1, 82);
+  text-decoration: #9ff1d2;
 }
 #indexSlider {
   width: 80%;
@@ -85,7 +87,7 @@ div, a {
 }
 
 #controls {
-  border-top: 1px solid #8a8a8a79;
+  border-top: 1px solid #ffffff79;
   background-color: rgba(0, 22, 150, 0.459);
   width: 100%;
   font-size: 16px;
