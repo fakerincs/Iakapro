@@ -32,7 +32,7 @@ nav{
 #upcoming {
   padding-top: 10px;
   width: 90%;
-  height:70%;
+  height: calc(100% - 245px);
   position:absolute;
   display: inline-block;
   white-space:nowrap;
