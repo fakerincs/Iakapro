@@ -9,6 +9,7 @@ nav{
   padding-bottom: 8px;
   margin-top: -10px;
   margin-left: -10px;
+  display:inline-block;
 }
 
 #playPauseButton, #skipButton {
@@ -19,7 +20,10 @@ nav{
   background-color: #0000008f;
   color: #9ff1d2;
 }
-
+#playPauseButton, #skipButton :hover {
+  background-color: #008CBA;
+  color: white;
+}
 
 #indexSlider {
   width: 80%;

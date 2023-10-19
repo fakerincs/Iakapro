@@ -10,6 +10,11 @@
 </head>
 <body>
   <nav>
+    <input type="text" id="fileInput" label="import songs">
+    <button id="import">Convert</button>
+    <div id="result"></div>
+    <script src="converter.js"></script>
+    
     <input aria-label="password" type="password" id='password' type='text'/>
     <a href="playlists.html" id="playlistButton" onclick="javascript:return validatePass()"></a>
     <script>
@@ -33,10 +38,7 @@
   </nav>
   <br>
 
-  <input type="file" id="fileInput" accept=".csv">
-  <button id="convert">Convert</button>
-  <div id="result"></div>
-  <script src="converter.js"></script>
+  
   
   <ul id="tohtml"></ul>
 
