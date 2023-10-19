@@ -7,6 +7,8 @@ nav{
   background-color: rgba(0, 0, 0, 0.541);
   padding-top: 8px;
   padding-bottom: 8px;
+  margin-top: -10px;
+  margin-left: -10px;
 }
 
 #playPauseButton, #skipButton {
@@ -15,6 +17,7 @@ nav{
   border-radius: 10px;
   border-width: thin;
   background-color: #0000008f;
+  color: #9ff1d2;
 }
 
 
@@ -76,12 +79,12 @@ div, a {
 }
 
 #password {
-    padding-top: 10px;
+  padding-top: 10px;
+  margin-left: 10px;
 }
   
 
 #playerContainer {
-
   padding: 10px;
   position: absolute;
   right: 0%;
@@ -92,7 +95,7 @@ div, a {
 
 #controls {
   border-top: 1px solid #ffffff79;
-  background-color: rgba(0, 22, 150, 0.459);
+  background-color: rgba(0, 0, 0, 0.877);
   width: 100%;
   font-size: 16px;
   padding-bottom: 10px;
