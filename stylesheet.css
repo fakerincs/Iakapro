@@ -56,14 +56,10 @@ nav{
   border-color: #0000008f;
   background-color: #1919198f;
   color: #9ff1d2;
-}
-#playPauseButton:hover {
-  background-color: #ffffff1f;
-  color: #51ffc1;
-}
-#skipButton:hover {
-  background-color: #ffffff1f;
-  color: #51ffc1;
+  &hover {
+    background-color: #ffffff1f;
+    color: #51ffc1;
+  }
 }
 
 
@@ -153,22 +149,33 @@ div, a {
   margin-left: 10px;
   background: #70707037;
   border-radius: 10px;
-}
-#videoSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 10px;
-  height: 10px;
-  border-radius: 100%; 
-  background: #00ff9d;
-  cursor: pointer;
-}
-#videoSlider::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
-  border-radius: 100%; 
-  background: #00ff9d;
-  cursor: pointer;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%; 
+    background: #00ff9d;
+    cursor: pointer;
+  }
+  &::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%; 
+    background: #00ff9d;
+    cursor: pointer;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    box-shadow: -20rem 0 0 20rem rgba(#fff, 0.2);
+  }
+
+  &::-moz-range-thumb {
+    border: none;
+    width: 0;
+    box-shadow: -20rem 0 0 20rem rgba(#fff, 0.2);
+  }
 }
 
 #volumeSlider {
