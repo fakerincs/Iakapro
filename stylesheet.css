@@ -1,15 +1,44 @@
 /* Styles for buttons and text */
 body{
-  background-color:rgb(10, 16, 70);
-  color: #9ff1d2;
+  background-image: linear-gradient(to bottom right, #00030c, #121a35);
+  color: #78fcca;
+  background-size: 100%;
+  background-attachment: fixed;
+  height: 100%;
 }
 nav{
-  background-color: rgba(0, 0, 0, 0.541);
+  background-color: rgb(3 22 16 / 24%);
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: -10px;
-  margin-left: -10px;
+  width: calc(100% - 35px);
   display:inline-block;
+  margin-right:auto;
+  margin-left: -8px;
+  padding-left: 15px;
+  padding-right: 35px;
+}
+#fileInput{
+  width: 40%;
+  max-width: 100px;
+  background: rgba(96, 107, 102, 0.565);
+  border: rgb(0, 0, 0);
+  color: #51ffc1;
+}
+#import{
+  background: rgba(88, 96, 92, 0.137);
+  border: rgb(0, 0, 0);
+  color: #51ffc1;
+}
+#password {
+  right: 80%;
+  display: inline-block;
+  width: 40%;
+  max-width: 100px;
+  float: right;
+  background: rgba(88, 96, 92, 0.137);
+  border: rgb(0, 0, 0);
+  color: #51ffc1;
 }
 
 #playPauseButton, #skipButton {
@@ -17,13 +46,19 @@ nav{
   padding: 10px 18px;
   border-radius: 10px;
   border-width: thin;
-  background-color: #0000008f;
+  border-color: #0000008f;
+  background-color: #1919198f;
   color: #9ff1d2;
 }
-#playPauseButton, #skipButton :hover {
-  background-color: #008CBA;
-  color: white;
+#playPauseButton:hover {
+  background-color: #ffffff1f;
+  color: #51ffc1;
 }
+#skipButton:hover {
+  background-color: #ffffff1f;
+  color: #51ffc1;
+}
+
 
 #indexSlider {
   width: 80%;
@@ -35,14 +70,14 @@ nav{
 
 #upcoming {
   padding-top: 10px;
-  width: 90%;
-  height: calc(100% - 245px);
+  width: calc(100% - 50px);
+  height: calc(100% - 205px);
   position:absolute;
   display: inline-block;
   white-space:nowrap;
   overflow-y: scroll;
   border-radius: 7px;
-  background-color: rgba(127, 255, 212, 0.342);
+  background-color: rgba(127, 255, 212, 0.21);
 }
 ul{
   margin: 0;
@@ -79,13 +114,10 @@ div, a {
   margin-top: 2%;
   padding-left: 10px;
 
-
 }
 
-#password {
-  padding-top: 10px;
-  margin-left: 10px;
-}
+
+
   
 
 #playerContainer {
@@ -98,8 +130,8 @@ div, a {
 }
 
 #controls {
-  border-top: 1px solid #ffffff79;
-  background-color: rgba(0, 0, 0, 0.877);
+  /* border-top: 1px solid #00000079; */
+  background-color: rgb(0 0 0 / 12%);
   width: 100%;
   font-size: 16px;
   padding-bottom: 10px;
@@ -111,10 +143,23 @@ div, a {
 }
 
 #volumeSlider {
+  -webkit-appearance: none;
   width:calc(100% - 600px);
   margin-left: 10px;
   max-width: 500px;
   min-width: 100px;
+  background: #93ffdb78;
+  outline: none;
+  border-radius: 10px;
+}
+#volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background: #000000;
+  cursor: pointer;
 }
 #indexSlider {
 
