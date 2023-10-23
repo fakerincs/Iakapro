@@ -76,7 +76,7 @@ nav{
 #upcoming {
   padding-top: 10px;
   width: calc(100% - 50px);
-  height: calc(100% - 205px);
+  height: calc(100% - 215px);
   position:absolute;
   display: inline-block;
   white-space:nowrap;
