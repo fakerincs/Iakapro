@@ -30,6 +30,11 @@ nav{
   border: rgb(0, 0, 0);
   color: #51ffc1;
 }
+#homeButton{
+  background: rgba(88, 96, 92, 0.137);
+  border: rgb(0, 0, 0);
+  color: #51ffc1;
+}
 #password {
   right: 80%;
   display: inline-block;
@@ -141,7 +146,22 @@ div, a {
   left: 0px;
   bottom: 0;
 }
-
+#videoSlider {
+  -webkit-appearance: none;
+  width:calc(100% - 60px);
+  margin-left: 10px;
+  background: #70707037;
+  border-radius: 10px;
+}
+#videoSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; 
+  background: #00ff9d;
+  cursor: pointer;
+}
 #volumeSlider {
   -webkit-appearance: none;
   width:calc(100% - 600px);

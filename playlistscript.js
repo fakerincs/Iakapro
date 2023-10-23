@@ -1,10 +1,12 @@
 const playlist = [
-  { id: 'qkBB5LrcwZ4', title: 'icesawder Stardom', type: 'youtube' },
-  { id: '4n1Kh04GRww', title: 'Crossroad (PSYQUI Remix) (feat. Luschel)', type: 'youtube' },
-  { id: 'Tv5s9_UAmdU', title: 'PSYQUI Medley', type: 'youtube' },
-  { id: 'qkBB5LrcwZ4', title: 'icesawder Stardom', type: 'youtube' },
-  { id: '3ad4NsEy1tg', title: 'テレキャスター･ストライプ', type: 'youtube' },
-  { id: '2QIp-YGau7o', title: 'Allure', type: 'youtube' },
+  { id: '9waOYWMw_6A', title: 'Geoxor @ Amethyst 2023 MIX', type: 'youtube' },
+  { id: 'wYaIH0JZ4dc', title: 'Best of Kawaii Pop 2020 Mix (J-Pop, Future Core,...) by Appu', type: 'youtube' },
+  { id: 'pV1GoNi5mFs', title: 'Yunomix vol. 4', type: 'youtube' },
+  { id: 'msnNDZW0R-w', title: 'Cytochrome C - Future Core Mix #8', type: 'youtube' },
+  { id: 'UNaL8tbZotM', title: '1 Hour Most Popular Tracks by Geoxor「NON-STOP PLAYLIST」HQ Audio', type: 'youtube' },
+  { id: '3cSY73RzWhE', title: '1 Hour Most Popular Songs by PSYQUI (NON-STOP Collection Vol. 1 + BONUS TRACK)', type: 'youtube' },
+  { id: '2QIp-SoBAQgl0zbo', title: 'Smooth Future Bass Collection For Yall Vol. 1', type: 'youtube' },
+  { id: 'g1bePvkIXtQ', title: 'Nightcore Gaming Mix 2021  ', type: 'youtube' },
   //{ id: 'Recording.mp3', title: 'start', type: 'local' }
 ];
 let svol = 50;
@@ -20,6 +22,45 @@ function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
   //[shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
 }
+// Display the current song title
+const currentSongElement = document.getElementById('currentSong');
+
+
+// Play/Pause button functionality
+const playPauseButton = document.getElementById('playPauseButton');
+playPauseButton.addEventListener('click', togglePlayback);
+
+// Skip button functionality
+const skipButton = document.getElementById('skipButton');
+skipButton.addEventListener('click', skipMedia);
+
+// Volume slider functionality
+const volumeSlider = document.getElementById('volumeSlider');
+volumeSlider.addEventListener('input', () => {
+  changeVolume(volumeSlider.value);
+});
+
+// Playlist slider functionality
+const indexSlider = document.getElementById('indexSlider');
+indexSlider.addEventListener('input', () => {
+  currentSongElement.textContent = `${playlist[shuffledIndices[indexSlider.value]].title}`;
+});
+indexSlider.addEventListener('change', () => {
+  if (start) {
+    setTimeout(handleSlider, 100);
+    start = false;
+  }
+  tempdex = indexSlider.value;
+});
+var slider = document.getElementById('videoSlider');
+  // Add an event listener to the slider to control video time
+  slider.addEventListener('input', function() {
+    var time = player.duration() * (slider.value / 100);
+    player.currentTime(time);
+});
+
+// Update the slider as the video plays
+
 
 function createPlayer() {
   const currentMedia = playlist[shuffledIndices[currentIndex]];
@@ -58,36 +99,11 @@ function createPlayer() {
     playerl.addEventListener('ended', playNextSong());
 
   }
-
-  // Display the current song title
-  const currentSongElement = document.getElementById('currentSong');
   currentSongElement.textContent = `${currentMedia.title}`;
-
-  // Play/Pause button functionality
-  const playPauseButton = document.getElementById('playPauseButton');
-  playPauseButton.addEventListener('click', togglePlayback);
-
-  // Skip button functionality
-  const skipButton = document.getElementById('skipButton');
-  skipButton.addEventListener('click', skipMedia);
-
-  // Volume slider functionality
-  const volumeSlider = document.getElementById('volumeSlider');
-  volumeSlider.addEventListener('input', () => {
-    changeVolume(volumeSlider.value);
-  });
-
-  // Playlist slider functionality
-  const indexSlider = document.getElementById('indexSlider');
-  indexSlider.addEventListener('input', () => {
-    currentSongElement.textContent = `${playlist[shuffledIndices[indexSlider.value]].title}`;
-  });
-  indexSlider.addEventListener('change', () => {
-    if (start) {
-      setTimeout(handleSlider, 100);
-      start = false;
-    }
-    tempdex = indexSlider.value;
+  player.on('timeupdate', function() {
+    var currentTime = player.currentTime();
+    var duration = player.duration();
+    slider.value = (currentTime / duration) * 100;
   });
 }
 

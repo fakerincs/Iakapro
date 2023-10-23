@@ -372,6 +372,14 @@ const playlist = [
   { id: 'tlqlCOdNMnQ', title: 'PSYQUI - J/F (JunknFootwork)', type: 'youtube' },
   { id: '1iKZhsc8WGs', title: 'Moe Shop - Charm (w/ Puniden)', type: 'youtube' },
   { id: 'y-27yTRTJtE', title: 'Moe Shop - Cerise', type: 'youtube' },
+  { id: 'ky_UWqWlNAw', title: 'Matra Magic - Gonna Love U', type: 'youtube' },
+  { id: '18rR-fR1IWo', title: 'Dont think,スマイル!!', type: 'youtube' },
+  { id: 'M7KI0mRenHk', title: 'Kunaru - One In A Million', type: 'youtube' },
+  { id: '4rtga72rPTY', title: '[Blue Archive] Theme 58 - SAKURA PUNCH (Nor)', type: 'youtube' },
+  { id: 'e79OWeO-nck', title: 'VOLTA - If u really', type: 'youtube' },
+  { id: 'ea_V3Nfk40Y', title: 'Zekk - POWER OF UNITY', type: 'youtube' },
+  { id: 'ikWjlRyRGb8', title: 'ZONE', type: 'youtube' },
+  { id: 'f9Zt5OqIzIk', title: 'CASE', type: 'youtube' },
   { id: 'Recording.mp3', title: 'start', type: 'local' },
   
 
