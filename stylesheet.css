@@ -24,6 +24,7 @@ nav{
   background: rgba(96, 107, 102, 0.565);
   border: rgb(0, 0, 0);
   color: #51ffc1;
+  border-radius: 5px;
 }
 #import{
   background: rgba(88, 96, 92, 0.137);
@@ -44,6 +45,7 @@ nav{
   background: rgba(88, 96, 92, 0.137);
   border: rgb(0, 0, 0);
   color: #51ffc1;
+  border-radius: 5px;
 }
 
 #playPauseButton, #skipButton {
@@ -76,7 +78,7 @@ nav{
 #upcoming {
   padding-top: 10px;
   width: calc(100% - 50px);
-  height: calc(100% - 215px);
+  
   position:absolute;
   display: inline-block;
   white-space:nowrap;
