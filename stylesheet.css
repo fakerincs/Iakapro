@@ -162,11 +162,22 @@ div, a {
   cursor: pointer;
 }
 #indexSlider {
-
+  -webkit-appearance: none;
   width:calc(100% - 388px);
   margin-left: 10px;
   max-width: 712px;
   min-width: 100px;
+  background: #93ffdb78;
+  outline: none;
+  border-radius: 10px;
 }
-
+#indexSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background: #000000;
+  cursor: pointer;
+}
   
