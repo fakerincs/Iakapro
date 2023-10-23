@@ -78,7 +78,6 @@ nav{
 #upcoming {
   padding-top: 10px;
   width: calc(100% - 50px);
-  
   position:absolute;
   display: inline-block;
   white-space:nowrap;
@@ -158,8 +157,8 @@ div, a {
 #videoSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 100%; 
   background: #00ff9d;
   cursor: pointer;
@@ -177,8 +176,8 @@ div, a {
 #volumeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 100%; 
   background: #000000;
   cursor: pointer;
@@ -196,8 +195,8 @@ div, a {
 #indexSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 100%; 
   background: #000000;
   cursor: pointer;
