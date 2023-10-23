@@ -157,12 +157,20 @@ div, a {
 #videoSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 5px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
   border-radius: 100%; 
   background: #00ff9d;
   cursor: pointer;
 }
+#videoSlider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%; 
+  background: #00ff9d;
+  cursor: pointer;
+}
+
 #volumeSlider {
   -webkit-appearance: none;
   width:calc(100% - 600px);
@@ -176,12 +184,20 @@ div, a {
 #volumeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 100%; 
   background: #000000;
   cursor: pointer;
 }
+#volumeSlider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%; 
+  background: #000000;
+  cursor: pointer;
+}
+
 #indexSlider {
   -webkit-appearance: none;
   width:calc(100% - 388px);
@@ -195,8 +211,15 @@ div, a {
 #indexSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%; 
+  background: #000000;
+  cursor: pointer;
+}
+#indexSlider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
   border-radius: 100%; 
   background: #000000;
   cursor: pointer;
