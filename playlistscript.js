@@ -15,7 +15,7 @@ let currentIndex = 0;
 let player;
 let playerl;
 let start = true;
-document.getElementById("indexSlider").max = playlist.length - 1;
+
 
 
 function shuffleIndices() {
@@ -40,18 +40,6 @@ volumeSlider.addEventListener('input', () => {
   changeVolume(volumeSlider.value);
 });
 
-// Playlist slider functionality
-const indexSlider = document.getElementById('indexSlider');
-indexSlider.addEventListener('input', () => {
-  currentSongElement.textContent = `${playlist[shuffledIndices[indexSlider.value]].title}`;
-});
-indexSlider.addEventListener('change', () => {
-  if (start) {
-    setTimeout(handleSlider, 100);
-    start = false;
-  }
-  tempdex = indexSlider.value;
-});
 var slider = document.getElementById('videoSlider');
   // Add an event listener to the slider to control video time
   slider.addEventListener('input', function() {
@@ -100,6 +88,8 @@ function createPlayer() {
 
   }
   currentSongElement.textContent = `${currentMedia.title}`;
+  document.getElementById(`${currentIndex}`).style.color = 'rgba(252, 252, 252, 1)';
+  slider.max = player.length;
   player.on('timeupdate', function() {
     var currentTime = player.currentTime();
     var duration = player.duration();
@@ -107,10 +97,6 @@ function createPlayer() {
   });
 }
 
-function handleSlider() {
-  playNextSong(tempdex);
-  start = true;
-}
 
 function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
@@ -128,6 +114,7 @@ function togglePlayback() {
 
 
 function playNextSong(index = -1) {
+  document.getElementById(`${currentIndex}`).style.color = '#78fcca';
   if (index !== -1) {
     currentIndex = index;
     if (currentIndex >= playlist.length) {
@@ -168,7 +155,6 @@ function changeVolume(volume) {
 }
 
 
-
 shuffleIndices();
 player = videojs('player', {
   techOrder: ['youtube'],
@@ -182,11 +168,15 @@ player = videojs('player', {
 function generateUpcoming(){
   let upcoming = document.getElementById("upcoming");
   for (i=0; i < Math.floor(playlist.length); i++){
-    upcoming.insertAdjacentHTML("beforeend", "<li>" + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</li>");
+    upcoming.insertAdjacentHTML("beforeend", `<li id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</li>");
+    document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
 }
 generateUpcoming();
-
+function handleChoose(event){
+  var itemId = event.target.id;
+  playNextSong(itemId);
+}
 
 
 var myMiddleware = function(player) {//i CANNOT believe this worked

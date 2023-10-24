@@ -394,7 +394,7 @@ let shuffledIndices = [];
 let currentIndex = 0;
 let player;
 let playerl;
-let first = true;
+let audio;
 
 
 function shuffleIndices() {
@@ -405,8 +405,32 @@ function shuffleIndices() {
   }
   [shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
 }
+const currentSongElement = document.getElementById('currentSong');
+
+
+// Play/Pause button functionality
+const playPauseButton = document.getElementById('playPauseButton');
+playPauseButton.addEventListener('click', togglePlayback);
+
+// Skip button functionality
+const skipButton = document.getElementById('skipButton');
+skipButton.addEventListener('click', skipMedia);
+
+// Volume slider functionality
+const volumeSlider = document.getElementById('volumeSlider');
+volumeSlider.addEventListener('input', () => {
+  changeVolume(volumeSlider.value);
+});
+
+var slider = document.getElementById('videoSlider');
+slider.addEventListener('input', videoSeek);
+  // Add an event listener to the slider to control video time
+
+
+
 
 function createPlayer() {
+
   const currentMedia = playlist[shuffledIndices[currentIndex]];
   if (currentIndex != 0){ 
     if (playlist[shuffledIndices[currentIndex - 1]].type === 'youtube'){
@@ -417,7 +441,6 @@ function createPlayer() {
       playerl.pause();
     }
   }
-  
   if (currentMedia.type === 'youtube') {
     player.src({
       src: `https://www.youtube.com/embed/${currentMedia.id}`,
@@ -438,38 +461,45 @@ function createPlayer() {
     };
     videojs.use('*', myMiddleware);
     
-  } else if (currentMedia.type === 'local') {
+    player.on('timeupdate', videoUpdate);
     
+  } else if (currentMedia.type === 'local') {
+
     playerl = new Audio(currentMedia.id);
     playerl.muted = true;
     playerl.play();
     playerl.muted = false;
     playerl.volume = (svol / 300);
+    playerl.addEventListener('ended', function(){
+      playNextSong();
+    });
 
-    playerl.addEventListener('ended', playNextSong);
-
+    playerl.addEventListener('timeupdate', audioUpdate);
   }
 
-  // Display the current song title
-  const currentSongElement = document.getElementById('currentSong');
+
   currentSongElement.textContent = `${currentMedia.title}`;
 
-  // Play/Pause button functionality
-  const playPauseButton = document.getElementById('playPauseButton');
-  playPauseButton.addEventListener('click', togglePlayback);
-
-  // Skip button functionality
-  const skipButton = document.getElementById('skipButton');
-  skipButton.addEventListener('click', skipMedia);
-
-  // Volume slider functionality
-  const volumeSlider = document.getElementById('volumeSlider');
-  volumeSlider.addEventListener('input', () => {
-    changeVolume(volumeSlider.value);
-  });
+  document.getElementById(`${currentIndex}`).style.color = 'rgba(252, 252, 252, 1)';
+  
+  
 }
-
-
+function videoSeek(){
+  if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    player.currentTime(slider.value);
+  }
+  else{
+    playerl.currentTime = slider.value;
+  }
+}
+function audioUpdate(){//honestly at this point i just dont care that much plus idk how to fix without weird logic thing thats just stupid
+  slider.value = playerl.currentTime;
+  slider.max = playerl.duration - 1.5;
+}
+function videoUpdate(){
+  slider.max = player.duration() - 1.5;
+  slider.value = player.currentTime();
+}
 
 function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
@@ -485,27 +515,35 @@ function togglePlayback() {
   }
 }
 
-function playNextSong() {
-  currentIndex++;
+function playNextSong(index = -1) {
 
-  if (currentIndex >= playlist.length) {
-    shuffleIndices();
-    currentIndex = 0;
-    console.log('impossible')
+  document.getElementById(`${currentIndex}`).style.color = '#78fcca';
+  if (index !== -1) {
+    currentIndex = index;
+    if (currentIndex >= playlist.length) {
+      currentIndex = playlist.length - 1;
+    }
+    createPlayer();
+    return;
   }
-  createPlayer();
+  else {
+    currentIndex++;
+    if (currentIndex >= playlist.length) {
+      currentIndex = 0;
+    }
+    createPlayer();
+  }
 }
 
 function skipMedia() {
-
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     if (playerl.currentTime !== undefined) {
-      playerl.currentTime = playerl.duration - 1;
+      playerl.currentTime = playerl.duration - 0.1;
     }
   }
   else{
     if (player.currentTime() !== undefined) {
-      player.currentTime(player.duration() - 1);
+      player.currentTime(player.duration() - 0.1);
     }
   }
 }
@@ -527,14 +565,26 @@ player = videojs('player', {
   //width: 1,
   audioOnlyMode: true
 });
+
+    
+playerl = new Audio('Recording.mp3');
+playerl.pause();
+playerl.addEventListener('ended', function(){
+  playNextSong();
+});
+
 function generateUpcoming(){
   let upcoming = document.getElementById("upcoming");
   for (i=0; i < Math.floor(playlist.length); i++){
-    upcoming.insertAdjacentHTML("beforeend", "<li>" + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</li>");
+    upcoming.insertAdjacentHTML("beforeend", `<li id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</li>");
+    document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
 }
 generateUpcoming();
-
+function handleChoose(event){
+  var itemId = event.target.id;
+  playNextSong(itemId);
+}
 
 function ender(){
   if(playlist[shuffledIndices[currentIndex]].type === 'youtube'){

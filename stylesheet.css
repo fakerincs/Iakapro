@@ -1,5 +1,6 @@
 /* Styles for buttons and text */
 body{
+  background-color: black;
   background-image: linear-gradient(to bottom right, #00030c, #121a35);
   color: #78fcca;
   background-size: 100%;
@@ -74,6 +75,7 @@ nav{
 #upcoming {
   padding-top: 10px;
   width: calc(100% - 50px);
+  height: calc(100% - 225px);
   position:absolute;
   display: inline-block;
   white-space:nowrap;
@@ -98,7 +100,7 @@ li{
   background-color: rgba(100, 100, 100, 0.26);
 }
 ::-webkit-scrollbar-thumb {
-  background: #0b85b62f; 
+  background: #0b85b62f;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -143,50 +145,49 @@ div, a {
   left: 0px;
   bottom: 0;
 }
+
 #videoSlider {
   -webkit-appearance: none;
-  width:calc(100% - 60px);
-  margin-left: 10px;
+  width: calc(100% - 50px);
+  margin-left: 15px;
   background: #70707037;
   border-radius: 10px;
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 10px;
-    height: 10px;
-    border-radius: 100%; 
-    background: #00ff9d;
-    cursor: pointer;
-  }
-  &::-moz-range-thumb {
-    width: 10px;
-    height: 10px;
-    border-radius: 100%; 
-    background: #00ff9d;
-    cursor: pointer;
-  }
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 0;
-    box-shadow: -20rem 0 0 20rem rgba(#fff, 0.2);
-  }
-
-  &::-moz-range-thumb {
-    border: none;
-    width: 0;
-    box-shadow: -20rem 0 0 20rem rgba(#fff, 0.2);
-  }
+  overflow: hidden;
+  height: 10px;
 }
+#videoSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 3px;
+  height: 10px;
+  border-radius: 100%;
+  background: #00ff9d;
+  cursor: pointer;
+  box-shadow: -3000px 0 0 3000px #666;
+  border: 0;
+}
+#videoSlider::-moz-range-thumb {
+  width: 3px;
+  height: 10px;
+  border-radius: 100%;
+  background: #00ff9d;
+  box-shadow: -3000px 0 0 3000px #666;
+  cursor: pointer;
+}
+
+
 
 #volumeSlider {
   -webkit-appearance: none;
   width:calc(100% - 600px);
   margin-left: 10px;
-  max-width: 500px;
+  max-width: 300px;
   min-width: 100px;
   background: #93ffdb78;
   outline: none;
   border-radius: 10px;
+  height: 5px;
+  
 }
 #volumeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -194,41 +195,15 @@ div, a {
   width: 15px;
   height: 15px;
   border-radius: 100%; 
-  background: #000000;
+  background: #ffffff;
   cursor: pointer;
+  border: 0;
 }
 #volumeSlider::-moz-range-thumb {
   width: 15px;
   height: 15px;
   border-radius: 100%; 
-  background: #000000;
+  background: #ffffff;
   cursor: pointer;
 }
 
-#indexSlider {
-  -webkit-appearance: none;
-  width:calc(100% - 388px);
-  margin-left: 10px;
-  max-width: 712px;
-  min-width: 100px;
-  background: #93ffdb78;
-  outline: none;
-  border-radius: 10px;
-}
-#indexSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 100%; 
-  background: #000000;
-  cursor: pointer;
-}
-#indexSlider::-moz-range-thumb {
-  width: 15px;
-  height: 15px;
-  border-radius: 100%; 
-  background: #000000;
-  cursor: pointer;
-}
-  
