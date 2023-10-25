@@ -168,7 +168,7 @@ player = videojs('player', {
 function generateUpcoming(){
   let upcoming = document.getElementById("upcoming");
   for (i=0; i < Math.floor(playlist.length); i++){
-    upcoming.insertAdjacentHTML("beforeend", `<li id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</li>");
+    upcoming.insertAdjacentHTML("beforeend", `<li id=\"${i}\"><span>` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
 }
