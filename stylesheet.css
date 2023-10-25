@@ -83,6 +83,9 @@ nav{
   border-radius: 7px;
   background-color: rgba(127, 255, 212, 0.21);
 }
+li span:hover {
+    cursor: pointer;
+}
 ul{
   margin: 0;
   padding: 0;
