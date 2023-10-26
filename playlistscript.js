@@ -15,16 +15,33 @@ let currentIndex = 0;
 let player;
 let playerl;
 let start = true;
-
+let videoOff = true;
 
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
   //[shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
 }
+
+function toggleVideo(){
+  if (videoOff){
+    videoOff = false;
+    videoButton.textContent = "Video Off";
+    player.audioOnlyMode = false;
+    
+  }
+  else{
+    videoOff = true;
+    videoButton.textContent = "Video On";
+    player.audioOnlyMode = true;
+  }
+
+}
 // Display the current song title
 const currentSongElement = document.getElementById('currentSong');
 
+const videoButton = document.getElementById('videoButton');
+videoButton.addEventListener('click', toggleVideo);
 
 // Play/Pause button functionality
 const playPauseButton = document.getElementById('playPauseButton');
@@ -68,7 +85,7 @@ function createPlayer() {
       type: 'video/youtube',
       autoplay: 'any',//these dont actuall chagne anything
       preload: 'auto',
-      audioOnlyMode: true
+      audioOnlyMode: videoOff
     });
     //player.load();
     //player.ready(player.play());
