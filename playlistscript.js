@@ -27,13 +27,15 @@ function toggleVideo(){
   if (videoOff){
     videoOff = false;
     videoButton.textContent = "Video Off";
-    player.audioOnlyMode = false;
+    player.audioOnlyMode(videoOff);
+    document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
     
   }
   else{
     videoOff = true;
     videoButton.textContent = "Video On";
-    player.audioOnlyMode = true;
+    player.audioOnlyMode(videoOff);
+    document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
   }
 
 }
@@ -80,13 +82,31 @@ function createPlayer() {
   }
   
   if (currentMedia.type === 'youtube') {
-    player.src({
-      src: `https://www.youtube.com/embed/${currentMedia.id}`,
-      type: 'video/youtube',
-      autoplay: 'any',//these dont actuall chagne anything
-      preload: 'auto',
-      audioOnlyMode: videoOff
-    });
+    if (!player){
+      player = videojs('player', {
+        techOrder: ['youtube'],
+        autoplay: 'any',
+        preload: 'auto',
+        inactivityTimeout: 0,
+        audioOnlyMode: videoOff,
+        sources: [{
+          type: 'video/youtube',
+          src: `https://www.youtube.com/embed/${currentMedia.id}`
+        }]
+        //width: 130,
+        //height: 100,
+      }, function onPlayerReady() {
+        videojs.log('Your player is ready!');
+        this.play();
+        this.on('ended', ender);
+      });
+    }
+    else{
+      player.src({
+        src: `https://www.youtube.com/embed/${currentMedia.id}`,
+        type: 'video/youtube',
+      });
+    }
     //player.load();
     //player.ready(player.play());
     player.volume(svol / 100);
@@ -173,19 +193,11 @@ function changeVolume(volume) {
 
 
 shuffleIndices();
-player = videojs('player', {
-  techOrder: ['youtube'],
-  autoplay: 'any',
-  preload: 'auto',
-  inactivityTimeout: 0,
-  audioOnlyMode: true,
-  //width: 130,
-  //height: 100,
-});
+
 function generateUpcoming(){
   let upcoming = document.getElementById("upcoming");
   for (i=0; i < Math.floor(playlist.length); i++){
-    upcoming.insertAdjacentHTML("beforeend", `<li id=\"${i}\"><span>` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
+    upcoming.insertAdjacentHTML("beforeend", `<li><span id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
 }
@@ -208,5 +220,5 @@ function ender(){
     playNextSong();
   }
 }
-player.on('ended', ender);
+
 createPlayer();

@@ -395,6 +395,7 @@ let currentIndex = 0;
 let player;
 let playerl;
 let audio;
+let videoOff = true;
 
 
 function shuffleIndices() {
@@ -408,6 +409,26 @@ function shuffleIndices() {
 const currentSongElement = document.getElementById('currentSong');
 
 
+function toggleVideo(){
+  if (videoOff){
+    videoOff = false;
+    videoButton.textContent = "Video Off";
+    player.audioOnlyMode(videoOff);
+    document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
+    
+  }
+  else{
+    videoOff = true;
+    videoButton.textContent = "Video On";
+    player.audioOnlyMode(videoOff);
+    document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
+  }
+
+}
+
+
+const videoButton = document.getElementById('videoButton');
+videoButton.addEventListener('click', toggleVideo);
 // Play/Pause button functionality
 const playPauseButton = document.getElementById('playPauseButton');
 playPauseButton.addEventListener('click', togglePlayback);
@@ -441,13 +462,33 @@ function createPlayer() {
     }
   }
   if (currentMedia.type === 'youtube') {
-    player.src({
-      src: `https://www.youtube.com/embed/${currentMedia.id}`,
-      type: 'video/youtube',
-      autoplay: 'any',//these dont actuall chagne anything
-      preload: 'auto',
-      audioOnlyMode: true
-    });
+    if (!player){
+      player = videojs('player', {
+        techOrder: ['youtube'],
+        autoplay: 'any',
+        preload: 'auto',
+        inactivityTimeout: 0,
+        audioOnlyMode: videoOff,
+        sources: [{
+          type: 'video/youtube',
+          src: `https://www.youtube.com/embed/${currentMedia.id}`
+        }]
+        //width: 130,
+        //height: 100,
+      }, function onPlayerReady() {
+        videojs.log('Your player is ready!');
+        this.play();
+        this.on('ended', ender);
+      });
+    }
+    else{
+      player.src({
+        src: `https://www.youtube.com/embed/${currentMedia.id}`,
+        type: 'video/youtube',
+
+      });
+    }
+    
     //player.load();
     //player.ready(player.play());
     player.volume(svol / 100);
@@ -555,14 +596,7 @@ function changeVolume(volume) {
 }
 
 shuffleIndices();
-player = videojs('player', {
-  techOrder: ['youtube'],
-  autoplay: 'any',
-  preload: 'auto',
-  inactivityTimeout: 0,
-  //width: 1,
-  audioOnlyMode: true
-});
+
 
     
 playerl = new Audio('Recording.mp3');
@@ -589,5 +623,5 @@ function ender(){
     playNextSong();
   }
 }
-player.on('ended', ender);
+
 createPlayer();
