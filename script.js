@@ -430,7 +430,6 @@ slider.addEventListener('input', videoSeek);
 
 
 function createPlayer() {
-
   const currentMedia = playlist[shuffledIndices[currentIndex]];
   if (currentIndex != 0){ 
     if (playlist[shuffledIndices[currentIndex - 1]].type === 'youtube'){
@@ -516,9 +515,8 @@ function togglePlayback() {
 }
 
 function playNextSong(index = -1) {
-
   document.getElementById(`${currentIndex}`).style.color = '#78fcca';
-  if (index !== -1) {
+  if (index != -1) {
     currentIndex = index;
     if (currentIndex >= playlist.length) {
       currentIndex = playlist.length - 1;
@@ -576,7 +574,7 @@ playerl.addEventListener('ended', function(){
 function generateUpcoming(){
   let upcoming = document.getElementById("upcoming");
   for (i=0; i < Math.floor(playlist.length); i++){
-    upcoming.insertAdjacentHTML("beforeend", `<li id=\"${i}\"><span>` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
+    upcoming.insertAdjacentHTML("beforeend", `<li><span id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
 }
