@@ -412,14 +412,14 @@ const currentSongElement = document.getElementById('currentSong');
 function toggleVideo(){
   if (videoOff){
     videoOff = false;
-    videoButton.textContent = "Video Off";
+    videoButton.textContent = "No Video";
     player.audioOnlyMode(videoOff);
     document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
     
   }
   else{
     videoOff = true;
-    videoButton.textContent = "Video On";
+    videoButton.textContent = "Video";
     player.audioOnlyMode(videoOff);
     document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
   }
