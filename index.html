@@ -38,6 +38,11 @@
     </script>
     <div id="stats">
       <div id="plays"></div>
+      <button id="resetStats">reset</button>
+      <script>
+        document.getElementById("plays") = 0;
+        localStorage.setItem("playsCount", 0);
+      </script>
     </div>
   </nav>
   <br>
