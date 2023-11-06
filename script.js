@@ -518,7 +518,7 @@ function createPlayer() {
     playerl.muted = false;
     playerl.volume = (svol / 300);
     playerl.addEventListener('ended', function(){
-      localStorage.setItem("playCount", localStorage.getItem("playCount")+1);
+      localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
       document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
       playNextSong();
     });
@@ -587,14 +587,14 @@ function skipMedia() {
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     if (playerl.currentTime !== undefined) {
       playerl.currentTime = playerl.duration - 0.1;
-      localStorage.setItem("playCount", localStorage.getItem("playCount")-1);
+      localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
       document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
     }
   }
   else{
     if (player.currentTime() !== undefined) {
       player.currentTime(player.duration() - 0.1);
-      localStorage.setItem("playCount", localStorage.getItem("playCount")-1);
+      localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
       document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
     }
   }
@@ -633,7 +633,7 @@ function handleChoose(event){
 
 function ender(){
   if(playlist[shuffledIndices[currentIndex]].type === 'youtube'){
-    localStorage.setItem("playCount", localStorage.getItem("playCount")+1);
+    localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
     document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
     playNextSong();
   }
