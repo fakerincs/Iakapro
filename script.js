@@ -588,14 +588,14 @@ function skipMedia() {
     if (playerl.currentTime !== undefined) {
       playerl.currentTime = playerl.duration - 0.1;
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
-      document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+
     }
   }
   else{
     if (player.currentTime() !== undefined) {
       player.currentTime(player.duration() - 0.1);
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
-      document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+
     }
   }
 }
