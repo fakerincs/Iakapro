@@ -38,10 +38,12 @@
     </script>
     <div id="stats">
       <div id="plays"></div>
-      <button id="resetStats">reset</button>
+      <button onclick="resetStats()" id="resetStats">reset</button>
       <script>
-        document.getElementById("plays").textContent = 0;
-        localStorage.setItem("playCount", 0);
+        function resetStats(){
+          document.getElementById("plays").textContent = 0;
+          localStorage.setItem("playCount", 0);
+        }
       </script>
     </div>
   </nav>
