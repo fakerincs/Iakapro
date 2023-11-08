@@ -10,10 +10,20 @@
 </head>
 <body>
   <nav>
+    <span>
     <input type="text" id="fileInput" aria-label="import songs">
     <button id="import">Convert</button>
     <button id="videoButton">No Video</button>
-    
+    <div id="stats">
+      <div id="plays"></div>
+      <button onclick="resetStats()" id="resetStats">reset</button>
+      <script>
+        function resetStats(){
+          document.getElementById("plays").textContent = 0;
+          localStorage.setItem("playCount", 0);
+        }
+      </script>
+    </div>
     <script src="converter.js"></script>
     
     <input aria-label="password" type="password" id='password' type='text'/>
@@ -36,16 +46,7 @@
           }
       }
     </script>
-    <div id="stats">
-      <div id="plays"></div>
-      <button onclick="resetStats()" id="resetStats">reset</button>
-      <script>
-        function resetStats(){
-          document.getElementById("plays").textContent = 0;
-          localStorage.setItem("playCount", 0);
-        }
-      </script>
-    </div>
+  </span>
   </nav>
   <br>
 
