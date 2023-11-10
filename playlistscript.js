@@ -7,20 +7,23 @@ const playlist = [
   { id: '3cSY73RzWhE', title: '1 Hour Most Popular Songs by PSYQUI (NON-STOP Collection Vol. 1 + BONUS TRACK)', type: 'youtube' },
   { id: '2QIp-SoBAQgl0zbo', title: 'Smooth Future Bass Collection For Yall Vol. 1', type: 'youtube' },
   { id: 'g1bePvkIXtQ', title: 'Nightcore Gaming Mix 2021  ', type: 'youtube' },
-  //{ id: 'Recording.mp3', title: 'start', type: 'local' }
 ];
 let svol = 50;
 let shuffledIndices = [];
 let currentIndex = 0;
 let player;
 let playerl;
-let start = true;
 let videoOff = true;
 
+if (typeof(Storage) !== "undefined") {
+  if (localStorage.getItem("playCount")==null){
+    localStorage.setItem("playCount", 0);
+  }
+  document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+}
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
-  //[shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
 }
 
 function toggleVideo(){
@@ -41,18 +44,15 @@ function toggleVideo(){
 }
 // Display the current song title
 const currentSongElement = document.getElementById('currentSong');
-
+//Toggle Video
 const videoButton = document.getElementById('videoButton');
 videoButton.addEventListener('click', toggleVideo);
-
 // Play/Pause button functionality
 const playPauseButton = document.getElementById('playPauseButton');
 playPauseButton.addEventListener('click', togglePlayback);
-
 // Skip button functionality
 const skipButton = document.getElementById('skipButton');
 skipButton.addEventListener('click', skipMedia);
-
 // Volume slider functionality
 const volumeSlider = document.getElementById('volumeSlider');
 volumeSlider.addEventListener('input', () => {
@@ -60,13 +60,7 @@ volumeSlider.addEventListener('input', () => {
 });
 
 var slider = document.getElementById('videoSlider');
-  // Add an event listener to the slider to control video time
-  slider.addEventListener('input', function() {
-    var time = player.duration() * (slider.value / 100);
-    player.currentTime(time);
-});
-
-// Update the slider as the video plays
+slider.addEventListener('input', videoSeek);
 
 
 function createPlayer() {
@@ -107,12 +101,18 @@ function createPlayer() {
         type: 'video/youtube',
       });
     }
-    //player.load();
-    //player.ready(player.play());
+
     player.volume(svol / 100);
-    
+    var myMiddleware = function(player) {//i CANNOT believe this worked
+      return {
+        setMuted: function(muted) {
+          return false;
+        }
+      };
+    };
     videojs.use('*', myMiddleware);
-    
+    player.on('timeupdate', videoUpdate);
+
   } else if (currentMedia.type === 'local') {
     
     playerl = new Audio(currentMedia.id);
@@ -120,20 +120,34 @@ function createPlayer() {
     playerl.play();
     playerl.muted = false;
     playerl.volume = (svol / 300);
+    playerl.addEventListener('ended', function(){
+      localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
+      document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+      playNextSong();
+    });
 
-    playerl.addEventListener('ended', playNextSong());
-
+    playerl.addEventListener('timeupdate', audioUpdate);
   }
+  
   currentSongElement.textContent = `${currentMedia.title}`;
   document.getElementById(`${currentIndex}`).style.color = 'rgba(252, 252, 252, 1)';
-  slider.max = player.length;
-  player.on('timeupdate', function() {
-    var currentTime = player.currentTime();
-    var duration = player.duration();
-    slider.value = (currentTime / duration) * 100;
-  });
 }
-
+function videoSeek(){
+  if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    player.currentTime(slider.value);
+  }
+  else{
+    playerl.currentTime = slider.value;
+  }
+}
+function audioUpdate(){//honestly at this point i just dont care that much plus idk how to fix without weird logic thing thats just stupid
+  slider.value = playerl.currentTime;
+  slider.max = playerl.duration - 1.5;
+}
+function videoUpdate(){
+  slider.max = player.duration() - 1.5;
+  slider.value = player.currentTime();
+}
 
 function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
@@ -152,7 +166,7 @@ function togglePlayback() {
 
 function playNextSong(index = -1) {
   document.getElementById(`${currentIndex}`).style.color = '#78fcca';
-  if (index !== -1) {
+  if (index != -1) {
     currentIndex = index;
     if (currentIndex >= playlist.length) {
       currentIndex = playlist.length - 1;
@@ -170,15 +184,18 @@ function playNextSong(index = -1) {
 }
 
 function skipMedia() {
-
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     if (playerl.currentTime !== undefined) {
-      playerl.currentTime = playerl.duration - 1;
+      playerl.currentTime = playerl.duration - 0.1;
+      localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
+
     }
   }
   else{
     if (player.currentTime() !== undefined) {
-      player.currentTime(player.duration() - 1);
+      player.currentTime(player.duration() - 0.1);
+      localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
+
     }
   }
 }
@@ -191,8 +208,13 @@ function changeVolume(volume) {
   }
 }
 
-
 shuffleIndices();
+
+playerl = new Audio('Recording.mp3');
+playerl.pause();
+playerl.addEventListener('ended', function(){
+  playNextSong();
+});
 
 function generateUpcoming(){
   let upcoming = document.getElementById("upcoming");
@@ -207,16 +229,10 @@ function handleChoose(event){
   playNextSong(itemId);
 }
 
-
-var myMiddleware = function(player) {//i CANNOT believe this worked
-  return {
-    setMuted: function(muted) {
-      return false;
-    }
-  };
-};
 function ender(){
   if(playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
+    document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
     playNextSong();
   }
 }
