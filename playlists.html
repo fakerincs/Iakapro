@@ -1,4 +1,4 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>list</title>
@@ -12,9 +12,20 @@
   <nav>
     <button id="homeButton" onclick="document.location='index.html'">Home</button>
     <button id="videoButton">No Video</button>
+    <div id="stats">
+      <div id="plays"></div>
+      <button onclick="resetStats()" id="resetStats">reset</button>
+      <script>
+        function resetStats(){
+          document.getElementById("plays").textContent = 0;
+          localStorage.setItem("playCount", 0);
+        }
+      </script>
+    </div>
   </nav>
 
 
+  <div id="result"></div>
 
   <div id = "playerinfo">
     <div id="currentSong"></div>
@@ -24,7 +35,6 @@
         <ul id="upcoming"></ul>
       </nav>
     </div>
-    
 
 
     <div id="controls">
