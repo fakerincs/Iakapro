@@ -389,7 +389,7 @@ const playlist = [
 
 
 ];
-let svol = 50
+let svol = 50;
 let shuffledIndices = [];
 let currentIndex = 0;
 let player;
@@ -419,14 +419,14 @@ const currentSongElement = document.getElementById('currentSong');
 function toggleVideo(){
   if (videoOff){
     videoOff = false;
-    videoButton.textContent = "No Video";
+    videoButton.textContent = "Video On";
     player.audioOnlyMode(videoOff);
     document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
     
   }
   else{
     videoOff = true;
-    videoButton.textContent = "Video";
+    videoButton.textContent = "No Video";
     player.audioOnlyMode(videoOff);
     document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
   }
@@ -459,7 +459,7 @@ slider.addEventListener('input', videoSeek);
 
 function createPlayer() {
   const currentMedia = playlist[shuffledIndices[currentIndex]];
-  if (currentIndex != 0){ 
+  if (currentIndex !== 0){ 
     if (playlist[shuffledIndices[currentIndex - 1]].type === 'youtube'){
       if (!player.paused()) {
         player.pause();
