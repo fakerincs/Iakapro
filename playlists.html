@@ -9,10 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <nav>
-    <button id="homeButton" onclick="document.location='index.html'">Home</button>
-    <button id="videoButton">No Video</button>
-    <div id="stats">
+  <ul class="nav">
+    <li><button id="homeButton" onclick="document.location='index.html'">Home</button></li>
+    <li><button id="videoButton">No Video</button></li>
+    <li><div id="stats"></li>
       <div id="plays"></div>
       <button onclick="resetStats()" id="resetStats">reset</button>
       <script>
@@ -22,7 +22,7 @@
         }
       </script>
     </div>
-  </nav>
+  </ul>
 
 
   <div id="result"></div>
