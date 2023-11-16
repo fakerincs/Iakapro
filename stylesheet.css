@@ -20,7 +20,7 @@ body{
   padding-right: 35px;
   overflow: hidden;
   li{
-    padding-left: 10px;
+    padding-left: calc(18% + 8px);
     line-height: 30px;
     float: left;
   }
