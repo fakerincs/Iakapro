@@ -11,20 +11,16 @@
 <body>
   <ul class="nav">
     <li><input type="text" id="fileInput" aria-label="import songs"></li>
-    <li><button id="import">Convert</button></li>
+    <li><button id="import">Convert</button><script src="converter.js"></script></li>
     <li><button id="videoButton">No Video</button></li>
-    <li><div id="stats"></li>
-      <div id="plays"></div>
-      <button onclick="resetStats()" id="resetStats">reset</button>
+    <li><div id="plays"></div></li>
+    <li><button onclick="resetStats()" id="resetStats">reset</button></li>
       <script>
         function resetStats(){
           document.getElementById("plays").textContent = 0;
           localStorage.setItem("playCount", 0);
         }
       </script>
-    </div>
-    <script src="converter.js"></script>
-    
     <li><input aria-label="password" type="password" id='password' type='text'/></li>
     <li><a href="playlists.html" id="playlistButton" aria-label="invisible link" onclick="javascript:return validatePass()"></a></li>
     <script>
