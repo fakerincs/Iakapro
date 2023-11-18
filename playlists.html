@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <title>list</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
   <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="stylesheet.css" rel="stylesheet">
@@ -11,10 +12,10 @@
 <body>
   <ul class="nav">
     <li><button id="homeButton" onclick="document.location='index.html'">Home</button></li>
-    <li><button id="videoButton">No Video</button></li>
-    <li><div id="stats"></li>
-      <div id="plays"></div>
-      <button onclick="resetStats()" id="resetStats">reset</button>
+    <li style="padding-left: 13px;"><button id="videoButton">No Video</button></li>
+    <li style="padding-left: 13px;"><p style="margin: 0px;">plays:</p></li>
+    <li><div id="plays"></div></li>
+    <li style="padding-left: 13px;"><button onclick="resetStats()" id="resetStats">reset</button></li>
       <script>
         function resetStats(){
           document.getElementById("plays").textContent = 0;

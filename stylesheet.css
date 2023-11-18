@@ -1,17 +1,26 @@
 /* Styles for buttons and text */
+:root {
+  --main-color: #a30000;
+  --played-color: #c60035;
+  --background-color: #ffffff;
+  --secondary-color: #fec8cd;
+  --third-color: #fec8cd;
+}
+
 body{
-  background-color: black;
-  background-image: linear-gradient(to bottom right, #00030c, #121a35);
-  color: #78fcca;
+  color:var(--main-color) !important; 
+  background-color:var(--third-color) !important;
   background-size: 100%;
   background-attachment: fixed;
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto Mono';
+  overflow:hidden;
 }
 .nav{
-  background-color: rgb(3 22 16 / 24%);
+  background-color: var(--background-color);
   padding-top: 8px;
-  padding-bottom: 8px;
+  padding-bottom: 13px;
+  margin-bottom: 10px;
   margin-top: -10px;
   width: calc(100% - 35px);
   display:inline-block;
@@ -19,41 +28,45 @@ body{
   margin-left: -8px;
   padding-left: 15px;
   padding-right: 35px;
-  overflow: hidden;
-  li{
-    padding-left:5px;
-    line-height: 30px;
-    float: left;
-  }
+  white-space: nowrap;
+  overflow:hidden;
+  height: 20px;
+  width: 100%;
 }
+.nav > li{
+  padding-left:5px;
+  line-height: 30px;
+  float: left;
+  white-space: nowrap;
+}
+
 #fileInput, #videoButton, #resetStats{
   max-width: 100px;
-  background: rgba(96, 107, 102, 0.565);
-  border: rgb(0, 0, 0);
-  color: #51ffc1;
+  background: var(--secondary-color);
+  border: var(--secondary-color);
+  color: var(--main-color);
   border-radius: 5px;
 }
 
 
 #import{
-  background: rgba(88, 96, 92, 0.137);
-  border: rgb(0, 0, 0);
-  color: #51ffc1;
+  background: var(--secondary-color);
+  border: var(--background-color);
+  color: var(--main-color);
 }
 #homeButton{
-  background: rgba(88, 96, 92, 0.137);
-  border: rgb(0, 0, 0);
-  color: #51ffc1;
+  background: var(--secondary-color);
+  border: var(--background-color);
+  color: var(--main-color);
 }
 #password {
-  right: 80%;
+  padding-left:13px;
   display: inline-block;
   width: 40%;
   max-width: 100px;
-  float: right;
-  background: rgba(88, 96, 92, 0.137);
+  background: var(--secondary-color);
   border: rgb(0, 0, 0);
-  color: #51ffc1;
+  color: var(--main-color);
   border-radius: 5px;
 }
 
@@ -62,12 +75,12 @@ body{
   padding: 10px 18px;
   border-radius: 10px;
   border-width: thin;
-  border-color: #0000008f;
-  background-color: #1919198f;
-  color: #9ff1d2;
+  border-color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--main-color);
   &hover {
     background-color: #ffffff1f;
-    color: #51ffc1;
+    color: var(--secondary-color);
   }
 }
 
@@ -78,18 +91,28 @@ body{
 
 #currentSong {
   font-size: 25px;
+  background-color: var(--third-color);
+  width: calc(100% - 30px);
+  padding: 3px;
+  border-radius: 7px;
 }
 
 #upcoming {
   padding-top: 10px;
-  width: calc(100% - 50px);
-  height: calc(100% - 205px);
+  /*width: calc(100% - 50px);*/
+  height: calc(100% - 210px);
   position:absolute;
   display: inline-block;
   white-space:nowrap;
   overflow-y: scroll;
   border-radius: 7px;
-  background-color: rgba(127, 255, 212, 0.21);
+  background-color: var(--secondary-color);
+  
+}
+#upcoming > li{
+  padding-left: 10px;
+  line-height: 30px;
+  border-top: 1px solid var(--background-color);
 }
 li span:hover {
     cursor: pointer;
@@ -101,33 +124,17 @@ ul{
 }
 
 
-::-webkit-scrollbar{
-  width:5px;
-  border-radius: 4px;
-  background-color: rgba(100, 100, 100, 0.26);
-}
-::-webkit-scrollbar-thumb {
-  background: #0b85b62f;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #38ad7cd3; 
 
-}
 
 div, a {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto Mono';
   font-size: 100%;
 }
 
 
 #playerinfo {
   padding-left: 10px;
-  li{
-    padding-left: 10px;
-    line-height: 30px;
-    border-top: 1px solid #ccc;
-  }
+
 }
 
 
@@ -139,13 +146,15 @@ div, a {
   position: absolute;
   right: 0%;
   display: block;
-  margin: 0 auto;
+
   bottom: 0%;
+  width: min-content;
+  height:min-content
 }
 
 #controls {
   /* border-top: 1px solid #00000079; */
-  background-color: rgb(0 0 0 / 30%);
+  background-color: var(--background-color);
   width: 100%;
   font-size: 16px;
   padding-bottom: 10px;
@@ -160,7 +169,7 @@ div, a {
   -webkit-appearance: none;
   width: calc(100% - 50px);
   margin-left: 15px;
-  background: #70707037;
+  background: var(--secondary-color);
   border-radius: 10px;
   overflow: hidden;
   height: 10px;
@@ -171,17 +180,17 @@ div, a {
   width: 3px;
   height: 10px;
   border-radius: 100%;
-  background: #00ff9d;
+  background: var(--main-color);
   cursor: pointer;
-  box-shadow: -3000px 0 0 3000px #666;
+  box-shadow: -3000px 0 0 3000px var(--main-color);
   border: 0;
 }
 #videoSlider::-moz-range-thumb {
   width: 3px;
   height: 10px;
   border-radius: 100%;
-  background: #00ff9d;
-  box-shadow: -3000px 0 0 3000px #666;
+  background: var(--main-color);
+  box-shadow: -3000px 0 0 3000px var(--main-color);
   cursor: pointer;
 }
 
@@ -193,7 +202,7 @@ div, a {
   margin-left: 10px;
   max-width: 300px;
   min-width: 100px;
-  background: #93ffdb78;
+  background: var(--secondary-color);
   outline: none;
   border-radius: 10px;
   height: 5px;
@@ -205,7 +214,7 @@ div, a {
   width: 15px;
   height: 15px;
   border-radius: 100%; 
-  background: #ffffff;
+  background: var(--main-color);
   cursor: pointer;
   border: 0;
 }
@@ -213,7 +222,7 @@ div, a {
   width: 15px;
   height: 15px;
   border-radius: 100%; 
-  background: #ffffff;
+  background: var(--main-color);
   cursor: pointer;
 }
 

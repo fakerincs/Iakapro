@@ -469,6 +469,7 @@ function createPlayer() {
         preload: 'auto',
         inactivityTimeout: 0,
         audioOnlyMode: videoOff,
+        controls: false,
         sources: [{
           type: 'video/youtube',
           src: `https://www.youtube.com/embed/${currentMedia.id}`
@@ -487,7 +488,7 @@ function createPlayer() {
         type: 'video/youtube',
       });
     }
-
+    document.getElementById("player").style.display = "inline-block";
     player.volume(svol / 100);
     var myMiddleware = function(player) {//i CANNOT believe this worked
       return {
@@ -500,6 +501,7 @@ function createPlayer() {
     player.on('timeupdate', videoUpdate);
     
   } else if (currentMedia.type === 'local') {
+    document.getElementById("player").style.display = "none";
 
     playerl = new Audio(currentMedia.id);
     playerl.muted = true;
@@ -551,7 +553,7 @@ function togglePlayback() {
 
 
 function playNextSong(index = -1) {
-  document.getElementById(`${currentIndex}`).style.color = '#78fcca';
+  document.getElementById(`${currentIndex}`).style.color = "var(--played-color)";
   if (index != -1) {
     currentIndex = index;
     if (currentIndex >= playlist.length) {

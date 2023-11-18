@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <title>home</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
   <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="stylesheet.css" rel="stylesheet">
   <meta charset="utf-8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -67,11 +69,33 @@
     </div>
   </div>
   
-  <div id="playerContainer">
+  <div class="draggable" draggable="true" ondragstart="drag(event)" ondrag="dragging(event)" id="playerContainer">
     <video id="player" class="video-js">
       <source id="testVideoSource">
     </video>
   </div>
+  <script>
+    let offsetX, offsetY;
+
+    function dragStart(ev) {
+        const rect = ev.target.getBoundingClientRect();
+        offsetX = ev.clientX - rect.left;
+        offsetY = ev.clientY - rect.top;
+
+        ev.dataTransfer.setData("text", ev.target.id);
+        ev.dataTransfer.setDragImage(document.createElement('div'), 0, 0); // Prevent default ghost image
+    }
+
+    function dragging(ev) {
+        ev.preventDefault();
+
+        const draggedElement = document.getElementById(ev.dataTransfer.getData("text"));
+
+        // Update the element's position based on the drag event and the initial click offset
+        draggedElement.style.left = ev.clientX - offsetX + "px";
+        draggedElement.style.top = ev.clientY - offsetY + "px";
+    }
+</script>
 
   <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js" integrity="sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
