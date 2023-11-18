@@ -75,27 +75,24 @@
     </video>
   </div>
   <script>
-    let offsetX, offsetY;
-
-    function dragStart(ev) {
+    function drag(ev) {
         const rect = ev.target.getBoundingClientRect();
         offsetX = ev.clientX - rect.left;
         offsetY = ev.clientY - rect.top;
-
-        ev.dataTransfer.setData("text", ev.target.id);
-        ev.dataTransfer.setDragImage(document.createElement('div'), 0, 0); // Prevent default ghost image
+        ev.dataTransfer.setData("text", ev.target.parentElement.id);
     }
 
     function dragging(ev) {
         ev.preventDefault();
 
-        const draggedElement = document.getElementById(ev.dataTransfer.getData("text"));
+        // Get the dragged element
+        const draggedElement = document.querySelector(".draggable");
 
-        // Update the element's position based on the drag event and the initial click offset
+        // Update the element's position based on the drag event
         draggedElement.style.left = ev.clientX - offsetX + "px";
         draggedElement.style.top = ev.clientY - offsetY + "px";
     }
-</script>
+  </script>
 
   <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js" integrity="sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
