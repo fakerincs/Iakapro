@@ -140,13 +140,18 @@ div, a {
 
 
   
+#player {
+  overflow: hidden;
+  resize: both;
+  pointer-events: none;
+}
 
 #playerContainer {
+  z-index: 2;
   padding: 10px;
   position: absolute;
   right: 0%;
   display: block;
-
   bottom: 0%;
   width: min-content;
   height:min-content

@@ -1,3 +1,4 @@
+
 const playlist = [
   { id: '9waOYWMw_6A', title: 'Geoxor @ Amethyst 2023 MIX', type: 'youtube' },
   { id: 'wYaIH0JZ4dc', title: 'Best of Kawaii Pop 2020 Mix (J-Pop, Future Core,...) by Appu', type: 'youtube' },
@@ -39,8 +40,8 @@ function toggleVideo(){
     videoButton.textContent = "No Video";
     player.audioOnlyMode(videoOff);
     document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
+    document.getElementById("playerContainer").style.inset =""; 
   }
-
 }
 // Display the current song title
 const currentSongElement = document.getElementById('currentSong');
@@ -102,7 +103,7 @@ function createPlayer() {
         type: 'video/youtube',
       });
     }
-
+    document.getElementById("player").style.display = "inline-block";
     player.volume(svol / 100);
     var myMiddleware = function(player) {//i CANNOT believe this worked
       return {
@@ -111,9 +112,9 @@ function createPlayer() {
         }
       };
     };
-    document.getElementById("player").style.display = "inline-block";
     videojs.use('*', myMiddleware);
     player.on('timeupdate', videoUpdate);
+
 
   } else if (currentMedia.type === 'local') {
     document.getElementById("player").style.display = "none";

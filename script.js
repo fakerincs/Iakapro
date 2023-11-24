@@ -1,4 +1,4 @@
-const playlist = [
+let playlist = [
   { id: 'start-up-feat.such-psyqui.mp3', title: 'Start Up', type: 'local' },
   { id: 'your-voice-so.feat.such-psyqui.mp3', title: 'Your Voice So', type: 'local' },
   { id: 'no-one-psyqui.mp3', title: 'No One', type: 'local' },
@@ -381,14 +381,8 @@ const playlist = [
   { id: 'ikWjlRyRGb8', title: 'ZONE', type: 'youtube' },
   { id: 'f9Zt5OqIzIk', title: 'CASE', type: 'youtube' },
   { id: 'Recording.mp3', title: 'start', type: 'local' },
-  
-
-
-
-
-
-
 ];
+
 let svol = 50;
 let shuffledIndices = [];
 let currentIndex = 0;
@@ -425,6 +419,8 @@ function toggleVideo(){
     videoButton.textContent = "No Video";
     player.audioOnlyMode(videoOff);
     document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
+    document.getElementById("playerContainer").style.inset =""; 
+
   }
 
 }
@@ -500,9 +496,9 @@ function createPlayer() {
     videojs.use('*', myMiddleware);
     player.on('timeupdate', videoUpdate);
     
+
   } else if (currentMedia.type === 'local') {
     document.getElementById("player").style.display = "none";
-
     playerl = new Audio(currentMedia.id);
     playerl.muted = true;
     playerl.play();

@@ -28,11 +28,8 @@
     <li><a href="playlists.html" id="playlistButton" aria-label="invisible link" onclick="javascript:return validatePass()"></a></li>
     <script>
       document.getElementById("password").addEventListener("keypress", function(event) {
-        // If the user presses the "Enter" key on the keyboard
         if (event.key === "Enter") {
-          // Cancel the default action, if needed
           event.preventDefault();
-          // Trigger the button element with a click
           document.getElementById("playlistButton").click();
         }
       });
@@ -70,29 +67,49 @@
   </div>
   
   <div class="draggable" draggable="true" ondragstart="drag(event)" ondrag="dragging(event)" id="playerContainer">
-    <video id="player" class="video-js">
-      <source id="testVideoSource">
-    </video>
+        <video id="player" class="video-js">
+            <source id="testVideoSource">
+        </video>
+    <script>
+        function drag(ev) {
+            const rect = ev.target.getBoundingClientRect();
+            offsetX = ev.clientX - rect.left;
+            offsetY = ev.clientY - rect.top;
+        }
+
+        function dragging(ev) {
+            ev.preventDefault();
+            const rect = ev.target.getBoundingClientRect();
+
+            // Get the dragged element
+            const draggedElement = document.querySelector(".draggable");
+            const playerElement = document.getElementById("player");
+
+
+              draggedElement.style.left = ev.clientX - offsetX + "px";
+              draggedElement.style.top = ev.clientY - offsetY + "px";
+              
+            
+            // Update the element's position based on the drag event
+            
+        }
+    </script>
+    <script>
+      document.addEventListener("mousemove", handleMouseMove);
+      
+      function handleMouseMove(ev) {
+          const playerElement = document.getElementById("player");
+          const draggableElement = document.querySelector(".draggable");
+          const rect = draggableElement.getBoundingClientRect();
+
+          // Check if the cursor is within the desired area
+          const isWithinArea = ev.clientX > rect.left + rect.width -20 && ev.clientY > rect.top + rect.height -20;
+
+          // Enable or disable pointer events for the player element based on the condition
+          playerElement.style.pointerEvents = isWithinArea ? "auto" : "none";
+      }
+    </script>
   </div>
-  <script>
-    function drag(ev) {
-        const rect = ev.target.getBoundingClientRect();
-        offsetX = ev.clientX - rect.left;
-        offsetY = ev.clientY - rect.top;
-        ev.dataTransfer.setData("text", ev.target.parentElement.id);
-    }
-
-    function dragging(ev) {
-        ev.preventDefault();
-
-        // Get the dragged element
-        const draggedElement = document.querySelector(".draggable");
-
-        // Update the element's position based on the drag event
-        draggedElement.style.left = ev.clientX - offsetX + "px";
-        draggedElement.style.top = ev.clientY - offsetY + "px";
-    }
-  </script>
 
   <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js" integrity="sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
