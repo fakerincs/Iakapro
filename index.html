@@ -138,7 +138,7 @@
           const rect = draggableElement.getBoundingClientRect();
 
           // Check if the cursor is within the desired area
-          const isWithinArea = ev.clientX > rect.left + rect.width -15 && ev.clientY > rect.top + rect.height -15;
+          const isWithinArea = ev.clientX > rect.left + rect.width -20 && ev.clientY > rect.top + rect.height -20;
 
           // Enable or disable pointer events for the player element based on the condition
           if (!clicked){
