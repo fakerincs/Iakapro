@@ -53,6 +53,7 @@ body{
   background: var(--secondary-color);
   border: var(--background-color);
   color: var(--main-color);
+  
 }
 #homeButton{
   background: var(--secondary-color);
@@ -184,7 +185,7 @@ div, a {
   appearance: none;
   width: 3px;
   height: 10px;
-  border-radius: 100%;
+  border: none;
   background: var(--main-color);
   cursor: pointer;
   box-shadow: -3000px 0 0 3000px var(--main-color);
@@ -193,7 +194,7 @@ div, a {
 #videoSlider::-moz-range-thumb {
   width: 3px;
   height: 10px;
-  border-radius: 100%;
+  border: none;
   background: var(--main-color);
   box-shadow: -3000px 0 0 3000px var(--main-color);
   cursor: pointer;
