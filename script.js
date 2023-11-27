@@ -527,10 +527,16 @@ function videoSeek(){
   }
 }
 function audioUpdate(){//honestly at this point i just dont care that much plus idk how to fix without weird logic thing thats just stupid
+  if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    return;
+  }
   slider.value = playerl.currentTime;
   slider.max = playerl.duration - 1.5;
 }
 function videoUpdate(){
+  if (playlist[shuffledIndices[currentIndex]].type === 'local'){
+    return;
+  }
   slider.max = player.duration() - 1.5;
   slider.value = player.currentTime();
 }
