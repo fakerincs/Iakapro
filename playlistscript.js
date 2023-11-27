@@ -41,6 +41,8 @@ function toggleVideo(){
     player.audioOnlyMode(videoOff);
     document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
     document.getElementById("playerContainer").style.inset =""; 
+    document.getElementById("player").style.width ="10px"; 
+    document.getElementById("player").style.height ="10px"; 
   }
 }
 // Display the current song title
