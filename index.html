@@ -41,6 +41,19 @@
           }
       }
     </script>
+    <li><button type="button" onclick="toggleMenu()">Color</button></li>
+    <div id="colorMenu"><input type="color" id="mainColor"></div>
+    <script>
+      function toggleMenu(){
+        var menu = document.getElementById("colorMenu"); 
+        if (menu.style.visibility == "visible"){
+          menu.style.visibility = "none";
+        }
+        else{
+          menu.style.visibility = "visible";
+        }
+      }
+    </script>
   </ul>
   <br>
 
