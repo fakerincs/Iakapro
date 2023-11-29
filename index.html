@@ -49,9 +49,9 @@
         var defaultColor= getComputedStyle(document.body).getPropertyValue('--main-color');
         mPicker.value = defaultColor;
         var saved = true;
-        colorPicker.addEventListener("input", change);
-        colorPicker.addEventListener("change", save);
-        colorPicker.addEventListener("close", close);
+        mPicker.addEventListener("input", change);
+        mPicker.addEventListener("change", save);
+        mPicker.addEventListener("close", close);
         function change(event) {
           document.documentElement.style.setProperty("--main-color", event.target.value);
           saved = false;
