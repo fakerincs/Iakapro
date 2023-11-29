@@ -1,6 +1,17 @@
+
+
 function picker(id, color){
+  if (typeof(Storage) !== "undefined") {
+    if (localStorage.getItem(id)==null){
+      localStorage.setItem(id, getComputedStyle(document.body).getPropertyValue(color));
+    }
+    else{  
+      document.documentElement.style.setProperty(color, localStorage.getItem(id));
+    }
+  }
   var mPicker = document.getElementById(id);
   var defaultColor= getComputedStyle(document.body).getPropertyValue(color);
+  
   mPicker.value = defaultColor;
   var saved = true;
   mPicker.addEventListener("input", change);
