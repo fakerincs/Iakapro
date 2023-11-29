@@ -70,6 +70,18 @@ body{
   color: var(--main-color);
   border-radius: 5px;
 }
+#colorMenu{
+  visibility: hidden;
+  width: 20%;
+  background-color: #555;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+}
+
 
 #playPauseButton, #skipButton {
   font-size: 16px;
