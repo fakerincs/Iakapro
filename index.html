@@ -42,7 +42,35 @@
       }
     </script>
     <li><button type="button" onclick="toggleMenu()">Color</button></li>
-    <div id="colorMenu"><input type="color" id="mainColor"></div>
+    <div id="colorMenu">
+      <span>Main Color <input type="color" id="mainColor"></span>
+      <script>
+        var mPicker = document.getElementById("mainColor");
+        var defaultColor= getComputedStyle(document.body).getPropertyValue('--main-color');
+        mPicker.value = defaultColor;
+        var saved = true;
+        colorPicker.addEventListener("input", change);
+        colorPicker.addEventListener("change", save);
+        colorPicker.addEventListener("close", close);
+        function change(event) {
+          document.documentElement.style.setProperty("--main-color', event.target.value);
+          saved = false;
+        }
+        function save(event) {
+          saved = true;
+          document.documentElement.style.setProperty("--main-color', event.target.value);
+        }
+        function close(){
+          if (saved){
+            defaultColor= getComputedStyle(document.body).getPropertyValue('--main-color');
+            return;
+          }
+          document.documentElement.style.setProperty("--main-color', defaultColor);
+        }
+        
+        
+      </script>
+    </div>
     <script>
       function toggleMenu(){
         var menu = document.getElementById("colorMenu"); 
