@@ -1,6 +1,6 @@
 function picker(id, color){
   var mPicker = document.getElementById(id);
-  var defaultColor= getComputedStyle(document.body).getPropertyValue('color');
+  var defaultColor= getComputedStyle(document.body).getPropertyValue(color);
   mPicker.value = defaultColor;
   var saved = true;
   mPicker.addEventListener("input", change);
@@ -16,7 +16,7 @@ function picker(id, color){
   }
   function close(){
     if (saved){
-      defaultColor= getComputedStyle(document.body).getPropertyValue('color');
+      defaultColor= getComputedStyle(document.body).getPropertyValue(color);
       return;
     }
     document.documentElement.style.setProperty(color, defaultColor);
