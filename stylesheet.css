@@ -72,14 +72,12 @@ body{
 }
 #colorMenu{
   visibility: hidden;
-  width: 20%;
-  background-color: #555;
-  color: #fff;
+  background-color: #55555575;
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
   z-index: 1;
-  left: 50%;
+  right: 0%;
 }
 
 
