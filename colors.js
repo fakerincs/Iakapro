@@ -1,4 +1,10 @@
-
+function resetColor(){
+  document.documentElement.style.setProperty("--main-color", "#a30000");
+  document.documentElement.style.setProperty("--played-color", "#c60035");
+  document.documentElement.style.setProperty("--background-color", "#ffffff");
+  document.documentElement.style.setProperty("--secondary-color", "#fec8cd");
+  document.documentElement.style.setProperty("--third-color", "#fec8cd");
+}
 
 function picker(id, color){
   if (typeof(Storage) !== "undefined") {
@@ -24,6 +30,7 @@ function picker(id, color){
   function save(event) {
     saved = true;
     document.documentElement.style.setProperty(color, event.target.value);
+    localStorage.setItem(id, event.target.value);
   }
   function close(){
     if (saved){
