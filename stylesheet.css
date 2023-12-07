@@ -15,30 +15,31 @@ body{
   height: 100%;
   font-family: 'Roboto Mono';
   overflow:hidden;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .nav{
   background-color: var(--background-color);
-  padding-top: 8px;
-  padding-bottom: 13px;
-  margin-bottom: 10px;
-  margin-top: -10px;
-  display:inline-block;
-  /* margin-right:auto; */
-  padding-right: 1px;
-  margin-left: -8px;
-  padding-left: 15px;
-  /* white-space: nowrap; */
-  overflow-x: hidden;
+  display:flex;
   overflow: hidden;
-  height: 60px;
-  /* width: max-content; */
+  height: 30px;
   min-width: 100%;
+  position: sticky;
+  left: 0px;
+  top: 0px;
+  margin-left: -8px;
+  margin-top: px;
+  margin-right: -8px;
+  padding: 3px;
+  align-items: center;
 }
 .nav > li{
   padding-left: 5px;
-  line-height: 30px;
   float: left;
   white-space: nowrap;
+  align-content: center;
+  display: flex;
+  height: min-content;
 }
 
 #fileInput, #videoButton, #resetStats, #colorButton{
