@@ -17,30 +17,32 @@ body{
   overflow:hidden;
 }
 .nav{
-  background-color: var(--background-color);
+  background-color: #4b4b4b;
   padding-top: 8px;
   padding-bottom: 13px;
   margin-bottom: 10px;
   margin-top: -10px;
-  width: calc(100% - 35px);
   display:inline-block;
-  margin-right:auto;
+  /* margin-right:auto; */
+  padding-right: 1px;
   margin-left: -8px;
   padding-left: 15px;
-  padding-right: 35px;
-  white-space: nowrap;
-  overflow:hidden;
-  height: 20px;
-  width: 100%;
+  /* white-space: nowrap; */
+  overflow-x: hidden;
+  overflow: hidden;
+  height: 60px;
+  /* width: max-content; */
+  min-width: 100%;
 }
 .nav > li{
-  padding-left:5px;
+  padding-left: 5px;
   line-height: 30px;
   float: left;
   white-space: nowrap;
 }
 
-#fileInput, #videoButton, #resetStats{
+#fileInput, #videoButton, #resetStats, #colorButton{
+  margin-left: 13px;
   max-width: 100px;
   background: var(--secondary-color);
   border: var(--secondary-color);
@@ -61,10 +63,10 @@ body{
   color: var(--main-color);
 }
 #password {
-  padding-left:13px;
+  margin-left: 13px;
   display: inline-block;
-  width: 40%;
-  max-width: 100px;
+  width: 80%;
+  max-width: 80px;
   background: var(--secondary-color);
   border: rgb(0, 0, 0);
   color: var(--main-color);

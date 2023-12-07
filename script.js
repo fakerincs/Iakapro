@@ -450,13 +450,18 @@ slider.addEventListener('input', videoSeek);
 function createPlayer() {
   const currentMedia = playlist[shuffledIndices[currentIndex]];
   if (currentIndex != 0){ 
-    if (playlist[shuffledIndices[currentIndex - 1]].type === 'youtube'){
+    try{
       if (!player.paused()) {
         player.pause();
       }
-    } else if (!playerl.paused){
-      playerl.pause();
     }
+    catch{}
+    try{
+      if (!playerl.paused){
+        playerl.pause();
+      }
+    } 
+    catch{}
   }
 
   if (currentMedia.type === 'youtube') {
