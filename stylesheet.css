@@ -17,7 +17,7 @@ body{
   overflow:hidden;
 }
 .nav{
-  background-color: #4b4b4b;
+  background-color: var(--background-color);
   padding-top: 8px;
   padding-bottom: 13px;
   margin-bottom: 10px;
