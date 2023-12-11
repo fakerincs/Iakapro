@@ -621,6 +621,8 @@ function generateUpcoming(){
     upcoming.insertAdjacentHTML("beforeend", `<li><span id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
+  upcoming.insertAdjacentHTML("beforeend", `<li><span id="add">` + `add+` + "</span></li>");
+  document.getElementById("add").addEventListener('click', toggleMenu("addMenu"));
 }
 generateUpcoming();
 function handleChoose(event){
@@ -633,6 +635,16 @@ function ender(){
     localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
     document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
     playNextSong();
+  }
+}
+
+function toggleMenu(string id){
+  var menu = document.getElementById(id); 
+  if (menu.style.visibility == "visible"){
+    menu.style.visibility = "hidden";
+  }
+  else{
+    menu.style.visibility = "visible";
   }
 }
 
