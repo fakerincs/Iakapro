@@ -638,7 +638,7 @@ function ender(){
   }
 }
 
-function toggleMenu(string id){
+function toggleMenu(id){
   var menu = document.getElementById(id); 
   if (menu.style.visibility == "visible"){
     menu.style.visibility = "hidden";
