@@ -41,7 +41,7 @@
           }
       }
     </script>
-    <li><button aria-label="color settings" id="colorButton" type="button" onclick="toggleMenu()">Color</button></li>
+    <li><button aria-label="color settings" id="colorButton" type="button" onclick="toggleMenu("colorMenu")">Color</button></li>
     <!-- <li><button type="button" onclick="resetColor()">Reset Color</button></li> -->
     
   </ul>
@@ -55,17 +55,6 @@
 
     <script src="colors.js"></script>
   </div>
-  <script>
-    function toggleMenu(){
-      var menu = document.getElementById("colorMenu"); 
-      if (menu.style.visibility == "visible"){
-        menu.style.visibility = "hidden";
-      }
-      else{
-        menu.style.visibility = "visible";
-      }
-    }
-  </script>
 
   
   
