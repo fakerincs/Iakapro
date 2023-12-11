@@ -411,14 +411,16 @@ function toggleVideo(){
     videoOff = false;
     videoButton.textContent = "Video On";
     player.audioOnlyMode(videoOff);
-    document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
+    document.getElementById("player").style.width ="160px"; 
+    document.getElementById("player").style.height ="100px"; 
+    //document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
     
   }
   else{
     videoOff = true;
     videoButton.textContent = "No Video";
     player.audioOnlyMode(videoOff);
-    document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
+    //document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
     document.getElementById("playerContainer").style.inset =""; 
     document.getElementById("player").style.width ="10px"; 
     document.getElementById("player").style.height ="10px"; 
