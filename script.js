@@ -621,8 +621,8 @@ function generateUpcoming(){
     upcoming.insertAdjacentHTML("beforeend", `<li><span id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
-  upcoming.insertAdjacentHTML("beforeend", `<li><span id="add">` + `add+` + "</span></li>");
-  document.getElementById("add").addEventListener('click', toggleMenu("addMenu"));
+  upcoming.insertAdjacentHTML("beforeend", "<li><span id ='addsongspan'><button aria-label='add button' id='addsongbutton' type='button' onclick='toggleMenu(\"addsongdiv\")'>ADD+</button><div id='addsongdiv'>Add Song<input aria-label='input song' id='songinput'></span><br></div></li>");
+
 }
 generateUpcoming();
 function handleChoose(event){
@@ -649,3 +649,8 @@ function toggleMenu(id){
 }
 
 createPlayer();
+navigator.mediaSession.setActionHandler("nexttrack", () => {
+  // Replace the content with something else or perform any other action
+  console.log("skipepd");
+  playNextSong();
+});

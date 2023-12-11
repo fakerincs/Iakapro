@@ -21,18 +21,18 @@ body{
 .nav{
   background-color: var(--background-color);
   display:flex;
-  overflow: hidden;
-  height: 30px;
+  /* height: 30px; */
   min-width: 100%;
   position: sticky;
   left: 0px;
   top: 0px;
   margin-left: -8px;
-  margin-top: px;
+  margin-top: 0px;
   margin-right: -8px;
   padding: 3px;
   align-items: center;
-  overflow: scroll;
+  overflow: hidden;
+  direction: ltr;
 }
 .nav > li{
   padding-left: 5px;
@@ -43,6 +43,7 @@ body{
   height: min-content;
 }
 
+
 #fileInput, #videoButton, #resetStats, #colorButton{
   margin-left: 13px;
   max-width: 100px;
@@ -51,7 +52,13 @@ body{
   color: var(--main-color);
   border-radius: 5px;
 }
-
+#addsongbutton{
+  max-width: 100px;
+  background: var(--secondary-color);
+  border: var(--played-color);
+  color: var(--main-color);
+  border-radius: 5px;
+}
 
 #import{
   background: var(--secondary-color);
@@ -69,6 +76,7 @@ body{
   display: inline-block;
   width: 80%;
   max-width: 80px;
+  min-width: 10px;
   background: var(--secondary-color);
   border: rgb(0, 0, 0);
   color: var(--main-color);
@@ -76,14 +84,27 @@ body{
 }
 #colorMenu{
   visibility: hidden;
-  background-color: #55555575;
+  background-color: #555555dc;
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
   z-index: 1;
   right: 0%;
 }
+#addsongdiv{
+  visibility: hidden;
+  z-index: 1;
+  background-color: #ffffff47;
+  /* margin-top: 5px; */
+  /* margin-bottom: 5px; */
+  border-radius: 3px;
+  line-height: unset;
+}
+#addsongspan{
+  display: flex;
+  height: 30px;
 
+}
 
 #playPauseButton, #skipButton {
   font-size: 16px;
@@ -110,10 +131,11 @@ body{
   width: calc(100% - 30px);
   padding: 3px;
   border-radius: 7px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 #upcoming {
-  padding-top: 10px;
   /*width: calc(100% - 50px);*/
   height: calc(100% - 210px);
   position:absolute;
@@ -122,9 +144,8 @@ body{
   overflow-y: scroll;
   border-radius: 7px;
   background-color: var(--secondary-color);
-  
 }
-#upcoming > li{
+#upcoming > li, add{
   padding-left: 10px;
   line-height: 30px;
   border-top: 1px solid var(--background-color);
