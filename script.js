@@ -412,8 +412,8 @@ function toggleVideo(){
     videoButton.textContent = "Video On";
     player.audioOnlyMode(videoOff);
     document.getElementById("player").style.display = "visible";
-    //document.getElementById("player").style.width ="160px"; 
-    //document.getElementById("player").style.height ="100px"; 
+    document.getElementById("player").style.width ="160px"; 
+    document.getElementById("player").style.height ="100px"; 
     //document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
     
   }
@@ -423,9 +423,9 @@ function toggleVideo(){
     player.audioOnlyMode(videoOff);
     //document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
     document.getElementById("playerContainer").style.inset =""; 
-    //document.getElementById("player").style.width ="10px"; 
-    //document.getElementById("player").style.height ="10px"; 
-    document.getElementById("player").style.display = "none";
+    document.getElementById("player").style.width ="1px"; 
+    document.getElementById("player").style.height ="1px"; 
+    //document.getElementById("player").style.display = "none";
 
   }
 
