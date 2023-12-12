@@ -411,6 +411,7 @@ function toggleVideo(){
     videoOff = false;
     videoButton.textContent = "Video On";
     player.audioOnlyMode(videoOff);
+    document.getElementById("player").style.display = "visible";
     //document.getElementById("player").style.width ="160px"; 
     //document.getElementById("player").style.height ="100px"; 
     //document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
