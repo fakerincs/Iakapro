@@ -648,17 +648,21 @@ generateUpcoming();
 
 var script = document.createElement('script');
 script.onload = function () {
-    //do stuff with the script
+    var link = document.createElement('link');
+    link.onload = function () {
+        playerl = new Audio('songs/Recording.mp3');
+        playerl.pause();
+        playerl.addEventListener('ended', function(){
+          playNextSong();
+        });
+        
+        createPlayer();
+    };
+    link.src = "https://vjs.zencdn.net/8.3.0/video-js.min.css"
+    document.head.appendChild(link);
 };
 script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
-
 document.head.appendChild(script);
 
-playerl = new Audio('songs/Recording.mp3');
-playerl.pause();
-playerl.addEventListener('ended', function(){
-  playNextSong();
-});
 
-createPlayer();
 
