@@ -676,6 +676,8 @@ var scriptyt = document.createElement('script');
 scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
 scriptyt.crossorigin="anonymous";
 scriptyt.referrerpolicy = "no-referrer";
+scriptyt.crossOrigin="anonymous";
+scriptyt.referrerPolicy = "no-referrer";
 scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
 console.log(scriptyt);
 document.body.appendChild(scriptyt);
@@ -685,5 +687,6 @@ playerl.pause();
 playerl.addEventListener('ended', function(){
   playNextSong();
 });
-
-createPlayer();
+while(loaded <3){
+  createPlayer();
+}
