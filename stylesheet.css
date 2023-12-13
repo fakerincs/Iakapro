@@ -176,7 +176,8 @@ button{
 
   
 #player {
-
+  width:"54px";
+  height:"30px";
   overflow: hidden;
   resize: both;
   pointer-events: none;
