@@ -7,19 +7,19 @@ function resetColor(){
 }
 function change(event) {
   document.documentElement.style.setProperty(event.currentTarget.color, event.target.value);
-  saved = false;
+  event.currentTarget.saved = false;
 }
 function save(event) {
-  saved = true;
+  event.currentTarget.saved = true;
   document.documentElement.style.setProperty(event.currentTarget.color, event.target.value);
   localStorage.setItem(event.currentTarget.id, event.target.value);
 }
 function close(){
-  if (saved){
-    defaultColor= getComputedStyle(document.body).getPropertyValue(event.currentTarget.color);
+  if (event.currentTarget.saved){
+    event.currentTarget.defaultColor= getComputedStyle(document.body).getPropertyValue(event.currentTarget.color);
     return;
   }
-  document.documentElement.style.setProperty(event.currentTarget.color, defaultColor);
+  document.documentElement.style.setProperty(event.currentTarget.color, event.currentTarget.defaultColor);
 }
 
 function picker(id, color){
@@ -32,12 +32,12 @@ function picker(id, color){
     }
   }
   var mPicker = document.getElementById(id);
-  var defaultColor= getComputedStyle(document.body).getPropertyValue(color);
+  mPicker.defaultColor= getComputedStyle(document.body).getPropertyValue(color);
   
-  mPicker.value = defaultColor;
+  mPicker.value = mPicker.defaultColor;
   mPicker.id = id;
   mPicker.color = color;
-  var saved = true;
+  mPicker.saved = true;
   mPicker.addEventListener("input", change);
   mPicker.addEventListener("change", color, save);
   mPicker.addEventListener("close", close);
