@@ -659,9 +659,10 @@ var link = document.createElement('link');
 link.onload = function () {
   console.log("2");
 }
-link.src = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
+link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
 link.rel = "stylesheet";
 document.head.appendChild(link);
+
 
 var scriptyt = document.createElement('script');
     scriptyt.onload = function () {
