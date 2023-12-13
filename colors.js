@@ -39,7 +39,7 @@ function picker(id, color){
   mPicker.color = color;
   mPicker.saved = true;
   mPicker.addEventListener("input", change);
-  mPicker.addEventListener("change", color, save);
+  mPicker.addEventListener("change", save);
   mPicker.addEventListener("close", close);
 }
 picker("mainColor", "--main-color");
