@@ -646,6 +646,15 @@ navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
 shuffleIndices();
 generateUpcoming();
 
+var link = document.createElement('link');
+link.onload = function () {
+  console.log("2");
+}
+link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
+link.rel = "stylesheet";
+console.log(link);
+document.getElementsByTagName("head")[0].appendChild(link);
+
 
 var script = document.createElement('script');
 script.onload = function () {
@@ -655,13 +664,7 @@ script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
 document.body.appendChild(script);
 
 
-var link = document.createElement('link');
-link.onload = function () {
-  console.log("2");
-}
-link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
-link.rel = "stylesheet";
-document.head.appendChild(link);
+
 
 
 var scriptyt = document.createElement('script');
