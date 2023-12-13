@@ -467,6 +467,8 @@ function createPlayer() {
     } 
     catch{}
   }
+  currentSongElement.textContent = `${currentMedia.title}`;
+  document.getElementById(`${currentIndex}`).style.color = 'rgba(252, 252, 252, 1)';
 
   if (currentMedia.type === 'youtube') {
     if (!player){
@@ -523,8 +525,6 @@ function createPlayer() {
     playerl.addEventListener('timeupdate', audioUpdate);
   }
 
-  currentSongElement.textContent = `${currentMedia.title}`;
-  document.getElementById(`${currentIndex}`).style.color = 'rgba(252, 252, 252, 1)';
 }
 function videoSeek(){
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
