@@ -645,20 +645,21 @@ navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
 
 shuffleIndices();
 generateUpcoming();
-
+var loaded = 0;
 var link = document.createElement('link');
 link.onload = function () {
-  console.log("2");
+  console.log("style");
+  loaded++;
 }
 link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
 link.rel = "stylesheet";
-console.log(link);
 document.getElementsByTagName("head")[0].appendChild(link);
 
 
 var script = document.createElement('script');
 script.onload = function () {
-  console.log("1");
+  console.log("2");
+  loaded++;
 };
 script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
 document.body.appendChild(script);
@@ -670,11 +671,13 @@ document.body.appendChild(script);
 var scriptyt = document.createElement('script');
     scriptyt.onload = function () {
       console.log("3");
+      loaded++;
   };
 scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
 scriptyt.crossorigin="anonymous";
 scriptyt.referrerpolicy = "no-referrer";
 scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
+console.log(scriptyt);
 document.body.appendChild(scriptyt);
 
 playerl = new Audio('songs/Recording.mp3');
