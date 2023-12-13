@@ -488,6 +488,8 @@ function createPlayer() {
     }
     else{
       player.src({
+        techOrder:['youtube'],
+        autoplay: 'any',
         src: `https://www.youtube.com/embed/${currentMedia.id}`,
         type: 'video/youtube',
       });
