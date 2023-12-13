@@ -471,17 +471,13 @@ function createPlayer() {
   if (currentMedia.type === 'youtube') {
     if (!player){
       player = videojs('player', {
-        techOrder: ['youtube'],
-        autoplay: 'any',
-        preload: 'auto',
         inactivityTimeout: 0,
         audioOnlyMode: videoOff,
-        controls: false,
-        poster: "poster.png",
         sources: [{
           type: 'video/youtube',
           src: `https://www.youtube.com/embed/${currentMedia.id}`
-        }]
+        }],
+        youtube: { ytControls: 0, autoplay : 1 }
         //width: 130,
         //height: 100,
       }, function onPlayerReady() {
