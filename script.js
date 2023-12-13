@@ -477,6 +477,7 @@ function createPlayer() {
         inactivityTimeout: 0,
         audioOnlyMode: videoOff,
         controls: false,
+        poster: "poster.png",
         sources: [{
           type: 'video/youtube',
           src: `https://www.youtube.com/embed/${currentMedia.id}`
