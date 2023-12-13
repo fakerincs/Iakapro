@@ -380,7 +380,7 @@ let playlist = [
   { id: 'ea_V3Nfk40Y', title: 'Zekk - POWER OF UNITY', type: 'youtube' },
   { id: 'ikWjlRyRGb8', title: 'ZONE', type: 'youtube' },
   { id: 'f9Zt5OqIzIk', title: 'CASE', type: 'youtube' },
-  { id: 'Recording.mp3', title: 'start', type: 'local' },
+  //{ id: 'Recording.mp3', title: 'start', type: 'local' },
 ];
 
 let svol = 50;
@@ -403,7 +403,7 @@ function shuffleIndices() {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
   }
-  [shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
+  //[shuffledIndices[1], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[1]];
 }
 
 function toggleVideo(){
