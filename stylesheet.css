@@ -163,6 +163,8 @@ button{
   padding-left: 10px;
 }
 #player {
+  width:1px;
+  height:1px;
   overflow: hidden;
   resize: both;
   pointer-events: none;
