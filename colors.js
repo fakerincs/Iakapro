@@ -5,6 +5,22 @@ function resetColor(){
   document.documentElement.style.setProperty("--secondary-color", "#fec8cd");
   document.documentElement.style.setProperty("--third-color", "#fec8cd");
 }
+function change(event) {
+  document.documentElement.style.setProperty(event.currentTarget.color, event.target.value);
+  saved = false;
+}
+function save(event) {
+  saved = true;
+  document.documentElement.style.setProperty(event.currentTarget.color, event.target.value);
+  localStorage.setItem(event.currentTarget.id, event.target.value);
+}
+function close(){
+  if (saved){
+    defaultColor= getComputedStyle(document.body).getPropertyValue(event.currentTarget.color);
+    return;
+  }
+  document.documentElement.style.setProperty(event.currentTarget.color, defaultColor);
+}
 
 function picker(id, color){
   if (typeof(Storage) !== "undefined") {
@@ -19,26 +35,12 @@ function picker(id, color){
   var defaultColor= getComputedStyle(document.body).getPropertyValue(color);
   
   mPicker.value = defaultColor;
+  mPicker.id = id;
+  mPicker.color = color;
   var saved = true;
   mPicker.addEventListener("input", change);
-  mPicker.addEventListener("change", save);
+  mPicker.addEventListener("change", color, save);
   mPicker.addEventListener("close", close);
-  function change(event) {
-    document.documentElement.style.setProperty(color, event.target.value);
-    saved = false;
-  }
-  function save(event) {
-    saved = true;
-    document.documentElement.style.setProperty(color, event.target.value);
-    localStorage.setItem(id, event.target.value);
-  }
-  function close(){
-    if (saved){
-      defaultColor= getComputedStyle(document.body).getPropertyValue(color);
-      return;
-    }
-    document.documentElement.style.setProperty(color, defaultColor);
-  }
 }
 picker("mainColor", "--main-color");
 picker("playedColor", "--played-color");
