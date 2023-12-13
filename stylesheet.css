@@ -176,8 +176,7 @@ button{
 
   
 #player {
-  width:"54px";
-  height:"30px";
+
   overflow: hidden;
   resize: both;
   pointer-events: none;
@@ -202,9 +201,9 @@ button{
   padding-bottom: 10px;
   padding-top: 10px;
   padding-left: 15px;
-  position: fixed;
+  position: absolute;
   left: 0px;
-  bottom: 0;
+  bottom: 0%;
 }
 
 #videoSlider {
