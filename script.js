@@ -650,8 +650,4 @@ function toggleMenu(id){
 }
 
 createPlayer();
-navigator.mediaSession.setActionHandler("nexttrack", () => {
-  // Replace the content with something else or perform any other action
-  console.log("skipepd");
-  playNextSong();
-});
+navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
