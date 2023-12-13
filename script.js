@@ -608,7 +608,7 @@ function changeVolume(volume) {
 
 shuffleIndices();
 
-playerl = new Audio('Recording.mp3');
+playerl = new Audio('songs/Recording.mp3');
 playerl.pause();
 playerl.addEventListener('ended', function(){
   playNextSong();
