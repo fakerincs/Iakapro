@@ -645,7 +645,7 @@ navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
 
 shuffleIndices();
 generateUpcoming();
-let myPromise = new Promise(function(myResolve, myReject) {
+let myPromise = new Promise(function(myResolve, myReject)){
   var loaded = 0;
   var link = document.createElement('link');
   link.onload = function () {
@@ -685,7 +685,7 @@ let myPromise = new Promise(function(myResolve, myReject) {
   document.body.appendChild(scriptyt);
 }
 
-function resolution(some){
+function resolution(){
   // playerl = new Audio('songs/Recording.mp3');
   // playerl.pause();
   // playerl.addEventListener('ended', function(){
@@ -694,6 +694,6 @@ function resolution(some){
   createPlayer();
 }
 myPromise.then(
-  function(value) {resolution(value);},
+  function() {resolution();},
 );
 
