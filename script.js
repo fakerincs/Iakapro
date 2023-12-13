@@ -477,7 +477,6 @@ function createPlayer() {
           type: 'video/youtube',
           src: `https://www.youtube.com/embed/${currentMedia.id}`
         }],
-        youtube: { ytControls: 0, autoplay : 1 }
         //width: 130,
         //height: 100,
       }, function onPlayerReady() {
@@ -488,8 +487,6 @@ function createPlayer() {
     }
     else{
       player.src({
-        techOrder:['youtube'],
-        autoplay: 'any',
         src: `https://www.youtube.com/embed/${currentMedia.id}`,
         type: 'video/youtube',
       });
