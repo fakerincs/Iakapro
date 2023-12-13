@@ -200,7 +200,7 @@ div, a {
   font-size: 16px;
   padding-bottom: 10px;
   padding-top: 10px;
-  padding-left: 10px;
+  padding-left: 15px;
   position: fixed;
   left: 0px;
   bottom: 0;
@@ -208,8 +208,8 @@ div, a {
 
 #videoSlider {
   -webkit-appearance: none;
-  width: calc(100% - 50px);
-  margin-left: 15px;
+  width: calc(100% - 35px);
+  /* margin-left: 15px; */
   background: var(--secondary-color);
   border-radius: 10px;
   overflow: hidden;

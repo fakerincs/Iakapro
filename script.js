@@ -510,7 +510,7 @@ function createPlayer() {
 
   } else if (currentMedia.type === 'local') {
     document.getElementById("player").style.display = "none";
-    playerl = new Audio(currentMedia.id);
+    playerl = new Audio("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.play();
     playerl.muted = false;
