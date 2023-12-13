@@ -516,6 +516,7 @@ function createPlayer() {
     playerl.addEventListener('ended', function(){
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
       document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+      document.getElementById("player").style.display = "visible";
       playNextSong();
     });
 
