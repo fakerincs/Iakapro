@@ -608,13 +608,6 @@ function changeVolume(volume) {
   }
 }
 
-shuffleIndices();
-
-playerl = new Audio('songs/Recording.mp3');
-playerl.pause();
-playerl.addEventListener('ended', function(){
-  playNextSong();
-});
 
 function generateUpcoming(){
   let upcoming = document.getElementById("upcoming");
@@ -625,7 +618,7 @@ function generateUpcoming(){
   upcoming.insertAdjacentHTML("beforeend", "<li><span id ='addsongspan'><button aria-label='add button' id='addsongbutton' type='button' onclick='toggleMenu(\"addsongdiv\")'>ADD+</button><div id='addsongdiv'>Add Song<input aria-label='input song' id='songinput'></span><br></div></li>");
 
 }
-generateUpcoming();
+
 function handleChoose(event){
   var itemId = event.target.id;
   playNextSong(itemId);
@@ -648,6 +641,16 @@ function toggleMenu(id){
     menu.style.visibility = "visible";
   }
 }
+navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
+
+shuffleIndices();
+generateUpcoming();
+
+playerl = new Audio('songs/Recording.mp3');
+playerl.pause();
+playerl.addEventListener('ended', function(){
+  playNextSong();
+});
 
 createPlayer();
-navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
+
