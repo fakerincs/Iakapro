@@ -661,16 +661,16 @@ link.onload = function () {
 }
 link.src = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
 link.rel = "stylesheet";
-document.body.appendChild(link);
+document.head.appendChild(link);
 
 var scriptyt = document.createElement('script');
     scriptyt.onload = function () {
       console.log("3");
   };
 scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
-scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
 scriptyt.crossorigin="anonymous";
 scriptyt.referrerpolicy = "no-referrer";
+scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
 document.body.appendChild(scriptyt);
 
 playerl = new Audio('songs/Recording.mp3');
