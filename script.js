@@ -646,6 +646,14 @@ navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
 shuffleIndices();
 generateUpcoming();
 
+var script = document.createElement('script');
+script.onload = function () {
+    //do stuff with the script
+};
+script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
+
+document.head.appendChild(script);
+
 playerl = new Audio('songs/Recording.mp3');
 playerl.pause();
 playerl.addEventListener('ended', function(){
