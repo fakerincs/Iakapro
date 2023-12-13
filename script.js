@@ -648,7 +648,7 @@ generateUpcoming();
 var loaded = 0;
 var link = document.createElement('link');
 link.onload = function () {
-  console.log("style");
+  console.log("1");
   loaded++;
 }
 link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
@@ -674,10 +674,11 @@ var scriptyt = document.createElement('script');
       loaded++;
   };
 scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
-scriptyt.crossorigin="anonymous";
-scriptyt.referrerpolicy = "no-referrer";
 scriptyt.crossOrigin="anonymous";
 scriptyt.referrerPolicy = "no-referrer";
+scriptyt.setAttribute("crossorigin", "anonymous");
+scriptyt.setAttribute("referrerpolicy", "no-referrer");
+
 scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
 console.log(scriptyt);
 document.body.appendChild(scriptyt);
