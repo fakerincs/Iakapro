@@ -650,19 +650,26 @@ var script = document.createElement('script');
 script.onload = function () {
     var link = document.createElement('link');
     link.onload = function () {
-        playerl = new Audio('songs/Recording.mp3');
-        playerl.pause();
-        playerl.addEventListener('ended', function(){
-          playNextSong();
-        });
-        
-        createPlayer();
-    };
-    link.src = "https://vjs.zencdn.net/8.3.0/video-js.min.css"
+      var scriptyt = document.createElement('script');
+      scriptyt.onload = function () {
+          playerl = new Audio('songs/Recording.mp3');
+          playerl.pause();
+          playerl.addEventListener('ended', function(){
+            playNextSong();
+          });
+          
+          createPlayer();
+      };
+      scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
+      scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
+      scriptyt.crossorigin="anonymous";
+      scriptyt.referrerpolicy = "no-referrer";
+      document.head.appendChild(scriptyt);
+    }
+    link.src = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
     document.head.appendChild(link);
 };
 script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
 document.head.appendChild(script);
-
-
+  
 
