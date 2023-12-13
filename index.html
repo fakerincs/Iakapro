@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>home</title>
+  <title>Music</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto Mono&display=swap" rel="stylesheet"/>
-  <link href="https://vjs.zencdn.net/8.3.0/video-js.min.css" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="stylesheet.css" rel="stylesheet">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Music streaming with 0 ads, free realestate.">
+  <link href="https://vjs.zencdn.net/8.3.0/video-js.min.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
   <ul class="nav">
@@ -42,8 +42,6 @@
       }
     </script>
     <li><button aria-label="color settings" id="colorButton" type="button" onclick="toggleMenu('colorMenu')">Color</button></li>
-    <!-- <li><button type="button" onclick="resetColor()">Reset Color</button></li> -->
-    
   </ul>
   <div id="colorMenu">
     <span>Main Color <input aria-label="mcolor" type="color" id="mainColor"></span><br>
@@ -51,12 +49,9 @@
     <span>Background Color <input aria-label="bcolor" type="color" id="backgroundColor"></span><br>
     <span>Secondary Color <input aria-label="scolor" type="color" id="secondaryColor"></span><br>
     <span>Third Color <input aria-label="tcolor" type="color" id="thirdColor"></span><br>
-
     <script src="colors.js"></script>
   </div>
 
-  
-  
   <div id="result"></div>
   
   <div id = "playerinfo">
@@ -78,7 +73,7 @@
   
   <div id="playerContainer">
         <video id="player" class="video-js vjs-default-skin" poster="poster.png" width="1" height="1">
-          <!--  preload='auto will make mobile not work -->
+          <!--  preload='auto' will make mobile not work -->
             <source id="testVideoSource">
         </video>
     <script>
@@ -87,21 +82,16 @@
         function dragElement(elmnt) {
           
           var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-          // otherwise, move the DIV from anywhere inside the DIV:
           elmnt.onmousedown = dragMouseDown;
 
-
           function dragMouseDown(e) {
-            if (document.getElementById("player").style.pointerEvents == "auto"){
-              return;
-            }
+            if (document.getElementById("player").style.pointerEvents == "auto"){return;}
             e = e || window.event;
             e.preventDefault();
             // get the mouse cursor position at startup:
             pos3 = e.clientX;
             pos4 = e.clientY;
             document.onmouseup = closeDragElement;
-            // call a function whenever the cursor moves:
             document.onmousemove = elementDrag;
           }
 
@@ -144,17 +134,17 @@
       });
       
       function handleMouseMove(ev) {
-          const playerElement = document.getElementById("player");
-          const draggableElement = document.getElementById("playerContainer");
-          const rect = draggableElement.getBoundingClientRect();
+        const playerElement = document.getElementById("player");
+        const draggableElement = document.getElementById("playerContainer");
+        const rect = draggableElement.getBoundingClientRect();
 
-          // Check if the cursor is within the desired area
-          const isWithinArea = ev.clientX > rect.left + rect.width -20 && ev.clientY > rect.top + rect.height -20;
+        // Check if the cursor is within the desired area
+        const isWithinArea = ev.clientX > rect.left + rect.width -20 && ev.clientY > rect.top + rect.height -20;
 
-          // Enable or disable pointer events for the player element based on the condition
-          if (!clicked){
-            playerElement.style.pointerEvents = isWithinArea ? "auto" : "none";
-          }
+        // Enable or disable pointer events for the player element based on the condition
+        if (!clicked){
+          playerElement.style.pointerEvents = isWithinArea ? "auto" : "none";
+        }
       }
     </script>
   </div>
