@@ -645,54 +645,40 @@ navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
 
 shuffleIndices();
 generateUpcoming();
-// let myPromise = new Promise(function(myResolve, myReject)){
-//   var loaded = 0;
-//   var link = document.createElement('link');
-//   link.onload = function () {
-//     console.log("1");
-//     loaded++;
-//   }
-//   link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
-//   link.rel = "stylesheet";
-//   document.getElementsByTagName("head")[0].appendChild(link);
-  
-  
-//   var script = document.createElement('script');
-//   script.onload = function () {
-//     console.log("2");
-//     loaded++;
-//   };
-//   script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
-//   document.body.appendChild(script);
-  
-  
-  
-  
-//   var scriptyt = document.createElement('script');
-//       scriptyt.onload = function () {
-//         myResolve("OK");
-//         loaded++;
-//     };
-//   scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
-//   scriptyt.crossOrigin="anonymous";
-//   scriptyt.referrerPolicy = "no-referrer";
-//   scriptyt.setAttribute("crossorigin", "anonymous");
-//   scriptyt.setAttribute("referrerpolicy", "no-referrer");
-  
-//   scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
-//   console.log(scriptyt);
-//   document.body.appendChild(scriptyt);
-// }
 
-// function resolution(){
-playerl = new Audio('songs/Recording.mp3');
-playerl.pause();
-playerl.addEventListener('ended', function(){
-playNextSong();
-//   // });
-  createPlayer();
-// }
-// myPromise.then(
-//   function() {resolution();},
-// );
+var link = document.createElement('link');
+link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
+link.rel = "stylesheet";
+document.getElementsByTagName("head")[0].appendChild(link);
+
+var script = document.createElement('script');
+script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
+script.onload = function () {
+  // Code to run after the video.min.js script has loaded
+  console.log("2");
+
+  var scriptyt = document.createElement('script');
+  scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
+  scriptyt.onload = function () {
+    // Code to run after the Youtube.min.js script has loaded
+    console.log("3");
+
+    // Additional code that you want to run after all scripts have loaded
+    playerl = new Audio('songs/Recording.mp3');//not sure if this is needed
+    playerl.pause();
+    playerl.addEventListener('ended', function(){
+      playNextSong();
+    });
+
+    createPlayer();
+  };
+
+  scriptyt.setAttribute("crossorigin", "anonymous");
+  scriptyt.setAttribute("referrerpolicy", "no-referrer");
+  scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
+  document.body.appendChild(scriptyt);
+
+};
+
+document.body.appendChild(script);
 
