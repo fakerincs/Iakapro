@@ -1,12 +1,14 @@
 :root {
-  --main-color: #a30000;
-  --played-color: #c60035;
-  --background-color: #ffffff;
-  --secondary-color: #fec8cd;
-  --third-color: #fec8cd;
+  --main-color: #fff7f7;
+  --played-color: #858585;
+  --background-color: #000000;
+  --secondary-color: #1a1a1a;
+  --third-color: #161616;
+  --upcoming-color: #000000;
+  --songs-color: #dcdcdc;
 }
 body{
-  color:var(--main-color) !important; 
+  color: var(--main-color) !important;
   background-color:var(--third-color) !important;
   background-size: 100%;
   background-attachment: fixed;
@@ -140,14 +142,16 @@ body{
   position:absolute;
   display: inline-block;
   white-space:nowrap;
+  max-width: 90%;
   overflow-y: scroll;
   border-radius: 7px;
-  background-color: var(--secondary-color);
+  background-color: var(--upcoming-color);
+  color: var(--songs-color);
 }
 #upcoming > li, add{
   padding-left: 10px;
   line-height: 30px;
-  border-top: 1px solid var(--background-color);
+  border-top: 1px solid var(--secondary-color);
 }
 li span:hover {
     cursor: pointer;

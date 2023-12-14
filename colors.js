@@ -8,7 +8,7 @@ function save(event) {
   document.documentElement.style.setProperty(event.target.color, event.target.value);
   localStorage.setItem(event.target.id, event.target.value);
 }
-function close(){
+function close(event){
   if (event.target.saved){
     event.target.defaultColor= getComputedStyle(document.body).getPropertyValue(event.target.color);
     return;
@@ -40,4 +40,6 @@ if (typeof(Storage) !== "undefined") {
   picker("backgroundColor", "--background-color");
   picker("secondaryColor", "--secondary-color");
   picker("thirdColor", "--third-color");
+  picker("upcomingColor", "--upcoming-color");
+  picker("songsColor", "--songs-color");
 }
