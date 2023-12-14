@@ -646,39 +646,50 @@ navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
 shuffleIndices();
 generateUpcoming();
 
-var link = document.createElement('link');
-link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
-link.rel = "stylesheet";
-document.getElementsByTagName("head")[0].appendChild(link);
+function loadScript(src) {
+  return new Promise(function (resolve, reject) {
+    var script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.body.appendChild(script);
+  });
+}
 
-var script = document.createElement('script');
-script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
-script.onload = function () {
-  // Code to run after the video.min.js script has loaded
-  console.log("2");
+function loadStylesheet(href) {
+  return new Promise(function (resolve, reject) {
+    var link = document.createElement('link');
+    link.href = href;
+    link.rel = 'stylesheet';
+    link.onload = resolve;
+    link.onerror = reject;
+    document.getElementsByTagName("head")[0].appendChild(link);
+  });
+}
 
-  var scriptyt = document.createElement('script');
-  scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
-  scriptyt.onload = function () {
-    // Code to run after the Youtube.min.js script has loaded
-    console.log("3");
+var scriptPromises = [
+  loadScript("https://vjs.zencdn.net/8.3.0/video.min.js"),
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js")
+];
 
-    // Additional code that you want to run after all scripts have loaded
-    playerl = new Audio('songs/Recording.mp3');//not sure if this is needed
+var linkPromise = loadStylesheet("https://vjs.zencdn.net/8.3.0/video-js.min.css");
+
+Promise.all([...scriptPromises, linkPromise])
+  .then(function () {
+    // Code to run after all scripts and link have loaded
+    console.log("All scripts and link have loaded");
+
+    // Additional code that you want to run after all scripts and link have loaded
+    playerl = new Audio('songs/Recording.mp3');
     playerl.pause();
     playerl.addEventListener('ended', function(){
       playNextSong();
     });
 
     createPlayer();
-  };
+  })
+  .catch(function (error) {
+    console.error("Error loading scripts or link:", error);
+  });
 
-  scriptyt.setAttribute("crossorigin", "anonymous");
-  scriptyt.setAttribute("referrerpolicy", "no-referrer");
-  scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
-  document.body.appendChild(scriptyt);
-
-};
-
-document.body.appendChild(script);
 
