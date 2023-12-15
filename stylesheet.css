@@ -65,6 +65,7 @@ body{
   max-width: 100px;
   background: var(--secondary-color);
   border: var(var(--border-color));
+  border-width: 1px;
   color: var(--main-color);
   border-radius: 5px;
 }
@@ -79,6 +80,7 @@ body{
 #import, #homeButton{
   background: var(--secondary-color);
   border: var(--border-color);
+  border-width: 1px;
   color: var(--main-color);
   border-radius:5px;
 }
@@ -134,6 +136,8 @@ body{
   max-width: 90%;
   overflow-y: scroll;
   border-radius: 7px;
+  border: var(--border-color);
+  border-width: 1px;
   background-color: var(--upcoming-color);
   color: var(--songs-color);
 }
@@ -244,6 +248,8 @@ button{
   border-radius: 10px;
   height: 5px;
   cursor: pointer;
+  border: var(--border-color);
+  border-width: 1px;
 }
 #volumeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
