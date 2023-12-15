@@ -504,6 +504,7 @@ function createPlayer() {
         }
       };
     };
+    player.volume(svol / 100);
     videojs.use('*', myMiddleware);
     player.on('timeupdate', videoUpdate);
     
