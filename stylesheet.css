@@ -64,7 +64,7 @@ body{
   margin-left: 13px;
   max-width: 100px;
   background: var(--secondary-color);
-  border: var(--border-color);
+  border-color: var(--border-color);
   border-width: 1px;
   color: var(--main-color);
   border-radius: 5px;
@@ -79,7 +79,7 @@ body{
 }
 #import, #homeButton{
   background: var(--secondary-color);
-  border: var(--border-color);
+  border-color: var(--border-color);
   border-width: 1px;
   color: var(--main-color);
   border-radius:5px;
@@ -91,7 +91,7 @@ body{
   max-width: 80px;
   min-width: 10px;
   background: var(--secondary-color);
-  border: var(--border-color);
+  border-color: var(--border-color);
   color: var(--main-color);
   border-radius: 5px;
 }
@@ -136,7 +136,7 @@ body{
   max-width: 90%;
   overflow-y: scroll;
   border-radius: 7px;
-  border: var(--border-color);
+  border-color: var(--border-color);
   border-width: 2px;
   background-color: var(--upcoming-color);
   color: var(--songs-color);
@@ -207,7 +207,7 @@ button{
   width: calc(100% - 35px);
   /* margin-left: 15px; */
   background: var(--secondary-color);
-  border: var(--border-color);
+  border-color: var(--border-color);
   border-radius: 10px;
   overflow: hidden;
   height: 7px;
@@ -248,7 +248,7 @@ button{
   border-radius: 10px;
   height: 5px;
   cursor: pointer;
-  border: var(--border-color);
+  border-color: var(--border-color);
   border-width: 1px;
 }
 #volumeSlider::-webkit-slider-thumb {
