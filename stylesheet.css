@@ -64,7 +64,7 @@ body{
   margin-left: 13px;
   max-width: 100px;
   background: var(--secondary-color);
-  border: var(var(--border-color));
+  border: var(--border-color);
   border-width: 1px;
   color: var(--main-color);
   border-radius: 5px;
@@ -137,7 +137,7 @@ body{
   overflow-y: scroll;
   border-radius: 7px;
   border: var(--border-color);
-  border-width: 1px;
+  border-width: 2px;
   background-color: var(--upcoming-color);
   color: var(--songs-color);
 }
