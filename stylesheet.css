@@ -64,7 +64,9 @@ body{
 ::-webkit-scrollbar-thumb:hover {
   background: var(--background-color);
 }
-
+#plays{
+  padding-left: 4px;
+}
 #import, #homeButton, #fileInput, #videoButton, #resetStats, #colorButton{
   max-width: 100px;
   background: var(--secondary-color);
