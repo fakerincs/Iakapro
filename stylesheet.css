@@ -226,13 +226,14 @@ button{
   margin-left: 10px;
   max-width: 300px;
   min-width: 100px;
+  height: 5px;
   background: var(--secondary-color);
   outline: none;
   border-radius: 10px;
-  height: 5px;
-  cursor: pointer;
+  border-style: solid;
   border-color: var(--border-color);
   border-width: 1px;
+  cursor: pointer;
 }
 #volumeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -242,7 +243,10 @@ button{
   border-radius: 100%; 
   background: var(--main-color);
   cursor: pointer;
-  border-width: 0px;
+  outline-style: solid;
+  outline-color:var(--border-color);
+  outline-width: 1px;
+  
 }
 #volumeSlider::-moz-range-thumb {
   width: 15px;
@@ -250,4 +254,7 @@ button{
   border-radius: 100%; 
   background: var(--main-color);
   cursor: pointer;
+  outline-style: solid;
+  outline-color:var(--border-color);
+  outline-width: 1px;
 }
