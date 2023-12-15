@@ -37,14 +37,13 @@ body{
   direction: ltr;
 }
 .nav > li{
-  padding-left: 13px;
+  margin-left: 13px;
   float: left;
   white-space: nowrap;
   align-content: center;
   display: flex;
   height: min-content;
-  background-color: var(--third-color);
-  color: var(--third-color);
+  background-color: var(--bakcground-color);
   border-style: solid;
   border-color: var(--border-color);
   border-width: 1px;
