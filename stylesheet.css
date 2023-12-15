@@ -43,7 +43,7 @@ body{
   align-content: center;
   display: flex;
   height: min-content;
-  background-color: var(--secondary-color);
+  background-color: var(--background-color);
   outline-style: solid;
   outline-color: var(--border-color);
   outline-width: 1px;
@@ -74,7 +74,7 @@ body{
   border-radius:5px;
   color: var(--main-color);
 }
-#import{
+#import, #resetStats{
   border-radius: 0px;
   border-style: solid;
   border-color: var(--border-color);
@@ -82,8 +82,9 @@ body{
 }
 #fileInput{
   border-radius: 0px;
+  background-color: var(--background-color);
 }
-#addsongbutton, #resetStats{
+#addsongbutton{
   max-width: 100px;
   background: var(--secondary-color);
   border: var(--played-color);
