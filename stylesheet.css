@@ -20,7 +20,7 @@ body{
   margin-bottom: 0px;
 }
 .nav{
-  background-color: var(--background-color);
+  background-color: var(--third-color);
   display:flex;
   /* height: 30px; */
   min-width: 100%;
@@ -37,12 +37,13 @@ body{
   direction: ltr;
 }
 .nav > li{
-  padding-left: 5px;
+  padding-left: 13px;
   float: left;
   white-space: nowrap;
   align-content: center;
   display: flex;
   height: min-content;
+  color: var(--background-color);
 }
 ::-webkit-scrollbar {
   height: 4px;
@@ -60,38 +61,20 @@ body{
   background: var(--background-color);
 }
 
-#fileInput, #videoButton, #resetStats, #colorButton{
-  margin-left: 13px;
+#import, #homeButton, #fileInput, #videoButton, #resetStats, #colorButton{
   max-width: 100px;
   background: var(--secondary-color);
+  border-style: solid;
   border-color: var(--border-color);
   border-width: 1px;
+  border-radius:5px;
   color: var(--main-color);
-  border-radius: 5px;
 }
 #addsongbutton{
   max-width: 100px;
   background: var(--secondary-color);
   border: var(--played-color);
   border-width:1px;
-  color: var(--main-color);
-  border-radius: 5px;
-}
-#import, #homeButton{
-  background: var(--secondary-color);
-  border-color: var(--border-color);
-  border-width: 1px;
-  color: var(--main-color);
-  border-radius:5px;
-}
-#password {
-  margin-left: 13px;
-  display: inline-block;
-  width: 80%;
-  max-width: 80px;
-  min-width: 10px;
-  background: var(--secondary-color);
-  border-color: var(--border-color);
   color: var(--main-color);
   border-radius: 5px;
 }
