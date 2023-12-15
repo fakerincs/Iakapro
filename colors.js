@@ -42,4 +42,5 @@ if (typeof(Storage) !== "undefined") {
   picker("thirdColor", "--third-color");
   picker("upcomingColor", "--upcoming-color");
   picker("songsColor", "--songs-color");
+  picker("borderColor", "--border-color");
 }
