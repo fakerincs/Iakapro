@@ -8,7 +8,7 @@
   --songs-color: #dcdcdc;
 }
 body{
-  border-color: white;
+  border: white;
   color: var(--main-color) !important;
   background-color:var(--third-color) !important;
   background-size: 100%;
