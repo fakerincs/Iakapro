@@ -128,7 +128,7 @@ body{
 #upcoming > li, add{
   padding-left: 10px;
   line-height: 30px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid #454545;
 }
 li span:hover {
     cursor: pointer;
