@@ -44,6 +44,7 @@ body{
   display: flex;
   height: min-content;
   background-color: var(--third-color);
+  color: var(--third-color);
 }
 ::-webkit-scrollbar {
   height: 4px;
