@@ -1,12 +1,12 @@
 :root {
-  --main-color: #fff7f7;
+  --main-color: #ffffff;
   --played-color: #858585;
-  --background-color: #000000;
+  --background-color: #885152;
   --secondary-color: #1a1a1a;
   --third-color: #161616;
   --upcoming-color: #000000;
   --songs-color: #dcdcdc;
-  --border-color: #fff7f7;
+  --border-color: #ffffff;
 }
 body{
   color: var(--main-color) !important;
