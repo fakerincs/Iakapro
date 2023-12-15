@@ -13,7 +13,7 @@
   <ul class="nav">
     <li><input type="text" id="fileInput" aria-label="import songs"><button id="import">Convert</button></li>
     <li><button id="videoButton">No Video</button></li>
-    <li><div id="plays"></div><p style="line-height: 0px;margin: 9px 4px 9px 0px;">&nbsp;plays</p><button onclick="resetStats()" id="resetStats">reset</button></li>
+    <li><div id="plays"></div><p id="playtext">&nbsp;plays</p><button onclick="resetStats()" id="resetStats">reset</button></li>
       <script>
         function resetStats(){
           document.getElementById("plays").textContent = 0;

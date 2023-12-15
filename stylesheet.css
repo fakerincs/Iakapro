@@ -64,6 +64,11 @@ body{
 ::-webkit-scrollbar-thumb:hover {
   background: var(--background-color);
 }
+#playtext{
+  margin: 0px;
+  padding-right: 5px;
+  align-self: center;
+}
 #plays{
   padding-left: 4px;
 }
