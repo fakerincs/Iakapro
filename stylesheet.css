@@ -45,6 +45,10 @@ body{
   height: min-content;
   background-color: var(--third-color);
   color: var(--third-color);
+  border-style: solid;
+  border-color: var(--border-color);
+  border-width: 1px;
+  border-radius:5px;
 }
 ::-webkit-scrollbar {
   height: 4px;
