@@ -118,6 +118,7 @@ body{
   white-space:nowrap;
   max-width: 90%;
   overflow-y: scroll;
+  border-style: solid;
   border-radius: 7px;
   border-color: var(--border-color);
   border-width: 2px;
