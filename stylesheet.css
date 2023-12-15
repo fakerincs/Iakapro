@@ -243,6 +243,7 @@ button{
   width: 15px;
   height: 15px;
   border-radius: 100%; 
+  border-style: none;
   background: var(--main-color);
   cursor: pointer;
   outline-style: solid;
@@ -254,6 +255,7 @@ button{
   width: 15px;
   height: 15px;
   border-radius: 100%; 
+  border-style: none;
   background: var(--main-color);
   cursor: pointer;
   outline-style: solid;
