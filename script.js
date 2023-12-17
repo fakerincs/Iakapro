@@ -487,7 +487,7 @@ function createPlayer() {
       }, function onPlayerReady() {
         videojs.log('Your player is ready!');
         this.play();
-        //this.on('ended', ender);
+        this.on('ended', ender);
       });
     }
     else{
@@ -564,13 +564,13 @@ function videoUpdate(){
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     return;
   }
-  if (player.currentTime() > player.duration()-50 && player.currentTime() != lasttime){
-    console.log(player.currentTime(), player.duration());
-    lasttime = player.currentTime();
-    player.currentTime(0);
-    playNextSong();
-    return;
-  }
+  // if (player.currentTime() > player.duration()-50 && player.currentTime() != lasttime){
+  //   console.log(player.currentTime(), player.duration());
+  //   lasttime = player.currentTime();
+  //   player.currentTime(0);
+  //   playNextSong();
+  //   return;
+  // }
 
   slider.max = player.duration();
   slider.value = player.currentTime();
