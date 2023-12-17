@@ -506,8 +506,9 @@ function createPlayer() {
     };
     
     player.ready(function() {
+      player.currentTime(20);
       player.play();
-      player.currentTime(0);
+      player.currentTime(20);
       player.muted(false);
       player.volume(svol / 100); // Set volume to half
     });
@@ -529,10 +530,9 @@ function createPlayer() {
       //document.getElementById("player").style.display = "visible";
       playNextSong();
     });
-    
+
     playerl.addEventListener('timeupdate', audioUpdate);
   }
-
 }
 function videoSeek(){
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
