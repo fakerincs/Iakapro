@@ -466,7 +466,7 @@ function createPlayer() {
       }
     } 
     catch{}
-    if (sielnce.paused){
+    if (silence.paused){
       silence.play();
     }
   }
