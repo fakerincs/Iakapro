@@ -489,15 +489,6 @@ function createPlayer() {
         this.play();
         this.on('ended', ender);
       });
-      
-      if (player.webkitSupportsPresentationMode && player.webkitSupportsPresentationMode("picture-in-picture") && typeof player.webkitSetPresentationMode === "function") {
-        // Toggle PiP when the user clicks the button.
-        document.getElementById('pipbutton').addEventListener("click", function(event) {
-            player.webkitSetPresentationMode(player.webkitPresentationMode === "picture-in-picture" ? "inline" : "picture-in-picture");
-        });
-      } else {
-        document.getElementById('pipbutton').disabled = true;
-      }
     }
     else{
       player.muted(true);
@@ -513,28 +504,23 @@ function createPlayer() {
         }
       };
     };
-    videojs.use('*', myMiddleware);
+    //videojs.use('*', myMiddleware);
     player.ready(function() {
       player.currentTime(20);
       player.play();
-      player.muted(false);
-      videojs.use('*', myMiddleware);
+      //player.muted(false);
+      //videojs.use('*', myMiddleware);
       player.volume(svol / 100); // Set volume to half
     });
     
     player.on('timeupdate', videoUpdate);
-    //playfix = true;
     player.on('play', function(){
       
-      if (player.currentTime()< 1){
+      if (player.currentTime()< .5){
         console.log('wdqhid');
-      player.play();
-      player.currentTime(20);
-      console.log(player.currentTime());
-      // playfix = false;
-      // }
-      // else{
-      //   playfix = true;
+        player.play();
+        player.currentTime(20);
+        console.log(player.currentTime());
       }
     })
 
