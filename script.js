@@ -517,7 +517,7 @@ function createPlayer() {
     //playfix = true;
     player.on('play', function(){
       
-      if (21<player.currentTime() || player.currentTime()< 20){
+      if (player.currentTime()< 1){
         console.log('wdqhid');
       player.play();
       player.currentTime(20);
