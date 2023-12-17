@@ -37,6 +37,7 @@ body{
   direction: ltr;
 }
 .nav > li{
+  -webkit-appearance: none;
   margin-left: 13px;
   float: left;
   white-space: nowrap;
