@@ -516,11 +516,13 @@ function createPlayer() {
       player.volume(svol / 100); // Set volume to half
     });
     player.oncanplay = function(){
-      player.currentTime(0);
-      player.play();
-      player.muted(false);
-      videojs.use('*', myMiddleware);
-      player.volume(svol / 100);
+      if (currentMedia.type === 'youtube') {
+        player.currentTime(0);
+        player.play();
+        player.muted(false);
+        videojs.use('*', myMiddleware);
+        player.volume(svol / 100);
+      }
     }
     
     player.on('timeupdate', videoUpdate);
@@ -740,13 +742,11 @@ playerl.addEventListener('ended', function(){
 });
 playerl.addEventListener('timeupdate', audioUpdate);
 
-silence = new Audio('songs/candyland.mp3');//not sure if this is needed
+silence = new Audio('songs/45silence.mp3');//not sure if this is needed
 silence.play();
 silence.addEventListener('timeupdate', function(){
-  if (silence.currentTime> 10){
+  if (silence.currentTime> 40){
     silence.currentTime = 0;
   }
-  console.log(silence.currentTime);
-
   //silence.pause();
 });
