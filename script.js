@@ -728,7 +728,7 @@ script.onload = function () {
 document.body.appendChild(script);
 
 silence = new Audio('songs/candyland.mp3');//not sure if this is needed
-silence.pause();
+silence.play();
 silence.addEventListener('timeupdate', function(){
   if (silence.currentTime> 10){
     silence.currentTime = 0;
