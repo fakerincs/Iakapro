@@ -617,6 +617,7 @@ function togglePlayback() {
   }
   if (silence.paused){
     playerl.play();
+  }
 }
 
 
