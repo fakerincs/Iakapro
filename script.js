@@ -516,10 +516,10 @@ function createPlayer() {
     player.on('timeupdate', videoUpdate);
     player.on('play', function(){
       
-      if (player.currentTime()< .5){
+      if (player.currentTime()< .3){
         console.log('wdqhid');
         player.play();
-        player.currentTime(0);
+        player.currentTime(0.31);
         console.log(player.currentTime());
       }
     })
