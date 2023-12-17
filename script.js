@@ -616,7 +616,7 @@ function togglePlayback() {
     playerl.pause();
   }
   if (silence.paused){
-    playerl.play();
+    silence.play();
   }
 }
 
