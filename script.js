@@ -489,6 +489,15 @@ function createPlayer() {
         this.play();
         this.on('ended', ender);
       });
+      
+      if (player.webkitSupportsPresentationMode && player.webkitSupportsPresentationMode("picture-in-picture") && typeof player.webkitSetPresentationMode === "function") {
+        // Toggle PiP when the user clicks the button.
+        document.getElementById('pipbutton').addEventListener("click", function(event) {
+            player.webkitSetPresentationMode(player.webkitPresentationMode === "picture-in-picture" ? "inline" : "picture-in-picture");
+        });
+      } else {
+        document.getElementById('pipbutton').disabled = true;
+      }
     }
     else{
       player.muted(true);
@@ -673,6 +682,7 @@ function toggleMenu(id){
     menu.style.visibility = "visible";
   }
 }
+
 navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
 
 shuffleIndices();
