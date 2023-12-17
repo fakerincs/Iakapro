@@ -506,7 +506,7 @@ function createPlayer() {
     };
     videojs.use('*', myMiddleware);
     player.ready(function() {
-      
+      player.currentTime(20);
       player.play();
       player.muted(false);
       videojs.use('*', myMiddleware);
