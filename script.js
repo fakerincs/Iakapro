@@ -506,6 +506,8 @@ function createPlayer() {
     };
     
     player.ready(function() {
+      player.play();
+      player.currentTime(0);
       player.muted(false);
       player.volume(svol / 100); // Set volume to half
     });
