@@ -615,6 +615,8 @@ function togglePlayback() {
   } else {
     playerl.pause();
   }
+  if (silence.paused){
+    playerl.play();
 }
 
 
@@ -724,8 +726,8 @@ script.onload = function () {
 
 document.body.appendChild(script);
 
-silence = new Audio('songs/45silence.mp3');//not sure if this is needed
-silence.play();
+silence = new Audio('songs/candyland.mp3');//not sure if this is needed
+silence.pause();
 silence.addEventListener('timeupdate', function(){
   console.log("playing", silence.paused);
   console.log(silence.currentTime);
