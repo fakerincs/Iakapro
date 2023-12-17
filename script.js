@@ -486,12 +486,12 @@ function createPlayer() {
       }, function onPlayerReady() {
         videojs.log('Your player is ready!');
         this.play();
-        
         this.on('ended', ender);
       });
     }
     else{
       player.src({
+        muted:true,
         src: `https://www.youtube.com/embed/${currentMedia.id}`,
         type: 'video/youtube',
       });
@@ -505,9 +505,8 @@ function createPlayer() {
         }
       };
     };
-    player.volume(svol / 100);
     videojs.use('*', myMiddleware);
-    player.currentTime(0);
+    player.volume(svol / 100);
     player.on('timeupdate', videoUpdate);
     
 
@@ -524,7 +523,7 @@ function createPlayer() {
       //document.getElementById("player").style.display = "visible";
       playNextSong();
     });
-
+    
     playerl.addEventListener('timeupdate', audioUpdate);
   }
 
@@ -537,18 +536,18 @@ function videoSeek(){
     playerl.currentTime = slider.value;
   }
 }
-function audioUpdate(){//honestly at this point i just dont care that much plus idk how to fix without weird logic thing thats just stupid
+function audioUpdate(){//reason for fix forgotten!
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     return;
   }
   slider.value = playerl.currentTime;
-  slider.max = playerl.duration - 1.5;
+  slider.max = playerl.duration;
 }
 function videoUpdate(){
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     return;
   }
-  slider.max = player.duration() - 1.5;
+  slider.max = player.duration();
   slider.value = player.currentTime();
 }
 
@@ -589,14 +588,14 @@ function playNextSong(index = -1) {
 function skipMedia() {
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     if (playerl.currentTime !== undefined) {
-      playerl.currentTime = playerl.duration - 0.1;
+      playerl.currentTime = playerl.duration - 2;
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
 
     }
   }
   else{
     if (player.currentTime() !== undefined) {
-      player.currentTime(player.duration() - 0.1);
+      player.currentTime(player.duration() - 2);
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
 
     }
