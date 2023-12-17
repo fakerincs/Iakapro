@@ -506,7 +506,7 @@ function createPlayer() {
     };
     videojs.use('*', myMiddleware);
     player.ready(function() {
-      player.currentTime(20);
+      player.currentTime(0);
       player.play();
       player.muted(false);
       videojs.use('*', myMiddleware);
@@ -519,7 +519,7 @@ function createPlayer() {
       if (player.currentTime()< .5){
         console.log('wdqhid');
         player.play();
-        player.currentTime(20);
+        player.currentTime(0);
         console.log(player.currentTime());
       }
     })
