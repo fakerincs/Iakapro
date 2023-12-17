@@ -411,7 +411,7 @@ function toggleVideo(){
     videoOff = false;
     videoButton.textContent = "Video On";
     player.audioOnlyMode(videoOff);
-    document.getElementById("player").style.display = "visible";
+    //document.getElementById("player").style.display = "visible";
     document.getElementById("player").style.width ="160px"; 
     document.getElementById("player").style.height ="100px"; 
     //document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
@@ -512,7 +512,7 @@ function createPlayer() {
     
 
   } else if (currentMedia.type === 'local') {
-    document.getElementById("player").style.display = "none";
+    //document.getElementById("player").style.display = "none";
     playerl = new Audio("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.play();
@@ -521,7 +521,7 @@ function createPlayer() {
     playerl.addEventListener('ended', function(){
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
       document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
-      document.getElementById("player").style.display = "visible";
+      //document.getElementById("player").style.display = "visible";
       playNextSong();
     });
 
@@ -667,11 +667,11 @@ script.onload = function () {
     console.log("3");
 
     // Additional code that you want to run after all scripts have loaded
-    playerl = new Audio('songs/Recording.mp3');//not sure if this is needed
-    playerl.pause();
-    playerl.addEventListener('ended', function(){
-      playNextSong();
-    });
+    // playerl = new Audio('songs/Recording.mp3');//not sure if this is needed
+    // playerl.pause();
+    // playerl.addEventListener('ended', function(){
+    //   playNextSong();
+    // });
 
     createPlayer();
   };
