@@ -506,7 +506,6 @@ function createPlayer() {
     };
     
     player.ready(function() {
-      console.log(player)
       player.play();
       player.muted(false);
       player.volume(svol / 100); // Set volume to half
