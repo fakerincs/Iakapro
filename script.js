@@ -537,12 +537,16 @@ function createPlayer() {
     //document.getElementById("player").style.display = "none";
     playerl = new Audio("songs/" + currentMedia.id);
     playerl.muted = true;
-    playerl.oncanplay = function(){
+    playerl.oncanplay = (event) => {
+      console.log("Video can start, but not sure it will play through.");
       playerl.play();
       playerl.muted = false;
       playerl.volume = (svol / 300);
     };
-    
+      
+    playerl.play();
+    playerl.muted = false;
+    playerl.volume = (svol / 300);
     playerl.addEventListener('ended', function(){
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
       document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
