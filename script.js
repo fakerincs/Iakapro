@@ -511,6 +511,7 @@ function createPlayer() {
       player.currentTime(20);
       player.muted(false);
       player.volume(svol / 100); // Set volume to half
+      player.currentTime(20);
     });
     
     player.on('timeupdate', videoUpdate);
