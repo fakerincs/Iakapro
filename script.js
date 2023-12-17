@@ -479,6 +479,7 @@ function createPlayer() {
         inactivityTimeout: 0,
         audioOnlyMode: videoOff,
         poster: "poster.png",
+        muted:true,
         sources: [{
           type: 'video/youtube',
           src: `https://www.youtube.com/embed/${currentMedia.id}`
@@ -490,14 +491,12 @@ function createPlayer() {
       });
     }
     else{
+      player.muted(true);
       player.src({
-        muted:true,
         src: `https://www.youtube.com/embed/${currentMedia.id}`,
         type: 'video/youtube',
       });
     }
-    document.getElementById("player").style.display = "inline-block";
-    player.volume(svol / 100);
     var myMiddleware = function(player) {
       return {
         setMuted: function(muted) {
@@ -505,9 +504,14 @@ function createPlayer() {
         }
       };
     };
-    videojs.use('*', myMiddleware);
-    player.volume(svol / 100);
+    
+    player.ready(function() {
+      player.muted(false);
+      player.volume(svol / 100); // Set volume to half
+    });
+    
     player.on('timeupdate', videoUpdate);
+
     
 
   } else if (currentMedia.type === 'local') {
