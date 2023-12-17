@@ -538,11 +538,27 @@ function createPlayer() {
     playerl = new Audio("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.oncanplay = (event) => {
+      playerl.muted = true;
       console.log("Video can start, but not sure it will play through.");
       playerl.play();
       playerl.muted = false;
       playerl.volume = (svol / 300);
     };
+    playerl.oncanplaythrough = (event) => {
+      playerl.muted = true;
+      console.log("Video can play through");
+      playerl.play();
+      playerl.muted = false;
+      playerl.volume = (svol / 300);
+    };
+    playerl.onloadstart = (event) => {
+      playerl.muted = true;
+      console.log("Video load");
+      playerl.play();
+      playerl.muted = false;
+      playerl.volume = (svol / 300);
+    };
+    
       
     playerl.play();
     playerl.muted = false;
