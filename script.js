@@ -524,10 +524,8 @@ function createPlayer() {
     player.on('play', function(){
       
       if (player.currentTime()< .3){
-        console.log('wdqhid');
         player.play();
         player.currentTime(0.31);
-        console.log(player.currentTime());
       }
     })
 
@@ -540,21 +538,18 @@ function createPlayer() {
     playerl.muted = true;
     playerl.oncanplay = (event) => {
       playerl.muted = true;
-      console.log("Video can start, but not sure it will play through.");
       playerl.play();
       playerl.muted = false;
       playerl.volume = (svol / 300);
     };
     playerl.oncanplaythrough = (event) => {
       playerl.muted = true;
-      console.log("Video can play through");
       playerl.play();
       playerl.muted = false;
       playerl.volume = (svol / 300);
     };
     playerl.onloadstart = (event) => {
       playerl.muted = true;
-      console.log("Video load");
       playerl.play();
       playerl.muted = false;
       playerl.volume = (svol / 300);
@@ -730,9 +725,10 @@ script.onload = function () {
 document.body.appendChild(script);
 
 silence = new Audio('songs/45silence.mp3');//not sure if this is needed
-silence.pause();
-silence.addEventListener('playing', function(){
+silence.play();
+silence.addEventListener('timeupdate', function(){
   console.log("playing", silence.paused);
+  console.log(silence.currentTime);
 
-  silence.pause();
+  //silence.pause();
 });
