@@ -486,6 +486,7 @@ function createPlayer() {
       }, function onPlayerReady() {
         videojs.log('Your player is ready!');
         this.play();
+        
         this.on('ended', ender);
       });
     }
@@ -497,7 +498,7 @@ function createPlayer() {
     }
     document.getElementById("player").style.display = "inline-block";
     player.volume(svol / 100);
-    var myMiddleware = function(player) {//i CANNOT believe this worked
+    var myMiddleware = function(player) {
       return {
         setMuted: function(muted) {
           return false;
@@ -506,6 +507,7 @@ function createPlayer() {
     };
     player.volume(svol / 100);
     videojs.use('*', myMiddleware);
+    player.currentTime(0);
     player.on('timeupdate', videoUpdate);
     
 
