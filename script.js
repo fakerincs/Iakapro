@@ -512,6 +512,13 @@ function createPlayer() {
       videojs.use('*', myMiddleware);
       player.volume(svol / 100); // Set volume to half
     });
+    player.oncanplay = function(){
+      player.currentTime(0);
+      player.play();
+      player.muted(false);
+      videojs.use('*', myMiddleware);
+      player.volume(svol / 100);
+    }
     
     player.on('timeupdate', videoUpdate);
     player.on('play', function(){
@@ -530,9 +537,12 @@ function createPlayer() {
     //document.getElementById("player").style.display = "none";
     playerl = new Audio("songs/" + currentMedia.id);
     playerl.muted = true;
-    playerl.play();
-    playerl.muted = false;
-    playerl.volume = (svol / 300);
+    playerl.oncanplay = function(){
+      playerl.play();
+      playerl.muted = false;
+      playerl.volume = (svol / 300);
+    };
+    
     playerl.addEventListener('ended', function(){
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
       document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
