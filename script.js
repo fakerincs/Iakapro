@@ -466,6 +466,9 @@ function createPlayer() {
       }
     } 
     catch{}
+    if (sielnce.paused){
+      silence.play();
+    }
   }
   currentSongElement.textContent = `${currentMedia.title}`;
   document.getElementById(`${currentIndex}`).style.color = 'rgba(252, 252, 252, 1)';
