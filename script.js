@@ -506,12 +506,22 @@ function createPlayer() {
     };
     
     player.ready(function() {
+      
       player.play();
       player.muted(false);
       player.volume(svol / 100); // Set volume to half
     });
     
     player.on('timeupdate', videoUpdate);
+    playfix = true;
+    player.on('play', function(){
+      if (playfix){
+      player.play();
+      player.currentTime(20);
+      console.log(player.currentTime());
+      playfix = false;
+      }
+    })
 
     
 
@@ -530,8 +540,10 @@ function createPlayer() {
     });
 
     playerl.addEventListener('timeupdate', audioUpdate);
+
   }
 }
+var playfix = false;
 function videoSeek(){
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     player.currentTime(slider.value);
@@ -552,12 +564,10 @@ function videoUpdate(){
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     return;
   }
-
   if (player.currentTime() > player.duration()-50 && player.currentTime() != lasttime){
     console.log(player.currentTime(), player.duration());
     lasttime = player.currentTime();
     player.currentTime(0);
-    
     playNextSong();
     return;
   }
