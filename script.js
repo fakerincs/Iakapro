@@ -535,6 +535,7 @@ function createPlayer() {
 
   } else if (currentMedia.type === 'local') {
     //document.getElementById("player").style.display = "none";
+    silence.play();
     playerl = new Audio("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.oncanplay = (event) => {
@@ -716,12 +717,6 @@ script.onload = function () {
   var scriptyt = document.createElement('script');
   scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
   scriptyt.onload = function () {
-    playerl = new Audio('songs/Recording.mp3');//not sure if this is needed
-    playerl.pause();
-    playerl.addEventListener('ended', function(){
-      playNextSong();
-    });
-
     createPlayer();
   };
 
@@ -734,3 +729,10 @@ script.onload = function () {
 
 document.body.appendChild(script);
 
+silence = new Audio('songs/45silence.mp3');//not sure if this is needed
+silence.pause();
+silence.addEventListener('playing', function(){
+  console.log("playing", silence.paused);
+
+  silence.pause();
+});
