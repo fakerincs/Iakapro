@@ -504,22 +504,28 @@ function createPlayer() {
         }
       };
     };
-    
+    videojs.use('*', myMiddleware);
     player.ready(function() {
       
       player.play();
       player.muted(false);
+      videojs.use('*', myMiddleware);
       player.volume(svol / 100); // Set volume to half
     });
     
     player.on('timeupdate', videoUpdate);
-    playfix = true;
+    //playfix = true;
     player.on('play', function(){
-      if (playfix){
+      
+      if (21<player.currentTime() || player.currentTime()< 20){
+        console.log('wdqhid');
       player.play();
       player.currentTime(20);
       console.log(player.currentTime());
-      playfix = false;
+      // playfix = false;
+      // }
+      // else{
+      //   playfix = true;
       }
     })
 
@@ -612,14 +618,14 @@ function playNextSong(index = -1) {
 function skipMedia() {
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     if (playerl.currentTime !== undefined) {
-      playerl.currentTime = playerl.duration - 2;
+      playerl.currentTime = playerl.duration;
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
 
     }
   }
   else{
     if (player.currentTime() !== undefined) {
-      player.currentTime(player.duration() - 2);
+      player.currentTime(player.duration());
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))-1);
 
     }
