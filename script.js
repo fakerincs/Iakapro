@@ -534,7 +534,7 @@ function createPlayer() {
   } else if (currentMedia.type === 'local') {
     //document.getElementById("player").style.display = "none";
     silence.play();
-    playerl = new Audio("songs/" + currentMedia.id);
+    playerl.src=("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.oncanplay = (event) => {
       playerl.muted = true;
@@ -559,14 +559,14 @@ function createPlayer() {
     // playerl.play();
     // playerl.muted = false;
     // playerl.volume = (svol / 300);
-    playerl.addEventListener('ended', function(){
-      localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
-      document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
-      //document.getElementById("player").style.display = "visible";
-      playNextSong();
-    });
+    // playerl.addEventListener('ended', function(){
+    //   localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
+    //   document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+    //   //document.getElementById("player").style.display = "visible";
+    //   playNextSong();
+    // });
 
-    playerl.addEventListener('timeupdate', audioUpdate);
+    // playerl.addEventListener('timeupdate', audioUpdate);
 
   }
 }
@@ -726,6 +726,16 @@ script.onload = function () {
 };
 
 document.body.appendChild(script);
+
+playerl = new Audio('songs/Keshin.mp3');//not sure if this is needed
+playerl.pause();
+playerl.addEventListener('ended', function(){
+  localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
+  document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+  //document.getElementById("player").style.display = "visible";
+  playNextSong();
+});
+playerl.addEventListener('timeupdate', audioUpdate);
 
 silence = new Audio('songs/candyland.mp3');//not sure if this is needed
 silence.play();
