@@ -428,7 +428,7 @@ function toggleVideo(){
     //document.getElementById("player").style.display = "none";
 
   }
-
+  
 }
 // Display the current song title
 const currentSongElement = document.getElementById('currentSong');
@@ -487,7 +487,7 @@ function createPlayer() {
       }, function onPlayerReady() {
         videojs.log('Your player is ready!');
         this.play();
-        this.on('ended', ender);
+        //this.on('ended', ender);
       });
     }
     else{
@@ -510,7 +510,7 @@ function createPlayer() {
       player.muted(false);
       player.volume(svol / 100); // Set volume to half
     });
-    player.currentTime(20);
+    
     player.on('timeupdate', videoUpdate);
 
     
@@ -547,10 +547,21 @@ function audioUpdate(){//reason for fix forgotten!
   slider.value = playerl.currentTime;
   slider.max = playerl.duration;
 }
+var lasttime = -1;
 function videoUpdate(){
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     return;
   }
+
+  if (player.currentTime() > player.duration()-5 && player.currentTime() != lasttime){
+    console.log(player.currentTime(), player.duration());
+    lasttime = player.currentTime();
+    player.currentTime(0);
+    
+    playNextSong();
+    return;
+  }
+
   slider.max = player.duration();
   slider.value = player.currentTime();
 }
@@ -578,7 +589,6 @@ function playNextSong(index = -1) {
       currentIndex = playlist.length - 1;
     }
     createPlayer();
-    return;
   }
   else {
     currentIndex++;
