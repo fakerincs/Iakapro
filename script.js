@@ -553,7 +553,7 @@ function videoUpdate(){
     return;
   }
 
-  if (player.currentTime() > player.duration()-5 && player.currentTime() != lasttime){
+  if (player.currentTime() > player.duration()-50 && player.currentTime() != lasttime){
     console.log(player.currentTime(), player.duration());
     lasttime = player.currentTime();
     player.currentTime(0);
