@@ -51,16 +51,7 @@ body{
   outline-width: 1px;
   border-radius:5px;
 }
-.nav li:focus::before {
-  content: "";
-  position: absolute;
-  top: -3px; 
-  right: -3px; 
-  bottom: -3px; 
-  left: -3px; 
-  border: 2px var(--border-color);
-  border-radius: 7px; 
-}
+
 ::-webkit-scrollbar {
   height: 4px;
   width:8px

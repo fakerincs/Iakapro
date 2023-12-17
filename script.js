@@ -560,9 +560,9 @@ function createPlayer() {
     };
     
       
-    playerl.play();
-    playerl.muted = false;
-    playerl.volume = (svol / 300);
+    // playerl.play();
+    // playerl.muted = false;
+    // playerl.volume = (svol / 300);
     playerl.addEventListener('ended', function(){
       localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
       document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
@@ -712,21 +712,15 @@ document.getElementsByTagName("head")[0].appendChild(link);
 var script = document.createElement('script');
 script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
 script.onload = function () {
-  // Code to run after the video.min.js script has loaded
-  console.log("2");
 
   var scriptyt = document.createElement('script');
   scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
   scriptyt.onload = function () {
-    // Code to run after the Youtube.min.js script has loaded
-    console.log("3");
-
-    // Additional code that you want to run after all scripts have loaded
-    // playerl = new Audio('songs/Recording.mp3');//not sure if this is needed
-    // playerl.pause();
-    // playerl.addEventListener('ended', function(){
-    //   playNextSong();
-    // });
+    playerl = new Audio('songs/Recording.mp3');//not sure if this is needed
+    playerl.pause();
+    playerl.addEventListener('ended', function(){
+      playNextSong();
+    });
 
     createPlayer();
   };
