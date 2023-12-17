@@ -22,7 +22,7 @@ body{
 .nav{
   background-color: var(--third-color);
   display:flex;
-  /* height: 30px; */
+  height: 30px;
   min-width: 100%;
   position: sticky;
   left: 0px;
@@ -37,13 +37,13 @@ body{
   direction: ltr;
 }
 .nav > li{
-  -webkit-appearance: none;
+  position: relative;
   margin-left: 13px;
   float: left;
   white-space: nowrap;
-  align-content: center;
+  /* align-content: center; */
   display: flex;
-  height: min-content;
+  height: 21px;
   background-color: var(--background-color);
   outline-style: solid;
   outline-color: var(--border-color);
@@ -71,6 +71,7 @@ body{
   align-self: center;
 }
 #plays{
+  align-self: center;
   padding-left: 4px;
 }
 #import, #homeButton, #fileInput, #videoButton, #resetStats, #colorButton{
@@ -188,7 +189,6 @@ button{
   width: 100%;
   font-size: 16px;
   padding-bottom: 4px;
-  padding-top: 1px;
   padding-left: 15px;
   position: absolute;
   left: 0px;
