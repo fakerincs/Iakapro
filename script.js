@@ -506,14 +506,12 @@ function createPlayer() {
     };
     
     player.ready(function() {
-      player.currentTime(20);
+      console.log(player)
       player.play();
-      player.currentTime(20);
       player.muted(false);
       player.volume(svol / 100); // Set volume to half
-      player.currentTime(20);
     });
-    
+    player.currentTime(20);
     player.on('timeupdate', videoUpdate);
 
     
