@@ -411,16 +411,12 @@ function parseLinks() {
           resultArray.push({ id: id, title: title, type: 'youtube' });
       }
   });
-
-  console.log(resultArray);
   playlists.push({list: resultArray, name: 'newlist'});
   addplaylistelement("newlist");
 }
 function selectplaylist(name){
-  console.log(playlists);
   for (let i = 0; i<playlists.length; i++){
     if (playlists[i].name == name){
-      console.log("found", name);
       playlist = playlists[i].list;
       generateUpcoming();
       return;
@@ -476,11 +472,8 @@ if (typeof(Storage) !== "undefined") {
     
   }
   playlist = playlists[0].list;
-  console.log(playlist);
   for (let i = 0; i<playlists.length; i++){
     addplaylistelement(playlists[i].name);
-    console.log(playlists[i].name, playlists);
-
   }
 }
 else{
@@ -685,14 +678,6 @@ function videoUpdate(){
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     return;
   }
-  // if (player.currentTime() > player.duration()-50 && player.currentTime() != lasttime){
-  //   console.log(player.currentTime(), player.duration());
-  //   lasttime = player.currentTime();
-  //   player.currentTime(0);
-  //   playNextSong();
-  //   return;
-  // }
-
   slider.max = player.duration();
   slider.value = player.currentTime();
 }
