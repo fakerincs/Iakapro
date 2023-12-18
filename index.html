@@ -11,6 +11,7 @@
 </head>
 <body>
   <ul class="nav">
+    <li><button aria-label="playlistmenu" id="playlistButton" class="navl" type="button" onclick="toggleMenu('playlistmenu')">P</button></li>
     <li><textarea class="navl" placeholder="look on guide" id="fileInput" aria-label="fileinput"></textarea><button id="import" class="navl" onclick="parseLinks()">Import</button></li>
     <li><button class="navl" id="videoButton">No Video</button></li>
     <li><div id="plays"></div><p id="playtext">&nbsp;plays</p><button onclick="resetStats()" class="navl" id="resetStats">reset</button></li>
@@ -21,10 +22,9 @@
         }
       </script>
     </script>
-    <li><button aria-label="playlistmenu" id="playlistButton" class="navl" type="button" onclick="toggleMenu('playlistmenu')">Playlists</button></li>
     <li><button aria-label="color settings" id="colorButton" class="navl" type="button" onclick="toggleMenu('colorMenu')">Color</button></li>
   </ul>
-  <div id="playlistmenu"></div>
+  <div id="playlistmenu"><button class="pbutt" onclick="exportp()">export</button><div id="result" class="pbutt"></div></div>
   <div id="colorMenu">
     <span>Main Color <input aria-label="mcolor" type="color" id="mainColor"></span><br>
     <span>Played Color <input aria-label="pcolor "type="color" id="playedColor"></span><br>
@@ -48,14 +48,14 @@
         <ul id="upcoming"></ul>
       </nav>
     </div>
-    
+    <button onclick="localStorage.clear();">Fix localstorage(reset playlists and playcount)</button>
 
     
     <div id="controls">
       <input type="range" id="videoSlider" aria-label= "timeline" min="0" max="10" value="0"><br>
       <div id="volume"><button id="playPauseButton">Play/Pause</button>
       <button id="skipButton">Skip</button>
-      <label for="volumeSlider">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50"></label></div>
+      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50"></label></div>
     </div>
   </div>
   

@@ -398,28 +398,36 @@ function parseLinks() {
     return;
   }
   var lines = inputText.split('\n');
+  console.log(lines);
   var resultArray = [];
 
-  var regex = /(VM\d+:?\d*\s*|CASE;)(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
+  var regex = /(?:VM\d+:?\d*\s*)?(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
   resultArray.push({ id: 'Recording.mp3', title: 'start', type: 'local' });
-  lines.forEach(function(line) {
-      var match = line.match(regex);
-      if (match) {
-          var title = match[2].trim();
-          var url = match[3].trim();
-          var id = url.split('v=')[1];
-          resultArray.push({ id: id, title: title, type: 'youtube' });
-      }
+  lines.forEach(function (line) {
+    var match = line.match(regex);
+    if (match) {
+      var title = match[1].trim();
+      var url = match[2].trim();
+      var id = url.split('v=')[1];
+      resultArray.push({ id: id, title: title, type: 'youtube' });
+    }
   });
+  console.log(resultArray);
   playlists.push({list: resultArray, name: 'newlist'});
+  localStorage.setItem("playlists", JSON.stringify(playlists));
   addplaylistelement("newlist");
 }
 function selectplaylist(name){
   for (let i = 0; i<playlists.length; i++){
+    if (JSON.stringify(playlists[i].list) === JSON.stringify(playlist)){
+      document.getElementById(playlists[i].name + 's').style= "color: var(--main-color); border-color: var(--background-color)";
+    }
+  }
+  for (let i = 0; i<playlists.length; i++){//man i am so braindead
     if (playlists[i].name == name){
       playlist = playlists[i].list;
       generateUpcoming();
-      return;
+      document.getElementById(playlists[i].name + 's').style= "color: white; border-color: var(--main-color)";
     }
   }
 }
@@ -429,6 +437,12 @@ function renameplaylist(name){
   if (newName == "") {
     return;
   }
+  for (let i = 0; i<playlists.length; i++){
+    if (playlists[i].name == newName){
+      alert("already exists");
+      return;
+    }
+  }
   document.getElementById(name + "s").innerText = `${newName}`;
   document.getElementById(name + "s").id = newName + "s";
   document.getElementById(name + "r").id = newName + "r";
@@ -437,7 +451,13 @@ function renameplaylist(name){
   document.getElementById(newName + "s").setAttribute('onclick', "selectplaylist('"+ newName +"')");
   document.getElementById(newName + "r").setAttribute('onclick', "renameplaylist('" + newName+ "')");
   document.getElementById(newName + "c").setAttribute('onclick', "closer('"+ newName + "')");
-
+  for (let i = 0; i<playlists.length; i++){
+    if (playlists[i].name == name){
+      playlists[i].name = newName;
+      localStorage.setItem("playlists", JSON.stringify(playlists));
+      return;
+    }
+  }
   
 }
 function closer(name){
@@ -447,17 +467,36 @@ function closer(name){
   }
   for (let i = 0; i<playlists.length; i++){
     if (playlists[i].name == name){
+      document.getElementById(playlists[i].name + 's').style= "color: var(--main-color); border-color: var(--background-color)";
       playlists.splice(i, 1);
-      playlist = playlists[0];
+      playlist = playlists[0].list;
+      document.getElementById(playlists[0].name + 's').style= "color: white; border-color: var(--main-color)";
       generateUpcoming();
       document.getElementById(name).remove();
-      localStorage.setItem("playlists", playlists);
+      localStorage.setItem("playlists", JSON.stringify(playlists));
       return;
     }
   }
 }
 function addplaylistelement(title){
-  document.getElementById('playlistmenu').insertAdjacentHTML("beforeend", `<div class="pcont" id=\'${title}\'><button class="pbutt" id=\'${title}s\' onclick="selectplaylist(\'${title}\')">${title}</button><button class="pbutt" id=\'${title}r\' onclick="renameplaylist(\'${title}\')">R</button><button class="pbutt" id=\'${title}c\' onclick="closer('${title}')">X</button></div>`);//why do i have to code js in html in js....
+  document.getElementById('playlistmenu').insertAdjacentHTML("beforeend", `<div class="pcont" id=\'${title}\'><button class="pbutt" id=\'${title}s\' style="color:var(--songs-color);" onclick="selectplaylist(\'${title}\')">${title}</button><button class="pbutt" id=\'${title}r\' onclick="renameplaylist(\'${title}\')">R</button><button class="pbutt" id=\'${title}c\' onclick="closer('${title}')">X</button></div>`);//why do i have to code js in html in js....
+}
+function exportp(){
+  if (document.getElementById("result").innerHTML != ""){
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").style = "visibility: hidden;"
+    return
+  }
+  else{
+    document.getElementById("result").style = "visibility: visible;"
+  }
+  let message = ``
+  for (let i = 0; i<playlist.length; i++){
+    if (playlist[i].type == "youtube"){
+      message += playlist[i].title + ";" + "https://www.youtube.com/watch?v=" + playlist[i].id + "\n";// we gonna skip local for now(a long time)
+    }
+  }
+  document.getElementById("result").innerHTML= message;
 }
 if (typeof(Storage) !== "undefined") {
   if (localStorage.getItem("playCount")==null){
@@ -465,15 +504,18 @@ if (typeof(Storage) !== "undefined") {
   }
   document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
   if (localStorage.getItem("playlists")==null){
-    localStorage.setItem("playlists", playlists);//this would effectively reset
+    localStorage.setItem("playlists", JSON.stringify(playlists));//so cursed
   }
   else{
-    //playlists = localStorage.getItem("playlists");
-    
+    playlists = JSON.parse(localStorage.getItem("playlists"));
   }
   playlist = playlists[0].list;
   for (let i = 0; i<playlists.length; i++){
+    
     addplaylistelement(playlists[i].name);
+    if (i==0){
+      document.getElementById(playlists[i].name + 's').style= "color: white; border-color: var(--main-color)";
+    }
   }
 }
 else{
@@ -641,20 +683,6 @@ function createPlayer() {
       playerl.muted = false;
       playerl.volume = (svol / 300);
     };
-    
-      
-    // playerl.play();
-    // playerl.muted = false;
-    // playerl.volume = (svol / 300);
-    // playerl.addEventListener('ended', function(){
-    //   localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
-    //   document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
-    //   //document.getElementById("player").style.display = "visible";
-    //   playNextSong();
-    // });
-
-    // playerl.addEventListener('timeupdate', audioUpdate);
-
   }
 }
 var playfix = false;
