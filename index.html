@@ -11,34 +11,20 @@
 </head>
 <body>
   <ul class="nav">
-    <li><input type="text" id="fileInput" aria-label="import songs"><button id="import">Convert</button></li>
-    <li><button id="videoButton">No Video</button></li>
-    <li><div id="plays"></div><p id="playtext">&nbsp;plays</p><button onclick="resetStats()" id="resetStats">reset</button></li>
+    <li><textarea class="navl" placeholder="look on guide" id="fileInput" aria-label="fileinput"></textarea><button id="import" class="navl" onclick="parseLinks()">Import</button></li>
+    <li><button class="navl" id="videoButton">No Video</button></li>
+    <li><div id="plays"></div><p id="playtext">&nbsp;plays</p><button onclick="resetStats()" class="navl" id="resetStats">reset</button></li>
       <script>
         function resetStats(){
           document.getElementById("plays").textContent = 0;
           localStorage.setItem("playCount", 0);
         }
       </script>
-<!--     <li><input aria-label="password" type="password" id='password' type='text'/></li>
-    <li><a href="playlists.html" id="playlistButton" aria-label="invisible link" onclick="javascript:return validatePass()"></a></li>
-    <script>
-      document.getElementById("password").addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          document.getElementById("playlistButton").click();
-        }
-      });
-      function validatePass(){
-          if(document.getElementById('password').value == 'dontlook'){
-              return true; 
-          }else{
-              return false;
-          }
-      } -->
     </script>
-    <li><button aria-label="color settings" id="colorButton" type="button" onclick="toggleMenu('colorMenu')">Color</button></li>
+    <li><button aria-label="playlistmenu" id="playlistButton" class="navl" type="button" onclick="toggleMenu('playlistmenu')">Playlists</button></li>
+    <li><button aria-label="color settings" id="colorButton" class="navl" type="button" onclick="toggleMenu('colorMenu')">Color</button></li>
   </ul>
+  <div id="playlistmenu"></div>
   <div id="colorMenu">
     <span>Main Color <input aria-label="mcolor" type="color" id="mainColor"></span><br>
     <span>Played Color <input aria-label="pcolor "type="color" id="playedColor"></span><br>
@@ -52,22 +38,24 @@
     <script src="colors.js"></script>
   </div>
 
-  <div id="result"></div>
-  
   <div id = "playerinfo">
-    <div id="currentSong"></div>
+    <div style='display:flex'>
+      <div id="currentSong"></div>
+      </div>
+    </div>
     <div class="list">
       <nav id = "upcomingnav">
         <ul id="upcoming"></ul>
       </nav>
     </div>
+    
 
     
     <div id="controls">
       <input type="range" id="videoSlider" aria-label= "timeline" min="0" max="10" value="0"><br>
       <div id="volume"><button id="playPauseButton">Play/Pause</button>
       <button id="skipButton">Skip</button>
-      <label for="volume">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50"></label></div>
+      <label for="volumeSlider">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50"></label></div>
     </div>
   </div>
   

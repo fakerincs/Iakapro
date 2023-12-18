@@ -1,4 +1,5 @@
 let playlist = [
+  { id: 'Recording.mp3', title: 'start', type: 'local' },
   { id: 'start-up-feat.such-psyqui.mp3', title: 'Start Up', type: 'local' },
   { id: 'your-voice-so.feat.such-psyqui.mp3', title: 'Your Voice So', type: 'local' },
   { id: 'no-one-psyqui.mp3', title: 'No One', type: 'local' },
@@ -380,30 +381,118 @@ let playlist = [
   { id: 'ea_V3Nfk40Y', title: 'Zekk - POWER OF UNITY', type: 'youtube' },
   { id: 'ikWjlRyRGb8', title: 'ZONE', type: 'youtube' },
   { id: 'f9Zt5OqIzIk', title: 'CASE', type: 'youtube' },
-  { id: 'Recording.mp3', title: 'start', type: 'local' },
+  
 ];
-
+var playlists = [{list: playlist, name:"default"}];
 let svol = 50;
 let shuffledIndices = [];
 let currentIndex = 0;
 let player;
 let playerl;
 let videoOff = true;
+var currentlistindex = 0;
+function parseLinks() {
+  var inputText = document.getElementById('fileInput').value;
+  if (inputText==""){
+    console.log("no input")
+    return;
+  }
+  var lines = inputText.split('\n');
+  var resultArray = [];
 
+  var regex = /(VM\d+:?\d*\s*|CASE;)(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
+  resultArray.push({ id: 'Recording.mp3', title: 'start', type: 'local' });
+  lines.forEach(function(line) {
+      var match = line.match(regex);
+      if (match) {
+          var title = match[2].trim();
+          var url = match[3].trim();
+          var id = url.split('v=')[1];
+          resultArray.push({ id: id, title: title, type: 'youtube' });
+      }
+  });
+
+  console.log(resultArray);
+  playlists.push({list: resultArray, name: 'newlist'});
+  addplaylistelement("newlist");
+}
+function selectplaylist(name){
+  console.log(playlists);
+  for (let i = 0; i<playlists.length; i++){
+    if (playlists[i].name == name){
+      console.log("found", name);
+      playlist = playlists[i].list;
+      generateUpcoming();
+      return;
+    }
+  }
+}
+function renameplaylist(name){
+  var newName = prompt('Enter a new name for the button:', 'New Button Name');
+  // Check if the user entered a name and update the button text
+  if (newName == "") {
+    return;
+  }
+  document.getElementById(name + "s").innerText = `${newName}`;
+  document.getElementById(name + "s").id = newName + "s";
+  document.getElementById(name + "r").id = newName + "r";
+  document.getElementById(name + "c").id = newName + "c";
+  document.getElementById(name).id = newName;
+  document.getElementById(newName + "s").setAttribute('onclick', "selectplaylist('"+ newName +"')");
+  document.getElementById(newName + "r").setAttribute('onclick', "renameplaylist('" + newName+ "')");
+  document.getElementById(newName + "c").setAttribute('onclick', "closer('"+ newName + "')");
+
+  
+}
+function closer(name){
+  if (playlists.length <= 1){
+    console.log("no more playlists :(");
+    return;
+  }
+  for (let i = 0; i<playlists.length; i++){
+    if (playlists[i].name == name){
+      playlists.splice(i, 1);
+      playlist = playlists[0];
+      generateUpcoming();
+      document.getElementById(name).remove();
+      localStorage.setItem("playlists", playlists);
+      return;
+    }
+  }
+}
+function addplaylistelement(title){
+  document.getElementById('playlistmenu').insertAdjacentHTML("beforeend", `<div class="pcont" id=\'${title}\'><button class="pbutt" id=\'${title}s\' onclick="selectplaylist(\'${title}\')">${title}</button><button class="pbutt" id=\'${title}r\' onclick="renameplaylist(\'${title}\')">R</button><button class="pbutt" id=\'${title}c\' onclick="closer('${title}')">X</button></div>`);//why do i have to code js in html in js....
+}
 if (typeof(Storage) !== "undefined") {
   if (localStorage.getItem("playCount")==null){
     localStorage.setItem("playCount", 0);
   }
   document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+  if (localStorage.getItem("playlists")==null){
+    localStorage.setItem("playlists", playlists);//this would effectively reset
+  }
+  else{
+    //playlists = localStorage.getItem("playlists");
+    
+  }
+  playlist = playlists[0].list;
+  console.log(playlist);
+  for (let i = 0; i<playlists.length; i++){
+    addplaylistelement(playlists[i].name);
+    console.log(playlists[i].name, playlists);
+
+  }
+}
+else{
+  console.log("idk why i even added this check, it doesnt do anything if it doesnt work");
 }
 
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
-  for (let i = shuffledIndices.length - 2; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+  for (let i = shuffledIndices.length - 1; i > 1; i--) {
+    const j = Math.floor(Math.random() * (i)) + 1;
     [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
   }
-  [shuffledIndices[0], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[0]];
 }
 
 function toggleVideo(){
@@ -671,7 +760,9 @@ function changeVolume(volume) {
 
 
 function generateUpcoming(){
+  shuffleIndices();
   let upcoming = document.getElementById("upcoming");
+  upcoming.innerHTML = '';
   for (i=0; i < Math.floor(playlist.length); i++){
     upcoming.insertAdjacentHTML("beforeend", `<li><span id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
@@ -705,7 +796,7 @@ function toggleMenu(id){
 
 navigator.mediaSession.setActionHandler('nexttrack', () => playNextSong());
 
-shuffleIndices();
+
 generateUpcoming();
 
 var link = document.createElement('link');
