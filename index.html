@@ -23,8 +23,12 @@
       </script>
     </script>
     <li><button aria-label="color settings" id="colorButton" class="navl" type="button" onclick="toggleMenu('colorMenu')">Color</button></li>
+    <li><button class="navl" onclick="if (confirm('This will reset all playlists and colors and reload!!!! Are you sure?') == true) {localStorage.clear();location.reload();}">reset storage</button></li>
   </ul>
-  <div id="playlistmenu"><button class="pbutt" onclick="exportp()">export</button><div id="result" class="pbutt"></div></div>
+  <div id="playlistmenu">
+    <button class="pbutt" onclick="exportp()">export</button><button class="pbutt" onclick="copy()">select</button><button class="pbutt" onclick="pull()">pull(c)</button>
+    <div id="result" class="pbutt"></div>
+  </div>
   <div id="colorMenu">
     <span>Main Color <input aria-label="mcolor" type="color" id="mainColor"></span><br>
     <span>Played Color <input aria-label="pcolor "type="color" id="playedColor"></span><br>
@@ -48,7 +52,7 @@
         <ul id="upcoming"></ul>
       </nav>
     </div>
-    <button onclick="localStorage.clear();">Fix localstorage(reset playlists and playcount)</button>
+    
 
     
     <div id="controls">
@@ -136,10 +140,6 @@
       }
     </script>
   </div>
-  
-  <!-- <link href="https://vjs.zencdn.net/8.3.0/video-js.min.css" rel="stylesheet">
-  <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js" integrity="sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
   <script src="script.js"></script>
 </body>
 </html>

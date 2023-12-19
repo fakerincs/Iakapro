@@ -383,7 +383,9 @@ let playlist = [
   { id: 'f9Zt5OqIzIk', title: 'CASE', type: 'youtube' },
   
 ];
-var playlists = [{list: playlist, name:"default"}];
+var currentname = "default(c)";//and i thought i could escape
+var shuffle = false
+var playlists = [{list: playlist, name:"default(c)"}];
 let svol = 50;
 let shuffledIndices = [];
 let currentIndex = 0;
@@ -394,11 +396,9 @@ var currentlistindex = 0;
 function parseLinks() {
   var inputText = document.getElementById('fileInput').value;
   if (inputText==""){
-    console.log("no input")
     return;
   }
   var lines = inputText.split('\n');
-  console.log(lines);
   var resultArray = [];
 
   var regex = /(?:VM\d+:?\d*\s*)?(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
@@ -412,7 +412,6 @@ function parseLinks() {
       resultArray.push({ id: id, title: title, type: 'youtube' });
     }
   });
-  console.log(resultArray);
   playlists.push({list: resultArray, name: 'newlist'});
   localStorage.setItem("playlists", JSON.stringify(playlists));
   addplaylistelement("newlist");
@@ -426,6 +425,7 @@ function selectplaylist(name){
   for (let i = 0; i<playlists.length; i++){//man i am so braindead
     if (playlists[i].name == name){
       playlist = playlists[i].list;
+      currentname = playlists[i].name;
       generateUpcoming();
       document.getElementById(playlists[i].name + 's').style= "color: white; border-color: var(--main-color)";
     }
@@ -454,6 +454,7 @@ function renameplaylist(name){
   for (let i = 0; i<playlists.length; i++){
     if (playlists[i].name == name){
       playlists[i].name = newName;
+      currentname = newName;
       localStorage.setItem("playlists", JSON.stringify(playlists));
       return;
     }
@@ -462,7 +463,6 @@ function renameplaylist(name){
 }
 function closer(name){
   if (playlists.length <= 1){
-    console.log("no more playlists :(");
     return;
   }
   for (let i = 0; i<playlists.length; i++){
@@ -470,6 +470,7 @@ function closer(name){
       document.getElementById(playlists[i].name + 's').style= "color: var(--main-color); border-color: var(--background-color)";
       playlists.splice(i, 1);
       playlist = playlists[0].list;
+      currentname = playlists[0].name;
       document.getElementById(playlists[0].name + 's').style= "color: white; border-color: var(--main-color)";
       generateUpcoming();
       document.getElementById(name).remove();
@@ -498,30 +499,59 @@ function exportp(){
   }
   document.getElementById("result").innerHTML= message;
 }
+function copy() {
+  var container = document.getElementById("result");
+  var range = document.createRange();
+  range.selectNode(container);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+}
 if (typeof(Storage) !== "undefined") {
   if (localStorage.getItem("playCount")==null){
     localStorage.setItem("playCount", 0);
   }
   document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
   if (localStorage.getItem("playlists")==null){
-    localStorage.setItem("playlists", JSON.stringify(playlists));//so cursed
+    localStorage.setItem("playlists", JSON.stringify(playlists));
   }
   else{
     playlists = JSON.parse(localStorage.getItem("playlists"));
   }
+  if (localStorage.getItem("pull")!=null){
+    var prevlists = JSON.parse(localStorage.getItem("pull"));
+    for (let i = 0; i < prevlists.length; i++) {
+      if (prevlists[i].name != "default(c)"){
+        playlists.push(prevlists[i])
+      }
+    }
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+    localStorage.removeItem("pull");
+  }
   playlist = playlists[0].list;
+  currentname = playlists[0].name;
   for (let i = 0; i<playlists.length; i++){
-    
     addplaylistelement(playlists[i].name);
     if (i==0){
       document.getElementById(playlists[i].name + 's').style= "color: white; border-color: var(--main-color)";
     }
   }
+  
 }
 else{
-  console.log("idk why i even added this check, it doesnt do anything if it doesnt work");
-}
+  alert("localstorage not supported, aka everything is prob broken")
+  console.log("idk why i even added this check, website doesnt do anything if it doesnt work");
 
+}
+function pull(){
+  if (currentname != "default(c)"){
+    alert("Pulling from cloud is to pull from github owner, for the playlist default(c). It will replace the default playlist. If you want to have my playlist, rename your playlist to default(c)");
+    return;
+  }
+  localStorage.setItem("pull", JSON.stringify(playlists));
+  localStorage.removeItem("playlists");
+  location.reload();
+
+}
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
   for (let i = shuffledIndices.length - 1; i > 1; i--) {
@@ -535,37 +565,26 @@ function toggleVideo(){
     videoOff = false;
     videoButton.textContent = "Video On";
     player.audioOnlyMode(videoOff);
-    //document.getElementById("player").style.display = "visible";
     document.getElementById("player").style.width ="160px"; 
     document.getElementById("player").style.height ="100px"; 
-    //document.getElementById("videoSlider").style.width ="calc(100% - 350px)"; 
-    
   }
   else{
     videoOff = true;
     videoButton.textContent = "No Video";
     player.audioOnlyMode(videoOff);
-    //document.getElementById("videoSlider").style.width ="calc(100% - 50px)"; 
     document.getElementById("playerContainer").style.inset =""; 
     document.getElementById("player").style.width ="1px"; 
     document.getElementById("player").style.height ="1px"; 
-    //document.getElementById("player").style.display = "none";
-
   }
   
 }
-// Display the current song title
 const currentSongElement = document.getElementById('currentSong');
-//Toggle Video
 const videoButton = document.getElementById('videoButton');
 videoButton.addEventListener('click', toggleVideo);
-// Play/Pause button functionality
 const playPauseButton = document.getElementById('playPauseButton');
 playPauseButton.addEventListener('click', togglePlayback);
-// Skip button functionality
 const skipButton = document.getElementById('skipButton');
 skipButton.addEventListener('click', skipMedia);
-// Volume slider functionality
 const volumeSlider = document.getElementById('volumeSlider');
 volumeSlider.addEventListener('input', () => {
   changeVolume(volumeSlider.value);
@@ -771,17 +790,58 @@ function changeVolume(volume) {
   }
 }
 
+function addSong(){
+  var inputText = document.getElementById('songinput').value;
+  if (inputText==""){
+    return;
+  }
 
-function generateUpcoming(){
-  shuffleIndices();
+  var regex = /(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
+  var match = inputText.match(regex);
+  if (match) {
+    var title = match[1].trim();
+    var url = match[2].trim();
+    var id = url.split('v=')[1];
+    
+  }
+  else{
+    document.getElementById('songinput').value = "wrong!!! title;link ex: ヨノナカ;https://www.youtube.com/watch?v=UVDjM7fcUiI";
+    return;
+  }
+  for (let i=0; i<playlists.length; i++){
+    if (JSON.stringify(playlists[i].list) === JSON.stringify(playlist)){
+      playlist.push({ id: id, title: title, type: 'youtube' });
+      playlists[i].list = playlist;
+      localStorage.setItem("playlists", JSON.stringify(playlists));
+      generateUpcoming();
+    }
+  }
+}
+function generateUpcoming(add){
+  if (shuffle){
+    shuffleIndices();
+  }
+  else{
+    shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
+  }
   let upcoming = document.getElementById("upcoming");
   upcoming.innerHTML = '';
-  for (i=0; i < Math.floor(playlist.length); i++){
+  for (let i=0; i < Math.floor(playlist.length); i++){
     upcoming.insertAdjacentHTML("beforeend", `<li><span id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
-  upcoming.insertAdjacentHTML("beforeend", "<li><span id ='addsongspan'><button aria-label='add button' id='addsongbutton' type='button' onclick='toggleMenu(\"addsongdiv\")'>ADD+</button><div id='addsongdiv'>Add Song<input aria-label='input song' id='songinput'></span><br></div></li>");
-
+  upcoming.insertAdjacentHTML("beforeend", "<li><span id ='addsongspan'><button aria-label='add button' id='addsongbutton' type='button' onclick='toggleMenu(\"addsongdiv\")'>ADD+</button><div id='addsongdiv'>Add Song<input aria-label='input song' type='text' default ='title;link' id='songinput'><button id='addsong' class='navl' onclick='addSong()'>Enter</button></span><br></div></li>");
+  window.addEventListener("load", function() {
+    
+    for (let i=0; i < playlist.length; i++){
+      var el = document.getElementById(`${i}`);
+      var w = 16;
+      while (el.offsetWidth + 20 > upcoming.offsetWidth && w > 2) {
+        w-=1;
+        el.style =("font-size:" + w + "px");
+      }
+    }
+  });
 }
 
 function handleChoose(event){
