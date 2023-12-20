@@ -561,6 +561,7 @@ function shuffleIndices() {
 }
 
 function toggleVideo(){
+  if (playlist[shuffledIndices[currentIndex]].type == 'local'){return;}
   if (videoOff){
     videoOff = false;
     videoButton.textContent = "Video On";
@@ -614,9 +615,13 @@ function createPlayer() {
     }
   }
   currentSongElement.textContent = `${currentMedia.title}`;
-  document.getElementById(`${currentIndex}`).style.color = 'rgba(252, 252, 252, 1)';
+  document.getElementById(`${currentIndex}`).style.color = 'var(--main-color)';
 
   if (currentMedia.type === 'youtube') {
+    if (!videoOff){
+      document.getElementById("player").style.width ="160px"; 
+      document.getElementById("player").style.height ="100px"; 
+    }
     if (!player){
       player = videojs('player', {
         techOrder: ['youtube'],
@@ -680,7 +685,13 @@ function createPlayer() {
     
 
   } else if (currentMedia.type === 'local') {
-    //document.getElementById("player").style.display = "none";
+    if (!videoOff){
+      document.getElementById("playerContainer").style.inset =""; 
+      document.getElementById("player").style.width ="1px"; 
+      document.getElementById("player").style.height ="1px"; 
+    }
+    
+
     silence.play();
     playerl.src=("songs/" + currentMedia.id);
     playerl.muted = true;
@@ -703,6 +714,7 @@ function createPlayer() {
       playerl.volume = (svol / 300);
     };
   }
+  
 }
 var playfix = false;
 function videoSeek(){
@@ -714,7 +726,7 @@ function videoSeek(){
   }
 }
 function audioUpdate(){//reason for fix forgotten!
-  if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+  if (playlist[shuffledIndices[currentIndex]].type == 'youtube'){
     return;
   }
   slider.value = playerl.currentTime;
@@ -722,7 +734,7 @@ function audioUpdate(){//reason for fix forgotten!
 }
 var lasttime = -1;
 function videoUpdate(){
-  if (playlist[shuffledIndices[currentIndex]].type === 'local'){
+  if (playlist[shuffledIndices[currentIndex]].type == 'local'){
     return;
   }
   slider.max = player.duration();
@@ -732,13 +744,17 @@ function videoUpdate(){
 function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     if (player.paused()) {
+      document.getElementById("playPauseButton").innerHTML = "▶";
+      document.getElementById("playPauseButton").innerHTML = "||";
       player.play();
     } else {
       player.pause();
     }
   } else if (playerl.paused){
+      document.getElementById("playPauseButton").innerHTML = "▶";
       playerl.play();
   } else {
+    document.getElementById("playPauseButton").innerHTML = "||";
     playerl.pause();
   }
   if (silence.paused){
@@ -748,7 +764,7 @@ function togglePlayback() {
 
 
 function playNextSong(index = -1) {
-  document.getElementById(`${currentIndex}`).style.color = "var(--played-color)";
+  document.getElementById((currentIndex).toString()).style.color = "var(--played-color)";
   if (index != -1) {
     currentIndex = index;
     if (currentIndex >= playlist.length) {
@@ -783,13 +799,24 @@ function skipMedia() {
 }
 
 function changeVolume(volume) {
-  svol = volume
-  player.volume(volume / 100);
+  svol = volume;
+  if (player!= null){
+    player.volume(volume / 100);
+  }
   if (playerl){
     playerl.volume = (volume / 300);
   }
 }
-
+function toggleshuffle(){
+  if (shuffle){
+    shuffle = false;
+    generateUpcoming();
+  }
+  else{
+    shuffle = true;
+    generateUpcoming();
+  }
+}
 function addSong(){
   var inputText = document.getElementById('songinput').value;
   if (inputText==""){
@@ -817,7 +844,8 @@ function addSong(){
     }
   }
 }
-function generateUpcoming(add){
+function generateUpcoming(){
+  currentIndex = 0;
   if (shuffle){
     shuffleIndices();
   }

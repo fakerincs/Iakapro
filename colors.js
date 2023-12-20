@@ -44,3 +44,14 @@ if (typeof(Storage) !== "undefined") {
   picker("songsColor", "--songs-color");
   picker("borderColor", "--border-color");
 }
+function resetcolors(){
+  localStorage.removeItem("mainColor");
+  localStorage.removeItem("playedColor");
+  localStorage.removeItem("backgroundColor");
+  localStorage.removeItem("secondaryColor");
+  localStorage.removeItem("thirdColor");
+  localStorage.removeItem("upcomingColor");
+  localStorage.removeItem("songsColor");
+  localStorage.removeItem("borderColor");
+  location.reload();
+}
