@@ -647,17 +647,13 @@ function createPlayer() {
         player.volume(svol / 100);
       }
     }
-    
     player.on('timeupdate', videoUpdate);
     player.on('play', function(){
-      
       if (player.currentTime()< .2){
         player.play();
         player.currentTime(0.21);
       }
     })
-
-    
 
   } else if (currentMedia.type === 'local') {
     if (!videoOff){
@@ -670,25 +666,14 @@ function createPlayer() {
     playerl.muted = true;
     playerl.oncanplay = (event) => {
       playerl.muted = true;
-      playerl.play();
+      if (!firstplay){
+        playerl.play();
+      }
       playerl.muted = false;
       playerl.volume = (svol / 300);
       silence.pause();
     };
-    playerl.oncanplaythrough = (event) => {
-      playerl.muted = true;
-      playerl.play();
-      playerl.muted = false;
-      playerl.volume = (svol / 300);
-    };
-    playerl.onloadstart = (event) => {
-      playerl.muted = true;
-      playerl.play();
-      playerl.muted = false;
-      playerl.volume = (svol / 300);
-    };
   }
-  
 }
 function videoSeek(){
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
@@ -713,6 +698,7 @@ function videoUpdate(){
   slider.max = player.duration();
   slider.value = player.currentTime();
 }
+
 var firstplay = true;
 function playHandler() {
   console.log('paused');
@@ -968,9 +954,21 @@ silence.addEventListener('timeupdate', function(){
   //silence.pause();
 });
 
-navigator.mediaSession.setActionHandler('play', function() {togglePlayback(); console.log("play");});
-navigator.mediaSession.setActionHandler('pause', function() {togglePlayback(); console.log("pause")});
-navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
-navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
-navigator.mediaSession.setActionHandler('previoustrack', function() {playNextSong(currentIndex - 1); console.log("enxt")});
-navigator.mediaSession.setActionHandler('nexttrack', function() {skipMedia(); console.log("back")});
+navigator.mediaSession.setActionHandler('play', function() {togglePlayback();});
+navigator.mediaSession.setActionHandler('pause', function() {togglePlayback();});
+navigator.mediaSession.setActionHandler('seekbackward', function() {
+  if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    player.currentTime(player.currentTime() - 10);
+  }
+  else{
+    playerl.currentTime = playerl.currentTime - 10;
+  }});
+navigator.mediaSession.setActionHandler('seekforward', function() {
+  if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    player.currentTime(player.currentTime() + 10);
+  }
+  else{
+    playerl.currentTime = playerl.currentTime + 10;
+  }});
+navigator.mediaSession.setActionHandler('previoustrack', function() {playNextSong(currentIndex - 1);});
+navigator.mediaSession.setActionHandler('nexttrack', function() {skipMedia();});
