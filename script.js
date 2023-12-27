@@ -709,7 +709,7 @@ function createPlayer() {
     }
     
 
-    // silence.play();
+    silence.play();
     playerl.src=("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.oncanplay = (event) => {
@@ -774,9 +774,9 @@ function togglePlayback() {
     document.getElementById("playPauseButton").innerHTML = "||";
     playerl.pause();
   }
-  // if (silence.paused){
-  //   silence.play();
-  // }
+  if (silence.paused){
+    silence.play();
+  }
 }
 
 
