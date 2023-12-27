@@ -673,6 +673,22 @@ function createPlayer() {
       playerl.volume = (svol / 300);
       silence.pause();
     };
+    playerl.oncanplaythrough = (event) => {
+      playerl.muted = true;
+      if (!firstplay){
+        playerl.play();
+      }
+      playerl.muted = false;
+      playerl.volume = (svol / 300);
+    };
+    playerl.onloadstart = (event) => {
+      playerl.muted = true;
+      if (!firstplay){
+        playerl.play();
+      }
+      playerl.muted = false;
+      playerl.volume = (svol / 300);
+    };
   }
 }
 function videoSeek(){
