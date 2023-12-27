@@ -734,7 +734,6 @@ function togglePlayback() {
   }
 }
 
-
 function playNextSong(index = -1) {
   document.getElementById((currentIndex).toString()).style.color = "var(--played-color)";
   if (index != -1) {
@@ -892,7 +891,7 @@ script.onload = function () {
       muted:true,
       sources: [{
         type: 'video/youtube',
-        src: "https://www.youtube.com/watch?v=YPrKQBCJD5U"
+        src: "https://www.youtube.com/watch?v=wu2djWZzmz0"
       }]
     }, function onPlayerReady() {
       videojs.log('Your player is ready!');
