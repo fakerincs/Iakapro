@@ -614,6 +614,10 @@ function createPlayer() {
       silence.play();
     }
   }
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: currentMedia.title,
+    album: currentMedia.type,
+  });
   currentSongElement.textContent = `${currentMedia.title}`;
   document.getElementById(`${currentIndex}`).style.color = 'var(--main-color)';
 
@@ -895,74 +899,17 @@ function toggleMenu(id){
   }
 }
 
-if ('mediaSession' in navigator) {
-  console.log("QWDOUWDIH");
-}
-navigator.mediaSession.metadata = new MediaMetadata({
-  title: 'Your Song Title',
-  artist: 'Artist Name',
-  album: 'Album Name',
-  artwork: [{ src: 'album-cover.jpg', sizes: '96x96', type: 'image/jpeg' }]
-});
-const actionHandlers = [
-  // play
-  [
-    "play",
-    async () => {
-      // play our audio
-      console.log("THIS IS THE NAGIVATIONs");
-      // set playback state
-      navigator.mediaSession.playbackState = "playing";
-      // update our status element
-      updateStatus(allMeta[index], "Action: play  |  Track is playing…");
-    },
-  ],
-  [
-    "pause",
-    () => {
-      // pause out audio
-      console.log("THIS IS THE NAGIVATIONs");
-      // set playback state
-      navigator.mediaSession.playbackState = "paused";
-      // update our status element
-      updateStatus(allMeta[index], "Action: pause  |  Track has been paused…");
-    },
-  ],
-];
-
-for (const [action, handler] of actionHandlers) {
-  try {
-    navigator.mediaSession.setActionHandler(action, handler);
-  } catch (error) {
-    console.log(`The media session action "${action}" is not supported yet.`);
-  }
-}
-navigator.mediaSession.setActionHandler("pause", () => {
-  console.log("THIS IS THE NAGIVATIONs");
-});
-
-navigator.mediaSession.setActionHandler('pause', function() {
-  console.log("pau");
-});
-
-navigator.mediaSession.setActionHandler('previoustrack', function() {
-  console.log("prev");
-});
-
-navigator.mediaSession.setActionHandler('nexttrack', function() {
-  console.log("nex");
-});
 window.addEventListener('keydown', function(event) {
-  console.log(event.key)
+  console.log(event.key);
   switch (event.key) {
     case 'MediaPlayPause':
-      console.log("nex");
+      togglePlayback();
       break;
-    case 'MediaPrevTrack':
-      console.log("nex");
+    case 'MediaTrackNext':
+      skipMedia();
       break;
-    case 'MediaNextTrack':
-      console.log("nex");
+    case 'MediaTrackPrevious':
+      playNextSong(currentIndex-1);
       break;
   }
 });
