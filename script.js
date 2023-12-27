@@ -952,23 +952,24 @@ playerl.addEventListener('play', function(){
     album: playlist[shuffledIndices[currentIndex]].type,
   });
 
-  navigator.mediaSession.setActionHandler('play', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('pause', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('play', function() {togglePlayback(); console.log("test");});
+  navigator.mediaSession.setActionHandler('pause', function() {togglePlayback(); console.log("test")});
   navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
   navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('previoustrack', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('nexttrack', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('previoustrack', function() {playNextSong(currentIndex - 1); console.log("test")});
+  navigator.mediaSession.setActionHandler('nexttrack', function() {skipMedia(); console.log("test")});
 })
 playerl.addEventListener('timeupdate', audioUpdate);
 document.body.appendChild(playerl);
 
 
-// silence = new Audio('songs/45silence.mp3');
-// silence.controls = false;
-// silence.play();
-// silence.addEventListener('timeupdate', function(){
-//   if (silence.currentTime> 40){
-//     silence.currentTime = 0;
-//   }
-//   //silence.pause();
-// });
+silence = new Audio('songs/45silence.mp3');
+silence.muted = true;
+silence.play();
+silence.setMuted
+silence.addEventListener('timeupdate', function(){
+  if (silence.currentTime> 40){
+    silence.currentTime = 0;
+  }
+  //silence.pause();
+});
