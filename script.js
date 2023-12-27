@@ -617,20 +617,20 @@ function createPlayer() {
   // navigator.mediaSession.metadata = new MediaMetadata({
   //   title: currentMedia.title,
   //   album: currentMedia.type,
-  // // });
-  // navigator.mediaSession.metadata = new MediaMetadata({
-  //   title: currentMedia.title,
-  //   artist: 'faker',
-  //   album: currentMedia.type,
   // });
-  // navigator.mediaSession.playbackState = "playing";
-  // navigator.mediaSession.setActionHandler('play', function() {console.log("test")});
-  // navigator.mediaSession.setActionHandler('pause', function() {console.log("test")});
-  // navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
-  // navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
-  // navigator.mediaSession.setActionHandler('previoustrack', function() {console.log("test")});
-  // navigator.mediaSession.setActionHandler('nexttrack', function() {console.log("test")});
-  // console.log(navigator.mediaSession)
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: currentMedia.title,
+    artist: 'faker',
+    album: currentMedia.type,
+  });
+  navigator.mediaSession.playbackState = "playing";
+  navigator.mediaSession.setActionHandler('play', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('pause', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('previoustrack', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('nexttrack', function() {console.log("test")});
+  console.log(navigator.mediaSession)
   currentSongElement.textContent = `${currentMedia.title}`;
   document.getElementById(`${currentIndex}`).style.color = 'var(--main-color)';
 
