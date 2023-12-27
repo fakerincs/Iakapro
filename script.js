@@ -614,23 +614,6 @@ function createPlayer() {
       silence.play();
     }
   }
-  // navigator.mediaSession.metadata = new MediaMetadata({
-  //   title: currentMedia.title,
-  //   album: currentMedia.type,
-  // });
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: currentMedia.title,
-    artist: 'faker',
-    album: currentMedia.type,
-  });
-  navigator.mediaSession.playbackState = "playing";
-  navigator.mediaSession.setActionHandler('play', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('pause', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('previoustrack', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('nexttrack', function() {console.log("test")});
-  console.log(navigator.mediaSession)
   currentSongElement.textContent = `${currentMedia.title}`;
   document.getElementById(`${currentIndex}`).style.color = 'var(--main-color)';
 
@@ -760,9 +743,9 @@ function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     if (player.paused()) {
       document.getElementById("playPauseButton").innerHTML = "||";
-      document.getElementById("playPauseButton").innerHTML = "▶";
       player.play();
     } else {
+      document.getElementById("playPauseButton").innerHTML = "▶";
       player.pause();
     }
   } else if (playerl.paused){
@@ -948,20 +931,11 @@ playerl.addEventListener('play', function(){
   console.log("PLAYING");
   navigator.mediaSession.metadata = new MediaMetadata({
     title: playlist[shuffledIndices[currentIndex]].title,
-    artist: 'faker',
+    // artist: 'faker',
     album: playlist[shuffledIndices[currentIndex]].type,
   });
-
-  navigator.mediaSession.setActionHandler('play', function() {togglePlayback(); console.log("test");});
-  navigator.mediaSession.setActionHandler('pause', function() {togglePlayback(); console.log("test")});
-  navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
-  navigator.mediaSession.setActionHandler('previoustrack', function() {playNextSong(currentIndex - 1); console.log("test")});
-  navigator.mediaSession.setActionHandler('nexttrack', function() {skipMedia(); console.log("test")});
 })
 playerl.addEventListener('timeupdate', audioUpdate);
-document.body.appendChild(playerl);
-
 
 silence = new Audio('songs/45silence.mp3');
 silence.muted = true;
@@ -973,3 +947,9 @@ silence.addEventListener('timeupdate', function(){
   }
   //silence.pause();
 });
+navigator.mediaSession.setActionHandler('play', function() {togglePlayback(); console.log("play");});
+navigator.mediaSession.setActionHandler('pause', function() {togglePlayback(); console.log("pause")});
+navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
+navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
+navigator.mediaSession.setActionHandler('previoustrack', function() {playNextSong(currentIndex - 1); console.log("enxt")});
+navigator.mediaSession.setActionHandler('nexttrack', function() {skipMedia(); console.log("back")});
