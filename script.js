@@ -610,14 +610,27 @@ function createPlayer() {
       }
     } 
     catch{}
-    if (silence.paused){
-      silence.play();
-    }
+    // if (silence.paused){
+    //   silence.play();
+    // }
   }
+  // navigator.mediaSession.metadata = new MediaMetadata({
+  //   title: currentMedia.title,
+  //   album: currentMedia.type,
+  // });
   navigator.mediaSession.metadata = new MediaMetadata({
     title: currentMedia.title,
+    artist: 'faker',
     album: currentMedia.type,
   });
+  navigator.mediaSession.playbackState = "playing";
+  navigator.mediaSession.setActionHandler('play', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('pause', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('previoustrack', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('nexttrack', function() {console.log("test")});
+  console.log(navigator.mediaSession)
   currentSongElement.textContent = `${currentMedia.title}`;
   document.getElementById(`${currentIndex}`).style.color = 'var(--main-color)';
 
@@ -696,7 +709,7 @@ function createPlayer() {
     }
     
 
-    silence.play();
+    // silence.play();
     playerl.src=("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.oncanplay = (event) => {
@@ -761,9 +774,9 @@ function togglePlayback() {
     document.getElementById("playPauseButton").innerHTML = "||";
     playerl.pause();
   }
-  if (silence.paused){
-    silence.play();
-  }
+  // if (silence.paused){
+  //   silence.play();
+  // }
 }
 
 
@@ -899,21 +912,6 @@ function toggleMenu(id){
   }
 }
 
-window.addEventListener('keydown', function(event) {
-  console.log(event.key);
-  switch (event.key) {
-    case 'MediaPlayPause':
-      togglePlayback();
-      break;
-    case 'MediaTrackNext':
-      skipMedia();
-      break;
-    case 'MediaTrackPrevious':
-      playNextSong(currentIndex-1);
-      break;
-  }
-});
-
 generateUpcoming();
 
 var link = document.createElement('link');
@@ -950,7 +948,10 @@ playerl.addEventListener('ended', function(){
 });
 playerl.addEventListener('timeupdate', audioUpdate);
 
-silence = new Audio('songs/45silence.mp3');//not sure if this is needed
+
+
+silence = new Audio('songs/45silence.mp3');
+silence.controls = false;
 silence.play();
 silence.addEventListener('timeupdate', function(){
   if (silence.currentTime> 40){
