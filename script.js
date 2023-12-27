@@ -535,12 +535,10 @@ if (typeof(Storage) !== "undefined") {
       document.getElementById(playlists[i].name + 's').style= "color: white; border-color: var(--main-color)";
     }
   }
-  
 }
 else{
   alert("localstorage not supported, aka everything is prob broken")
   console.log("idk why i even added this check, website doesnt do anything if it doesnt work");
-
 }
 function pull(){
   if (currentname != "default(c)"){
@@ -550,7 +548,6 @@ function pull(){
   localStorage.setItem("pull", JSON.stringify(playlists));
   localStorage.removeItem("playlists");
   location.reload();
-
 }
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
@@ -577,7 +574,6 @@ function toggleVideo(){
     document.getElementById("player").style.width ="1px"; 
     document.getElementById("player").style.height ="1px"; 
   }
-  
 }
 const currentSongElement = document.getElementById('currentSong');
 const videoButton = document.getElementById('videoButton');
@@ -622,32 +618,11 @@ function createPlayer() {
       document.getElementById("player").style.width ="160px"; 
       document.getElementById("player").style.height ="100px"; 
     }
-    if (!player){
-      player = videojs('player', {
-        techOrder: ['youtube'],
-        autoplay: 'any',
-        preload: 'auto',
-        inactivityTimeout: 0,
-        audioOnlyMode: videoOff,
-        poster: "poster.png",
-        muted:true,
-        sources: [{
-          type: 'video/youtube',
-          src: `https://www.youtube.com/embed/${currentMedia.id}`
-        }]
-      }, function onPlayerReady() {
-        videojs.log('Your player is ready!');
-        this.play();
-        this.on('ended', ender);
-      });
-    }
-    else{
-      player.muted(true);
-      player.src({
-        src: `https://www.youtube.com/embed/${currentMedia.id}`,
-        type: 'video/youtube',
-      });
-    }
+    player.muted(true);
+    player.src({
+      src: `https://www.youtube.com/embed/${currentMedia.id}`,
+      type: 'video/youtube',
+    });
     var myMiddleware = function(player) {
       return {
         setMuted: function(muted) {
@@ -676,9 +651,9 @@ function createPlayer() {
     player.on('timeupdate', videoUpdate);
     player.on('play', function(){
       
-      if (player.currentTime()< .3){
+      if (player.currentTime()< .2){
         player.play();
-        player.currentTime(0.31);
+        player.currentTime(0.21);
       }
     })
 
@@ -738,8 +713,18 @@ function videoUpdate(){
   slider.max = player.duration();
   slider.value = player.currentTime();
 }
-
+var firstplay = true;
+function playHandler() {
+  console.log('paused');
+  player.pause();
+  firstplay = false;
+  player.off('play', playHandler);
+}
 function togglePlayback() {
+  if (firstplay){
+    player.on('play', playHandler);
+    player.play();
+  }
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     if (player.paused()) {
       document.getElementById("playPauseButton").innerHTML = "||";
@@ -748,12 +733,15 @@ function togglePlayback() {
       document.getElementById("playPauseButton").innerHTML = "▶";
       player.pause();
     }
-  } else if (playerl.paused){
+  } else {
+    if (playerl.paused){
       document.getElementById("playPauseButton").innerHTML = "||";
       playerl.play();
-  } else {
-    document.getElementById("playPauseButton").innerHTML = "▶";
-    playerl.pause();
+    } 
+    else {
+      document.getElementById("playPauseButton").innerHTML = "▶";
+      playerl.pause();
+    }
   }
   if (silence.paused){
     silence.play();
@@ -900,20 +888,53 @@ link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
 link.rel = "stylesheet";
 document.getElementsByTagName("head")[0].appendChild(link);
 
+
 var script = document.createElement('script');
 script.src = "https://vjs.zencdn.net/8.3.0/video.min.js";
 script.onload = function () {
-
   var scriptyt = document.createElement('script');
   scriptyt.src = "https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js";
   scriptyt.onload = function () {
     createPlayer();
+    player = videojs('player', {
+      techOrder: ['youtube'],
+      autoplay: 'any',
+      preload: 'auto',
+      inactivityTimeout: 0,
+      audioOnlyMode: videoOff,
+      poster: "poster.png",
+      muted:true,
+      sources: [{
+        type: 'video/youtube',
+        src: "https://www.youtube.com/watch?v=YPrKQBCJD5U"
+      }]
+    }, function onPlayerReady() {
+      videojs.log('Your player is ready!');
+      this.play();
+      this.on('ended', ender);
+      console.log(player.sources);
+    });
+    var myMiddleware = function(player) {
+      return {
+        setMuted: function(muted) {
+          return false;
+        }
+      };
+    };
+    player.ready(function() {
+      player.currentTime(0);
+      player.play();
+      player.muted(false);
+      videojs.use('*', myMiddleware);
+      player.volume(svol / 100); // Set volume to half
+    });
   };
-
   scriptyt.setAttribute("crossorigin", "anonymous");
   scriptyt.setAttribute("referrerpolicy", "no-referrer");
   scriptyt.integrity = "sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==";
+  
   document.body.appendChild(scriptyt);
+  
 
 };
 
@@ -928,7 +949,6 @@ playerl.addEventListener('ended', function(){
   playNextSong();
 });
 playerl.addEventListener('play', function(){
-  console.log("PLAYING");
   navigator.mediaSession.metadata = new MediaMetadata({
     title: playlist[shuffledIndices[currentIndex]].title,
     // artist: 'faker',
@@ -947,6 +967,7 @@ silence.addEventListener('timeupdate', function(){
   }
   //silence.pause();
 });
+
 navigator.mediaSession.setActionHandler('play', function() {togglePlayback(); console.log("play");});
 navigator.mediaSession.setActionHandler('pause', function() {togglePlayback(); console.log("pause")});
 navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
