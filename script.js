@@ -610,9 +610,9 @@ function createPlayer() {
       }
     } 
     catch{}
-    // if (silence.paused){
-    //   silence.play();
-    // }
+    if (silence.paused){
+      silence.play();
+    }
   }
   // navigator.mediaSession.metadata = new MediaMetadata({
   //   title: currentMedia.title,
