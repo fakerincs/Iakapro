@@ -673,7 +673,7 @@ function createPlayer() {
       playerl.volume = (svol / 300);
       silence.pause();
     };
-    playerl.oncanplaythrough = (event) => {
+    playerl.oncanplaythrough = (event) => {//so these are needed?
       playerl.muted = true;
       if (!firstplay){
         playerl.play();
@@ -961,7 +961,7 @@ playerl.addEventListener('timeupdate', audioUpdate);
 silence = new Audio('songs/45silence.mp3');
 silence.muted = true;
 silence.play();
-silence.setMuted
+
 silence.addEventListener('timeupdate', function(){
   if (silence.currentTime> 40){
     silence.currentTime = 0;
