@@ -708,8 +708,6 @@ function createPlayer() {
       document.getElementById("player").style.height ="1px"; 
     }
     
-
-    silence.play();
     playerl.src=("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.oncanplay = (event) => {
@@ -717,6 +715,7 @@ function createPlayer() {
       playerl.play();
       playerl.muted = false;
       playerl.volume = (svol / 300);
+      silence.pause();
     };
     playerl.oncanplaythrough = (event) => {
       playerl.muted = true;
@@ -733,7 +732,6 @@ function createPlayer() {
   }
   
 }
-var playfix = false;
 function videoSeek(){
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     player.currentTime(slider.value);
@@ -761,17 +759,17 @@ function videoUpdate(){
 function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     if (player.paused()) {
-      document.getElementById("playPauseButton").innerHTML = "▶";
       document.getElementById("playPauseButton").innerHTML = "||";
+      document.getElementById("playPauseButton").innerHTML = "▶";
       player.play();
     } else {
       player.pause();
     }
   } else if (playerl.paused){
-      document.getElementById("playPauseButton").innerHTML = "▶";
+      document.getElementById("playPauseButton").innerHTML = "||";
       playerl.play();
   } else {
-    document.getElementById("playPauseButton").innerHTML = "||";
+    document.getElementById("playPauseButton").innerHTML = "▶";
     playerl.pause();
   }
   if (silence.paused){
@@ -946,16 +944,31 @@ playerl.addEventListener('ended', function(){
   //document.getElementById("player").style.display = "visible";
   playNextSong();
 });
+playerl.addEventListener('play', function(){
+  console.log("PLAYING");
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: playlist[shuffledIndices[currentIndex]].title,
+    artist: 'faker',
+    album: playlist[shuffledIndices[currentIndex]].type,
+  });
+
+  navigator.mediaSession.setActionHandler('play', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('pause', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('seekbackward', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('seekforward', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('previoustrack', function() {console.log("test")});
+  navigator.mediaSession.setActionHandler('nexttrack', function() {console.log("test")});
+})
 playerl.addEventListener('timeupdate', audioUpdate);
+document.body.appendChild(playerl);
 
 
-
-silence = new Audio('songs/45silence.mp3');
-silence.controls = false;
-silence.play();
-silence.addEventListener('timeupdate', function(){
-  if (silence.currentTime> 40){
-    silence.currentTime = 0;
-  }
-  //silence.pause();
-});
+// silence = new Audio('songs/45silence.mp3');
+// silence.controls = false;
+// silence.play();
+// silence.addEventListener('timeupdate', function(){
+//   if (silence.currentTime> 40){
+//     silence.currentTime = 0;
+//   }
+//   //silence.pause();
+// });
