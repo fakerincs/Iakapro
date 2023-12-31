@@ -39,7 +39,7 @@
     <span>Upcoming Color <input aria-label="ucolor" type="color" id="upcomingColor"></span><br>
     <span>Songs Color <input aria-label="socolor" type="color" id="songsColor"></span><br>
     <span>Border Color <input aria-label="bordercolor" type="color" id="borderColor"></span><br>
-    <span><button type="button" onclick="resetcolors()">Reset Colors</button></span><br>
+    <span><button type="button" class="pbutt" id="resetcolors" onclick="resetcolors()">Reset Colors</button></span><br>
     <script src="colors.js"></script>
   </div>
 
@@ -51,17 +51,6 @@
     <div class="list">
       <nav id = "upcomingnav">
         <ul id="upcoming"></ul>
-        <script>
-          // Function to update the height based on viewport height
-          function fixheight() {
-            var myelement = document.getElementById('upcoming');
-            var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-            myelement.style.height = (viewportHeight - 110 - myelement.getBoundingClientRect().top).toString() + "px";
-          }
-          fixheight();
-          var resizeObserver = new ResizeObserver(fixheight);
-          resizeObserver.observe(document.getElementById('currentSong'));
-        </script>
       </nav>
     </div>
     

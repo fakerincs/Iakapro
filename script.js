@@ -857,17 +857,38 @@ function generateUpcoming(){
   }
   upcoming.insertAdjacentHTML("beforeend", "<li><span id ='addsongspan'><button aria-label='add button' id='addsongbutton' type='button' onclick='toggleMenu(\"addsongdiv\")'>ADD+</button><div id='addsongdiv'>Add Song<input aria-label='input song' type='text' default ='title;link' id='songinput'><button id='addsong' class='navl' onclick='addSong()'>Enter</button></span><br></div></li>");
   window.addEventListener("load", function() {
-    
-    for (let i=0; i < playlist.length; i++){
-      var el = document.getElementById(`${i}`);
-      var w = 16;
-      while (el.offsetWidth + 20 > upcoming.offsetWidth && w > 2) {
-        w-=1;
-        el.style =("font-size:" + w + "px");
-      }
-    }
+    fixheight();
   });
 }
+function fixheight() {
+  var myelement = document.getElementById('upcoming');
+  var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  myelement.style.height = (viewportHeight - 110 - myelement.getBoundingClientRect().top).toString() + "px";
+  for (let i = 0; i < playlist.length; i++) {
+    var el = document.getElementById(`${i}`);
+    if (el.style.fontSize != "16px"){
+      el.style.fontSize = "16px";
+    }
+    
+    var w = 16;
+    while (el.offsetWidth + 20 > upcoming.offsetWidth) {
+      w -= 1;
+      el.style.fontSize = w + "px";
+    }
+  }
+}
+let resizeTimer;
+function handleResize() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      fixheight();
+    }, 50);
+}
+
+window.addEventListener('resize', handleResize);
+
+var resizeObserver = new ResizeObserver(handleResize);
+resizeObserver.observe(document.getElementById('currentSong'));
 
 function handleChoose(event){
   var itemId = event.target.id;

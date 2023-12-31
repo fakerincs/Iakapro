@@ -47,10 +47,10 @@ body{
   display: flex;
   height: 21px;
   background-color: var(--background-color);
-  outline-style: solid;
-  outline-color: var(--border-color);
-  outline-width: 1px;
-  border-radius:5px;
+  border-style: solid;
+  border-color: var(--border-color);
+  border-width: 1px;
+  border-radius:6px;
 }
 
 ::-webkit-scrollbar {
@@ -83,17 +83,17 @@ body{
   border-style: none;
   border-color: var(--border-color);
   border-width: 1px;
-  border-radius:5px;
+  border-radius: 6px;
   color: var(--main-color);
 }
 #import, #resetStats{
-  border-radius: 0px;
+  border-radius: 0 5px 5px 0;
   border-style: solid;
   border-color: var(--border-color);
   border-width: 0 0 0 1px;
 }
 #fileInput{
-  border-radius: 0px;
+  border-radius: 5px 0 0 5px;
   background-color: var(--background-color);
   resize: none;
 }
@@ -131,6 +131,10 @@ body{
   z-index: 999;
   background: var(--upcoming-color);
 }
+#resetcolors{
+  border-radius: 3px;
+  padding:0;
+}
 .pcont{
   display: flex;
 }
@@ -152,17 +156,15 @@ body{
   visibility: hidden;
 }
 #addsongdiv{
+  margin-left: 4px;
   visibility: hidden;
   z-index: 1;
-  background-color: #ffffff47;
-  border-radius: 3px;
   line-height: unset;
 }
 #addsongspan{
   display: flex;
   height: 30px;
 }
-
 #indexSlider {
   width: 80%;
 }
@@ -176,6 +178,7 @@ body{
   padding-top: 10px;
 }
 #upcoming {
+  font-size: 1rem;
   /* height: calc(100% - 210px); */
   position:absolute;
   display: inline-block;
@@ -196,7 +199,12 @@ body{
   border-top: 1px solid #454545;
   white-space: nowrap;
 }
-li span:hover {
+#upcoming > li> button{
+  border:none;
+  background-color: var(--upcoming-color);
+  color: var(--songs-color);
+}
+li span:hover{
     cursor: pointer;
 }
 ul{
@@ -236,28 +244,28 @@ button{
 }
 #playPauseButton, #skipButton, #shufflebutton{
   text-align: center;
+  display: inline-block;
   line-height: 0px;
-  width: 70px;
-  height: 50px;
+  padding: 24px 14px;
   font-size: 25px;
   margin-right: 5px;
-  border-radius: 15px;
+  border-radius: 13px;
   border-width: 1px;
   border-color: var(--border-color);
   background-color: var(--secondary-color);
   color: var(--main-color);
-  &
-  hover {
-    background-color: var(--main-color);
-  color: var(--secondary-color);
-  }
+  vertical-align: middle; /* or use display: flex; align-items: center; justify-content: center; */
 }
+
+#playPauseButton:hover, #skipButton:hover, #shufflebutton:hover {
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+}
+
 #skipButton{
   font-size: 38px;
 }
-#shufflebutton{
-  width: 50px;
-}
+
 #videoSlider {
   -webkit-appearance: none;
   width: calc(100% - 35px);
@@ -335,4 +343,8 @@ button{
   outline-style: solid;
   outline-color:var(--border-color);
   outline-width: 1px;
+}
+button:hover{
+  color:var(--background-color);
+  background-color: var(--main-color);
 }
