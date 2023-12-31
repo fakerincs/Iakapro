@@ -381,6 +381,16 @@ let playlist = [
   { id: 'ea_V3Nfk40Y', title: 'Zekk - POWER OF UNITY', type: 'youtube' },
   { id: 'ikWjlRyRGb8', title: 'ZONE', type: 'youtube' },
   { id: 'f9Zt5OqIzIk', title: 'CASE', type: 'youtube' },
+  { id: '3NUbx0WVRIw', title: 'Andora - Moonrise (feat. WaMi) MV 『ムーンライズ』', type: 'youtube' },
+  { id: 'O6Ose2oLfMU', title: 'PERSONA', type: 'youtube' },
+  { id: 'WJIWINuwBgM', title: 'blue roar (feat. Purukichi)', type: 'youtube' },
+  { id: 'vkkHEEOj5rc', title: 'N3XTAGE', type: 'youtube' },
+  { id: 'SYFAseykCFw', title: 'Word Of Old', type: 'youtube' },
+  { id: 'IBrsSu-5apY', title: 'SWANNAH - by my side (feat. Eileen)', type: 'youtube' },
+  { id: 'UVDjM7fcUiI', title: 'PSYQUI - ヨノナカ Piano Cover', type: 'youtube' },
+  { id: '8uPeIvsyMxc', title: 'City Girl in the Love', type: 'youtube' },
+  { id: 'LnVYaPhkPok', title: 'Andora - Dopamine (feat. 水槽) MV 『ドーパミン』', type: 'youtube' },
+  { id: 'BZceUzh0FoQ', title: 't+pazolite - Lilac Feel', type: 'youtube' },
   
 ];
 var currentname = "default(c)";//and i thought i could escape
