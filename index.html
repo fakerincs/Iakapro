@@ -43,28 +43,37 @@
     <script src="colors.js"></script>
   </div>
 
-  <div id = "playerinfo">
-    <div style='display:flex'>
-      <div id="currentSong"></div>
+  <div id="playerinfo">
+    <div id="currentSong"></div>
+    <button style="font-size: 23px;" class="editorbutton" onclick='toggleMenu("editor")'>⚇</button>
+  </div>
+  <div id='editor'>
+    <span>
+      <button class="editorbutton" aria-label='add button' type='button' onclick='toggleMenu("addsongdiv")'>Add</button>
+      <div id='addsongdiv' class='editormenu'>
+        Add Song<input aria-label='input song' type='text' default ='title;link' id='songinput'>
+        <button class="editorbutton" onclick='addSong()'>Enter</button>
       </div>
-    </div>
-    <div class="list">
-      <nav id = "upcomingnav">
-        <ul id="upcoming"></ul>
-      </nav>
-    </div>
-    
+    </span>
+    <span>
+      <button class="editorbutton" aria-label='edit button' type='button' onclick='toggleMenu("editnamediv")'>Edit</button>
+      <div id='editnamediv' class='editormenu'>
+        Edit<input aria-label='input name' type='text' default ='title' id='nameinput'>
+        <button class="editorbutton" onclick='editname()'>Enter</button>
+      </div>
+    </span>
+    <button class="editorbutton" type='button' id="deletebutton" onclick='deletes()'>Delete</button>
+  </div>
+  <ul id="upcoming"></ul>
 
     
-    <div id="controls">
-      <input type="range" id="videoSlider" aria-label= "timeline" min="0" max="10" value="0"><br>
-      <div id="volume">
-        <button id="playPauseButton">||</button>
-        <button id="skipButton">➝</button>
-        <button id="shufflebutton" onclick="toggleshuffle()">⤮</button>
-        <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50"></label>
-      </div>
-      
+  <div id="controls">
+    <input type="range" id="videoSlider" aria-label= "timeline" min="0" max="10" value="0"><br>
+    <div id="volume">
+      <button id="playPauseButton">||</button>
+      <button id="skipButton">➝</button>
+      <button id="shufflebutton" onclick="toggleshuffle()">⤮</button>
+      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50"></label>
     </div>
   </div>
   
