@@ -495,11 +495,13 @@ function addplaylistelement(title){
 function exportp(){
   if (document.getElementById("result").innerHTML != ""){
     document.getElementById("result").innerHTML = "";
-    document.getElementById("result").style = "visibility: hidden;"
+    document.getElementById("result").style.visibility = "hidden";
+    document.getElementById("result").style.display = "none";
     return
   }
   else{
-    document.getElementById("result").style = "visibility: visible;"
+    document.getElementById("result").style.visibility = "visible"
+    document.getElementById("result").style.display = "flex";
   }
   let message = ``
   for (let i = 0; i<playlist.length; i++){
@@ -841,6 +843,24 @@ function addSong(){
     }
   }
 }
+function editname(){
+  if (!editselection){
+    return;
+  }
+  var inputText = document.getElementById('nameinput').value;
+  if (inputText==""){
+    return;
+  }
+  for (let i=0; i<playlists.length; i++){
+    if (JSON.stringify(playlists[i].list) === JSON.stringify(playlist)){
+      playlist[editselection].title = inputText;
+      playlists[i].list[editselection].title = inputText;
+      localStorage.setItem("playlists", JSON.stringify(playlists));
+      document.getElementById(itemId).innerHTML = `${playlist[editselection].title}(${playlist[editselection].type})`;
+    }
+  }
+}
+var mode = "select";
 function generateUpcoming(){
   currentIndex = 0;
   if (shuffle){
@@ -855,15 +875,48 @@ function generateUpcoming(){
     upcoming.insertAdjacentHTML("beforeend", `<li><span id=\"${i}\">` + `${playlist[shuffledIndices[i]].title}(${playlist[shuffledIndices[i]].type})` + "</span></li>");
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
-  upcoming.insertAdjacentHTML("beforeend", "<li><span id ='addsongspan'><button aria-label='add button' id='addsongbutton' type='button' onclick='toggleMenu(\"addsongdiv\")'>ADD+</button><div id='addsongdiv'>Add Song<input aria-label='input song' type='text' default ='title;link' id='songinput'><button id='addsong' class='navl' onclick='addSong()'>Enter</button></span><br></div></li>");
-  window.addEventListener("load", function() {
-    fixheight();
-  });
+  upcoming.insertAdjacentHTML("beforeend", "<li><span id ='addsongspan'><button aria-label='add button' id='addsongbutton' type='button' onclick='toggleMenu(\"addsongdiv\")'>Add</button><div id='addsongdiv'>Add Song<input aria-label='input song' type='text' default ='title;link' id='songinput'><button id='addsong' class='navl' onclick='addSong()'>Enter</button></div><button aria-label='edit button' id='addsongbutton' type='button' onclick='toggleMenu(\"editnamediv\")'>Edit</button><div id='editnamediv'>Edit<input aria-label='input name' type='text' default ='title' id='nameinput'><button id='editname' class='navl' onclick='editname()'>Enter</button></div><button type='button' onclick='deletes()'>delete</button></span></li>");
+}
+function deletes(){
+  if (editselection == "delete"){
+    editselection = "select";
+    return
+  }
+  editselection = "delete";
+}
+var editselection = null;
+function handleChoose(event){
+  var itemId = event.target.id;
+  if (mode == "select"){
+    playNextSong(itemId);
+  }
+  else if (mode == "edit"){
+    editselection = shuffledIndices[itemId];
+    document.getElementById("nameinput").value = playlist[editselection].title;
+  }
+  else if (mode == "delete"){
+    for (let i=0; i<playlists.length; i++){
+      if (JSON.stringify(playlists[i].list) === JSON.stringify(playlist)){
+        
+        playlist[editselection].remove();
+        shuffledIndices[itemId].remove();
+        if (currentIndex >= itemId){
+          currentIndex--;
+          if (currentIndex == itemId){
+            playNextSong(currentIndex);
+          }
+        }
+        playlists[i].list[editselection].remove();
+        localStorage.setItem("playlists", JSON.stringify(playlists));
+        document.getElementById(itemId).remove()
+      }
+    }
+  }
 }
 function fixheight() {
   var myelement = document.getElementById('upcoming');
-  var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  myelement.style.height = (viewportHeight - 110 - myelement.getBoundingClientRect().top).toString() + "px";
+  var initalh = myelement.offsetHeight;
+  myelement.style.height = "calc(100% - 140px - " + document.getElementById('currentSong').offsetHeight + "px"+ ")";
   for (let i = 0; i < playlist.length; i++) {
     var el = document.getElementById(`${i}`);
     if (el.style.fontSize != "16px"){
@@ -876,24 +929,10 @@ function fixheight() {
       el.style.fontSize = w + "px";
     }
   }
+  myelement.scrollTop = myelement.scrollTop - ((myelement.offsetHeight - initalh));
 }
-let resizeTimer;
-function handleResize() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      fixheight();
-    }, 50);
-}
-
-window.addEventListener('resize', handleResize);
-
-var resizeObserver = new ResizeObserver(handleResize);
+var resizeObserver = new ResizeObserver(fixheight);
 resizeObserver.observe(document.getElementById('currentSong'));
-
-function handleChoose(event){
-  var itemId = event.target.id;
-  playNextSong(itemId);
-}
 
 function ender(){
   if(playlist[shuffledIndices[currentIndex]].type === 'youtube'){
@@ -905,11 +944,20 @@ function ender(){
 
 function toggleMenu(id){
   var menu = document.getElementById(id); 
+  menu.style.overflow= "scroll";
   if (menu.style.visibility == "visible"){
     menu.style.visibility = "hidden";
+    menu.style.display = "none";
+    if (id == "editnamediv"){
+      mode = "select";
+    }
   }
   else{
     menu.style.visibility = "visible";
+    menu.style.display = "unset";
+    if (id == "editnamediv"){
+      mode = "edit";
+    }
   }
 }
 

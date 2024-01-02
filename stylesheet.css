@@ -107,6 +107,7 @@ body{
 }
 #colorMenu{
   visibility: hidden;
+  display:none;
   background-color: var(--third-color);
   border-style: solid;
   border-color: var(--border-color);
@@ -125,6 +126,7 @@ body{
   display: block;
   position: absolute;
   visibility: hidden;
+  display:none;
   border-style: solid;
   border-width: 1px;
   border-color: var(--border-color);
@@ -154,10 +156,12 @@ body{
   overflow: scroll;
   white-space: pre-line;
   visibility: hidden;
+  display:none;
 }
 #addsongdiv{
   margin-left: 4px;
   visibility: hidden;
+  display:none;
   z-index: 1;
   line-height: unset;
 }
@@ -179,7 +183,7 @@ body{
 }
 #upcoming {
   font-size: 1rem;
-  /* height: calc(100% - 210px); */
+  height: calc(100% - 210px);
   position:absolute;
   display: inline-block;
   white-space:nowrap;
