@@ -391,6 +391,7 @@ let playlist = [
   { id: '8uPeIvsyMxc', title: 'City Girl in the Love', type: 'youtube' },
   { id: 'LnVYaPhkPok', title: 'Andora - Dopamine (feat. 水槽) MV 『ドーパミン』', type: 'youtube' },
   { id: 'BZceUzh0FoQ', title: 't+pazolite - Lilac Feel', type: 'youtube' },
+  { id: 'dywmvip.mp3', title: 'PSYQUI - Don\'t You Want Me (VIP FF remix)', type: 'local' },
   
 ];
 var currentname = "default(c)";//and i thought i could escape
