@@ -6,7 +6,7 @@ let goToBottom = setInterval(() => window.scrollBy(0, 400), 1000);
 
 wait for it to reach the bottom of the page
 
-4.paste the following, the copy:
+4. paste the following, the copy:
 clearInterval(goToBottom);
 console.log('\n'.repeat(50));
 const links = document.querySelectorAll('a');
