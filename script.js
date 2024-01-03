@@ -961,9 +961,12 @@ function toggleMenu(id){
   if (menu.style.visibility == "visible"){
     menu.style.visibility = "hidden";
     menu.style.display = "none";
-    if (id == "editnamediv"){
+    if (id == "editnamediv" || id == "editor"){
+      document.getElementById("deletebutton").style.color = "var(--main-color)";
+      document.getElementById("deletebutton").style.background = "var(--secondary-color)";
       mode = "select";
     }
+    
   }
   else{
     menu.style.visibility = "visible";

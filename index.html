@@ -45,22 +45,22 @@
 
   <div id="playerinfo">
     <div id="currentSong"></div>
-    <button style="font-size: 23px;" class="editorbutton" onclick='toggleMenu("editor")'>⚇</button>
+    <button id="editmenubutton" type="button" class="editorbutton" onclick='toggleMenu("editor")'>⚇</button>
   </div>
   <div id='editor'>
     <span>
-      <button class="editorbutton" aria-label='add button' type='button' onclick='toggleMenu("addsongdiv")'>Add</button>
       <div id='addsongdiv' class='editormenu'>
         Add Song<input aria-label='input song' type='text' default ='title;link' id='songinput'>
         <button class="editorbutton" onclick='addSong()'>Enter</button>
       </div>
+      <button class="editorbutton" aria-label='add button' type='button' onclick='toggleMenu("addsongdiv")'>Add</button>
     </span>
     <span>
-      <button class="editorbutton" aria-label='edit button' type='button' onclick='toggleMenu("editnamediv")'>Edit</button>
       <div id='editnamediv' class='editormenu'>
         Edit<input aria-label='input name' type='text' default ='title' id='nameinput'>
         <button class="editorbutton" onclick='editname()'>Enter</button>
       </div>
+      <button class="editorbutton" aria-label='edit button' type='button' onclick='toggleMenu("editnamediv")'>Edit</button>
     </span>
     <button class="editorbutton" type='button' id="deletebutton" onclick='deletes()'>Delete</button>
   </div>
