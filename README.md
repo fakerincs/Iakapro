@@ -20,15 +20,15 @@ for (const link of links) {
 
 you should get something like:
 
-PSYQUI - ヨノナカ Piano Cover;https://www.youtube.com/watch?v=UVDjM7fcUiI
-VM490:7 SWANNAH - by my side (feat. Eileen);https://www.youtube.com/watch?v=IBrsSu-5apY
-VM490:7 Word Of Old;https://www.youtube.com/watch?v=SYFAseykCFw
-VM490:7 N3XTAGE;https://www.youtube.com/watch?v=vkkHEEOj5rc
-VM490:7 blue roar (feat. Purukichi);https://www.youtube.com/watch?v=WJIWINuwBgM
-VM490:7 PERSONA;https://www.youtube.com/watch?v=O6Ose2oLfMU
-VM490:7 Andora - Moonrise (feat. WaMi) MV 『ムーンライズ』;https://www.youtube.com/watch?v=3NUbx0WVRIw
-VM490:7 CASE;https://www.youtube.com/watch?v=f9Zt5OqIzIk
-VM490:7 ZONE;https://www.youtube.com/watch?v=ikWjlRyRGb8
+PSYQUI - ヨノナカ Piano Cover;https://www.youtube.com/watch?v=UVDjM7fcUiI  
+VM490:7 SWANNAH - by my side (feat. Eileen);https://www.youtube.com/watch?v=IBrsSu-5apY  
+VM490:7 Word Of Old;https://www.youtube.com/watch?v=SYFAseykCFw  
+VM490:7 N3XTAGE;https://www.youtube.com/watch?v=vkkHEEOj5rc  
+VM490:7 blue roar (feat. Purukichi);https://www.youtube.com/watch?v=WJIWINuwBgM  
+VM490:7 PERSONA;https://www.youtube.com/watch?v=O6Ose2oLfMU  
+VM490:7 Andora - Moonrise (feat. WaMi) MV 『ムーンライズ』;https://www.youtube.com/watch?v=3NUbx0WVRIw  
+VM490:7 CASE;https://www.youtube.com/watch?v=f9Zt5OqIzIk  
+VM490:7 ZONE;https://www.youtube.com/watch?v=ikWjlRyRGb8  
 
 5. paste into import field, press import, then you can select the playlist by pressing the p button top left, you can also rename/delete it
 
