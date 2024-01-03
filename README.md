@@ -20,6 +20,7 @@ for (const link of links) {
 
 you should get something like:
 PSYQUI - ヨノナカ Piano Cover;https://www.youtube.com/watch?v=UVDjM7fcUiI
+
 VM490:7 SWANNAH - by my side (feat. Eileen);https://www.youtube.com/watch?v=IBrsSu-5apY
 VM490:7 Word Of Old;https://www.youtube.com/watch?v=SYFAseykCFw
 VM490:7 N3XTAGE;https://www.youtube.com/watch?v=vkkHEEOj5rc
