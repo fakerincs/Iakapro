@@ -718,6 +718,15 @@ function audioUpdate(){//reason for fix forgotten!
   }
   slider.value = playerl.currentTime;
   slider.max = playerl.duration;
+  document.getElementById('durationtext').innerText = formatTime(playerl.duration);
+  document.getElementById('durationtext').style.right = slider.getBoundingClientRect().left + "px";
+  document.getElementById('durationtext').style.top = (slider.getBoundingClientRect().top - 10) + "px";
+  if (inseekrange){
+    const menu = document.getElementById('seekmenu');
+    const elementRect = slider.getBoundingClientRect();
+    menu.style.left = (elementRect.left + (slider.offsetWidth * (slider.value / slider.max)) - menu.offsetWidth/2) + "px";
+    menu.innerText = formatTime(playerl.currentTime);
+  }
 }
 var lasttime = -1;
 function videoUpdate(){
@@ -726,12 +735,62 @@ function videoUpdate(){
   }
   slider.max = player.duration();
   slider.value = player.currentTime();
+  if (inseekrange){
+    const menu = document.getElementById('seekmenu');
+    const elementRect = slider.getBoundingClientRect();
+    menu.style.left = (elementRect.left + (slider.offsetWidth * (slider.value / slider.max)) - menu.offsetWidth/2) + "px";// `${cursorX}px`;
+    menu.innerText = formatTime(player.currentTime());
+  }
+}
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  return formattedTime;
+}
+document.addEventListener("mousemove", handleMouseMove);
+let clicked = false;
+document.addEventListener('mousedown', function(event) {
+  if (event.button === 0) {
+    clicked = true;
+  }
+});
+document.addEventListener('mouseup', function(event) {
+  if (event.button === 0) {
+    clicked = false;
+  }
+});
+function handleMouseMove(ev) {
+  const playerElement = document.getElementById("player");
+  const draggableElement = document.getElementById("playerContainer");
+  const rect = draggableElement.getBoundingClientRect();
+  const isWithinArea = ev.clientX > rect.left + rect.width -20 && ev.clientY > rect.top + rect.height -20;
+  const menu = document.getElementById('seekmenu');
+  const slider = document.getElementById('videoSlider')
+  const elementRect = slider.getBoundingClientRect();
+  const cursorX = ev.clientX;
+  const cursorY = ev.clientY;
+  if (!clicked){
+    playerElement.style.pointerEvents = isWithinArea ? "auto" : "none";
+    if (cursorY < elementRect.top - 10 || cursorY > elementRect.bottom + 20){
+      inseekrange = false;
+      document.getElementById('seekmenu').style.display = 'none'; 
+    }
+  }
+}
+var inseekrange = false;
+function seekmenu(event) {
+  const menu = document.getElementById('seekmenu');
+  const sliderrect = document.getElementById('videoSlider').getBoundingClientRect();
+  menu.style.top = sliderrect.top -20  + "px";
+  menu.style.display = 'flex';
+  inseekrange = true;
 }
 
 var firstplay = true;
 function playHandler() {
-  console.log('paused');
-  //player.pause();
+  player.pause();
   firstplay = false;
   player.off('play', playHandler);
 }
@@ -943,7 +1002,9 @@ function fixheight() {
       el.style.fontSize = w + "px";
     }
   }
-  myelement.scrollTop = myelement.scrollTop - ((myelement.offsetHeight - initalh));
+  if (myelement.offsetHeight - initalh < 0){
+    myelement.scrollTop = myelement.scrollTop - ((myelement.offsetHeight - initalh));
+  }
 }
 var resizeObserver = new ResizeObserver(fixheight);
 resizeObserver.observe(document.getElementById('currentSong'));
@@ -981,7 +1042,42 @@ function toggleMenu(id){
 }
 
 generateUpcoming();
+dragElement(document.getElementById("playerContainer"));
+function dragElement(elmnt) {
+  
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  elmnt.onmousedown = dragMouseDown;
 
+  function dragMouseDown(e) {
+    if (document.getElementById("player").style.pointerEvents == "auto"){return;}
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
 var link = document.createElement('link');
 link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
 link.rel = "stylesheet";
@@ -1008,10 +1104,8 @@ script.onload = function () {
         src: "https://www.youtube.com/watch?v=wu2djWZzmz0"
       }]
     }, function onPlayerReady() {
-      videojs.log('Your player is ready!');
       this.play();
       this.on('ended', ender);
-      console.log(player.sources);
     });
     var myMiddleware = function(player) {
       return {

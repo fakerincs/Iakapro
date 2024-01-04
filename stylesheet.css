@@ -8,6 +8,29 @@
   --songs-color: #dcdcdc;
   --border-color: #ffffff;
 }
+.upbg{
+  background-color:var(--upcoming-color);
+  padding: 1px;
+  color: var(--main-color);
+  height: min-content;
+  width: min-content;
+}
+.centerflex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#durationtext{
+  pointer-events: none;
+  position: absolute;
+  display:none;
+}
+.border{
+  border-style: solid;
+  border-color: var(--border-color);
+  border-width: 1px;
+  border-radius:6px;
+}
 body{
   color: var(--main-color) !important;
   background-color:var(--third-color) !important;
@@ -289,11 +312,12 @@ button{
   left: 0px;
   bottom: 0%;
 }
-#playPauseButton, #skipButton, #shufflebutton{
+.controlbutton{
   text-align: center;
-  display: inline-block;
+  display: flex;
+  width:0;
   line-height: 0px;
-  padding: 24px 14px;
+  padding: 24px 24px;
   font-size: 25px;
   margin-right: 5px;
   border-radius: 13px;
@@ -302,15 +326,12 @@ button{
   background-color: var(--secondary-color);
   color: var(--main-color);
   vertical-align: middle; /* or use display: flex; align-items: center; justify-content: center; */
+  justify-content: center;
 }
 
-#playPauseButton:hover, #skipButton:hover, #shufflebutton:hover {
+.controlbutton:hover {
   background-color: var(--main-color);
   color: var(--secondary-color);
-}
-
-#skipButton{
-  font-size: 38px;
 }
 
 #videoSlider {
@@ -390,6 +411,11 @@ button{
   outline-style: solid;
   outline-color:var(--border-color);
   outline-width: 1px;
+}
+#seekmenu {
+  display: none;
+  position: absolute;
+  border-radius: 5px;
 }
 button:hover{
   color:var(--background-color);

@@ -68,91 +68,21 @@
 
     
   <div id="controls">
-    <input type="range" id="videoSlider" aria-label= "timeline" min="0" max="10" value="0"><br>
+    <input type="range" id="videoSlider" aria-label= "timeline" min="0" max="10" value="0" onmouseover="seekmenu(event)" ><br>
     <div id="volume">
-      <button id="playPauseButton">||</button>
-      <button id="skipButton">➝</button>
-      <button id="shufflebutton" onclick="toggleshuffle()">⤮</button>
+      <button class="controlbutton" id="playPauseButton">||</button>
+      <button class="controlbutton" id="skipButton">➝</button>
+      <button class="controlbutton" id="shufflebutton" onclick="toggleshuffle()">⤮</button>
       <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50"></label>
     </div>
   </div>
-  
+  <div id="seekmenu" class="upbg"></div>
+  <div id="durationtext" class="upbg centerflex"></div>
   <div id="playerContainer">
         <video id="player" class="video-js">
           <!--  preload='auto' will make mobile not work -->
             <source id="testVideoSource">
         </video>
-    <script>
-        dragElement(document.getElementById("playerContainer"));
-
-        function dragElement(elmnt) {
-          
-          var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-          elmnt.onmousedown = dragMouseDown;
-
-          function dragMouseDown(e) {
-            if (document.getElementById("player").style.pointerEvents == "auto"){return;}
-            e = e || window.event;
-            e.preventDefault();
-            // get the mouse cursor position at startup:
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            document.onmousemove = elementDrag;
-          }
-
-          function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-            // calculate the new cursor position:
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            // set the element's new position:
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-          }
-
-          function closeDragElement() {
-            // stop moving when mouse button is released:
-            document.onmouseup = null;
-            document.onmousemove = null;
-          }
-        }
-    </script>
-    <script>
-      document.addEventListener("mousemove", handleMouseMove);
-      let clicked = false;
-      document.addEventListener('mousedown', function(event) {
-        // Check which mouse button is pressed
-        if (event.button === 0) {
-          clicked = true;
-        }
-      });
-
-      // Add event listener for mouse up
-      document.addEventListener('mouseup', function(event) {
-        // Check which mouse button is released
-        if (event.button === 0) {
-          clicked = false;
-        }
-      });
-      
-      function handleMouseMove(ev) {
-        const playerElement = document.getElementById("player");
-        const draggableElement = document.getElementById("playerContainer");
-        const rect = draggableElement.getBoundingClientRect();
-
-        // Check if the cursor is within the desired area
-        const isWithinArea = ev.clientX > rect.left + rect.width -20 && ev.clientY > rect.top + rect.height -20;
-
-        // Enable or disable pointer events for the player element based on the condition
-        if (!clicked){
-          playerElement.style.pointerEvents = isWithinArea ? "auto" : "none";
-        }
-      }
-    </script>
   </div>
   <script src="script.js"></script>
 </body>
