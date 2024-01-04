@@ -658,6 +658,10 @@ function createPlayer() {
         player.muted(false);
         videojs.use('*', myMiddleware);
         player.volume(svol / 100);
+        slider.max = player.duration();
+        document.getElementById('durationtext').innerText = formatTime(playerl.duration);
+        document.getElementById('durationtext').style.right = slider.getBoundingClientRect().left + "px";
+        document.getElementById('durationtext').style.top = (slider.getBoundingClientRect().top - 10) + "px";
       }
     }
     player.on('timeupdate', videoUpdate);
@@ -678,6 +682,10 @@ function createPlayer() {
     playerl.src=("songs/" + currentMedia.id);
     playerl.muted = true;
     playerl.oncanplay = (event) => {
+      slider.max = playerl.duration;
+      document.getElementById('durationtext').innerText = formatTime(playerl.duration);
+      document.getElementById('durationtext').style.right = slider.getBoundingClientRect().left + "px";
+      document.getElementById('durationtext').style.top = (slider.getBoundingClientRect().top - 10) + "px";
       playerl.muted = true;
       if (!firstplay){
         playerl.play();
@@ -717,10 +725,6 @@ function audioUpdate(){//reason for fix forgotten!
     return;
   }
   slider.value = playerl.currentTime;
-  slider.max = playerl.duration;
-  document.getElementById('durationtext').innerText = formatTime(playerl.duration);
-  document.getElementById('durationtext').style.right = slider.getBoundingClientRect().left + "px";
-  document.getElementById('durationtext').style.top = (slider.getBoundingClientRect().top - 10) + "px";
   if (inseekrange){
     const menu = document.getElementById('seekmenu');
     const elementRect = slider.getBoundingClientRect();
@@ -733,7 +737,6 @@ function videoUpdate(){
   if (playlist[shuffledIndices[currentIndex]].type == 'local'){
     return;
   }
-  slider.max = player.duration();
   slider.value = player.currentTime();
   if (inseekrange){
     const menu = document.getElementById('seekmenu');
@@ -986,21 +989,25 @@ function handleChoose(event){
     }
   }
 }
+var prevwidth = upcoming.offsetWidth;
 function fixheight() {
   var myelement = document.getElementById('upcoming');
   var initalh = myelement.offsetHeight;
   myelement.style.height = "calc(100% - 140px - " + document.getElementById('currentSong').offsetHeight + "px"+ ")";
-  for (let i = 0; i < playlist.length; i++) {
-    var el = document.getElementById(`${i}`);
-    if (el.style.fontSize != "16px"){
-      el.style.fontSize = "16px";
+  if (prevwidth != upcoming.offsetWidth){
+    for (let i = 0; i < playlist.length; i++) {
+      var el = document.getElementById(`${i}`);
+      if (el.style.fontSize != "16px"){
+        el.style.fontSize = "16px";
+      }
+      
+      var w = 16;
+      while (el.offsetWidth + 20 > upcoming.offsetWidth) {
+        w -= 1;
+        el.style.fontSize = w + "px";
+      }
     }
-    
-    var w = 16;
-    while (el.offsetWidth + 20 > upcoming.offsetWidth) {
-      w -= 1;
-      el.style.fontSize = w + "px";
-    }
+    prevwidth = upcoming.offsetWidth;
   }
   if (myelement.offsetHeight - initalh < 0){
     myelement.scrollTop = myelement.scrollTop - ((myelement.offsetHeight - initalh));

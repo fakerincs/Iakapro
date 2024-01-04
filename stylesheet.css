@@ -29,7 +29,6 @@
   border-style: solid;
   border-color: var(--border-color);
   border-width: 1px;
-  border-radius:6px;
 }
 body{
   color: var(--main-color) !important;
@@ -339,7 +338,6 @@ button{
   width: calc(100% - 35px);
   /* margin-left: 15px; */
   background: var(--secondary-color);
-  border-color: var(--border-color);
   border-radius: 10px;
   overflow: hidden;
   height: 7px;
