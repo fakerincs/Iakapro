@@ -73,7 +73,7 @@
       <button class="controlbutton" id="playPauseButton">||</button>
       <button class="controlbutton" id="skipButton">➝</button>
       <button class="controlbutton" id="shufflebutton" onclick="toggleshuffle()">⤮</button>
-      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50"></label>
+      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50" oninput="changeVolume(this.value)""></label>
     </div>
   </div>
   <div id="seekmenu" class="upbg"></div>

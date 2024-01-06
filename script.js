@@ -395,7 +395,7 @@ let playlist = [
   
 ];
 var currentname = "default(c)";//and i thought i could escape
-var shuffle = false
+var shuffle = false;
 var playlists = [{list: playlist, name:"default(c)"}];
 let svol = 50;
 let shuffledIndices = [];
@@ -404,6 +404,18 @@ let player;
 let playerl;
 let videoOff = true;
 var currentlistindex = 0;
+const playerElement = document.getElementById("player");
+const playerContainer = document.getElementById("playerContainer");
+const currentSongElement = document.getElementById('currentSong');
+const videoButton = document.getElementById('videoButton');
+videoButton.addEventListener('click', toggleVideo);
+const playPauseButton = document.getElementById('playPauseButton');
+playPauseButton.addEventListener('click', togglePlayback);
+const skipButton = document.getElementById('skipButton');
+skipButton.addEventListener('click', skipMedia);
+const volumeSlider = document.getElementById('volumeSlider');
+const videoSlider = document.getElementById('videoSlider');
+const durationtext = document.getElementById('durationtext');
 function parseLinks() {
   var inputText = document.getElementById('fileInput').value;
   if (inputText==""){
@@ -520,6 +532,21 @@ function copy() {
   window.getSelection().addRange(range);
 }
 if (typeof(Storage) !== "undefined") {
+  if (localStorage.getItem("shuffle")==null){
+    localStorage.setItem("shuffle", shuffle);
+  }
+  else{
+    console.log(JSON.parse(localStorage.getItem("shuffle")))
+    shuffle = JSON.parse(localStorage.getItem("shuffle"));
+  }
+  if (localStorage.getItem("volume")==null){
+    localStorage.setItem("volume", svol);
+  }
+  else{
+    console.log(JSON.parse(localStorage.getItem("volume")))
+    svol = JSON.parse(localStorage.getItem("volume"));
+    volumeSlider.value = svol;
+  }
   if (localStorage.getItem("playCount")==null){
     localStorage.setItem("playCount", 0);
   }
@@ -550,7 +577,7 @@ if (typeof(Storage) !== "undefined") {
   }
 }
 else{
-  alert("localstorage not supported, aka everything is prob broken")
+  alert("localstorage not supported, aka everything is prob broken");
   console.log("idk why i even added this check, website doesnt do anything if it doesnt work");
 }
 function pull(){
@@ -569,8 +596,7 @@ function shuffleIndices() {
     [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
   }
 }
-const playerElement = document.getElementById("player");
-const playerContainer = document.getElementById("playerContainer");
+
 function toggleVideo(){
   if (playlist[shuffledIndices[currentIndex]].type == 'local'){return;}
   const playerElement = document.getElementById("player");
@@ -590,20 +616,7 @@ function toggleVideo(){
     playerElement.style.height ="1px"; 
   }
 }
-const currentSongElement = document.getElementById('currentSong');
-const videoButton = document.getElementById('videoButton');
-videoButton.addEventListener('click', toggleVideo);
-const playPauseButton = document.getElementById('playPauseButton');
-playPauseButton.addEventListener('click', togglePlayback);
-const skipButton = document.getElementById('skipButton');
-skipButton.addEventListener('click', skipMedia);
-const volumeSlider = document.getElementById('volumeSlider');
-volumeSlider.addEventListener('input', () => {
-  changeVolume(volumeSlider.value);
-});
 
-const videoSlider = document.getElementById('videoSlider');
-const durationtext = document.getElementById('durationtext');
 
 function createPlayer() {
   const videoSlider = document.getElementById('videoSlider');
@@ -643,12 +656,13 @@ function createPlayer() {
     };
     videojs.use('*', myMiddleware);
     player.ready(function() {
-      player.currentTime(0);
-      player.play();
-      player.muted(false);
-      videojs.use('*', myMiddleware);
-      player.volume(svol / 100); // Set volume to half
-      
+      if (currentMedia.type === 'youtube') {
+        player.currentTime(0);
+        player.play();
+        player.muted(false);
+        videojs.use('*', myMiddleware);
+        player.volume(svol / 100); // Set volume to half
+      }
     });
     player.oncanplay = function(){
       if (currentMedia.type === 'youtube') {
@@ -668,10 +682,10 @@ function createPlayer() {
     player.on('timeupdate', videoUpdate);
     player.on('play', function(){
       if (player.currentTime()< .2){
+        player.volume(svol / 100);
         player.play();
         player.currentTime(0.21);
         document.getElementById('videoSlider').max = player.duration();
-        console.log(document.getElementById('videoSlider').max);
         durationtext.innerText = formatTime(player.duration());
         durationtext.style.right = (document.getElementById('videoSlider').getBoundingClientRect().left -10) + "px";
         durationtext.style.top = (document.getElementById('videoSlider').getBoundingClientRect().top -2) + "px";
@@ -720,7 +734,6 @@ function createPlayer() {
   }
 }
 function videoSeek(){
-  console.log('seelign')
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     player.currentTime(document.getElementById('videoSlider').value);
   }
@@ -867,6 +880,7 @@ function skipMedia() {
 
 function changeVolume(volume) {
   svol = volume;
+  localStorage.setItem("volume", svol);
   if (player!= null){
     player.volume(volume / 100);
   }
@@ -883,6 +897,7 @@ function toggleshuffle(){
     shuffle = true;
     generateUpcoming();
   }
+  localStorage.setItem("shuffle", shuffle);
 }
 function addSong(){
   var inputText = document.getElementById('songinput').value;
@@ -931,6 +946,7 @@ function editname(){
 var mode = "select";
 function generateUpcoming(){
   currentIndex = 0;
+  console.log(shuffle);
   if (shuffle){
     shuffleIndices();
   }
