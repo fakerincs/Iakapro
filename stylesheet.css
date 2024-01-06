@@ -411,9 +411,11 @@ button{
   outline-width: 1px;
 }
 #seekmenu {
+  pointer-events: none;
   display: none;
   position: absolute;
   border-radius: 5px;
+  
 }
 button:hover{
   color:var(--background-color);
