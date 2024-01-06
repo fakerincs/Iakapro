@@ -23,7 +23,9 @@
 #durationtext{
   pointer-events: none;
   position: absolute;
-  display:none;
+  font-size: 9px;
+  z-index: 2;
+  mix-blend-mode: difference;
 }
 .border{
   border-style: solid;
@@ -386,6 +388,7 @@ button{
   cursor: pointer;
 }
 #volumeSlider::-webkit-slider-thumb {
+  outline: none;
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
@@ -394,21 +397,22 @@ button{
   border-style: none;
   background: var(--main-color);
   cursor: pointer;
-  outline-style: solid;
-  outline-color:var(--border-color);
-  outline-width: 1px;
+  border-style: solid;
+  border-color:var(--border-color);
+  border-width: 1px;
   
 }
 #volumeSlider::-moz-range-thumb {
+  outline: none;
   width: 15px;
   height: 15px;
   border-radius: 100%; 
   border-style: none;
   background: var(--main-color);
   cursor: pointer;
-  outline-style: solid;
-  outline-color:var(--border-color);
-  outline-width: 1px;
+  border-style: solid;
+  border-color:var(--border-color);
+  border-width: 1px;
 }
 #seekmenu {
   pointer-events: none;

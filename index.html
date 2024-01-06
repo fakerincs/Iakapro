@@ -68,7 +68,7 @@
 
     
   <div id="controls">
-    <input type="range" id="videoSlider" class="border" aria-label= "timeline" min="0" max="10" value="0" onmouseover="seekmenu(event)" ><br>
+    <input type="range" id="videoSlider" class="border" aria-label= "timeline" min="0" max="10" value="0" oninput="videoSeek()" onmouseover="seeksmenu(event)" ><br>
     <div id="volume">
       <button class="controlbutton" id="playPauseButton">||</button>
       <button class="controlbutton" id="skipButton">➝</button>
@@ -77,7 +77,7 @@
     </div>
   </div>
   <div id="seekmenu" class="upbg"></div>
-  <div id="durationtext" class="upbg centerflex"></div>
+  <div id="durationtext" class="centerflex"></div>
   <div id="playerContainer">
         <video id="player" class="video-js">
           <!--  preload='auto' will make mobile not work -->
