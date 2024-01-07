@@ -392,6 +392,11 @@ let playlist = [
   { id: 'LnVYaPhkPok', title: 'Andora - Dopamine (feat. 水槽) MV 『ドーパミン』', type: 'youtube' },
   { id: 'BZceUzh0FoQ', title: 't+pazolite - Lilac Feel', type: 'youtube' },
   { id: 'dywmvip.mp3', title: 'PSYQUI - Don\'t You Want Me (VIP FF remix)', type: 'local' },
+  { id: 'EOC2Qusbu18', title: 'Mameyudoufu - Wave (feat. 藍月なくる) Guitar Cover', type: 'youtube' },
+  { id: 'Tb68mARvjUc', title: 'Geoxor & poixone - I\'m Here', type: 'youtube' },
+  { id: '5eu_fkIbmxc', title: 'Stardust', type: 'youtube' },
+  { id: 'XzZ9iyjuYiI', title: '【PSYQUI】Don`t you want me Are you kidding me', type: 'youtube' },
+  
   
 ];
 var currentname = "default(c)";//and i thought i could escape
@@ -418,6 +423,7 @@ const videoSlider = document.getElementById('videoSlider');
 const durationtext = document.getElementById('durationtext');
 function parseLinks() {
   var inputText = document.getElementById('fileInput').value;
+  document.getElementById('fileInput').value="";
   if (inputText==""){
     return;
   }
@@ -956,6 +962,24 @@ function generateUpcoming(){
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
 }
+function searchsong(input){
+  let searchresult = document.getElementById("searchresult");
+  searchresult.innerHTML = "";
+  for (let i=0; i < shuffledIndices.length; i++){
+    let searchel = document.getElementById(i);
+    if (searchel.innerText.includes(input)){
+      var clonedElement = searchel.cloneNode(true);
+      clonedElement.id = clonedElement.id + "s";
+      clonedElement.addEventListener('click', handleChoose);
+      if (clonedElement.style.color == 'var(--main-color)'){
+        clonedElement.style.color = 'var(--songs-color)';
+      }
+      var liElement = document.createElement('li');
+      liElement.appendChild(clonedElement);
+      searchresult.appendChild(liElement);
+    }
+  }
+}
 function deletes(){
   if (mode == "delete"){
     document.getElementById("deletebutton").style.color = "var(--main-color)";
@@ -970,6 +994,9 @@ function deletes(){
 var editselection = null;
 function handleChoose(event){
   var itemId = event.target.id;
+  if (itemId.includes('s')){
+    itemId = itemId.slice(0, -1)
+  }
   editselection = shuffledIndices[itemId];
   if (mode == "select"){
     playNextSong(itemId);
@@ -1028,6 +1055,10 @@ function fixheight() {
     myelement.scrollTop = myelement.scrollTop - ((myelement.offsetHeight - initalh));
   }
 }
+function jumptocurrent(){
+  console.log((document.getElementById(`${currentIndex}`).offsetTop));
+  upcoming.scrollTop = ((document.getElementById(`${currentIndex}`).offsetTop -10));
+}
 var resizeObserver = new ResizeObserver(fixheight);
 resizeObserver.observe(document.getElementById('currentSong'));
 
@@ -1038,7 +1069,7 @@ function ender(){
     playNextSong();
   }
 }
-
+var wasdispsearch = false;
 function toggleMenu(id){
   const menu = document.getElementById(id); 
   if (!menu.className.includes("hidden")){
@@ -1049,12 +1080,16 @@ function toggleMenu(id){
       mode = "select";
       if (id == "editor" && !document.getElementById('searchdiv').className.includes("hidden")){
         toggleMenu("searchdiv");
+        wasdispsearch = true;
       }
     }
   }
   else{
     menu.classList.remove('hidden');
     menu.style.zIndex="2";//slower but less data
+    if (wasdispsearch && id == "editor"){
+      toggleMenu("searchdiv");
+    }
     if (id == "editnamediv"){
       mode = "edit";
     }

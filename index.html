@@ -12,8 +12,8 @@
 </head>
 <body>
   <ul class="nav centerflex">
-    <li><button aria-label="playlistmenu" id="playlistButton" class="navl" type="button" onclick="toggleMenu('playlistmenu')">P</button></li>
-    <li><textarea class="navl" placeholder="look→readme" id="fileInput" aria-label="fileinput"></textarea><button id="import" class="navl" onclick="parseLinks()">Import</button></li>
+    <li><button aria-label="playlistmenu" title="playlists" id="playlistButton" class="navl" type="button" onclick="toggleMenu('playlistmenu')">P</button></li>
+    <li><button aria-label="jumptocurrent" title="jump to current song" id="jumptocurrent" class="navl" type="button" onclick="jumptocurrent()">J</button></li>
     <li><button class="navl" id="videoButton">No Video</button></li>
     <li><div id="plays"></div><p id="playtext">&nbsp;plays</p><button onclick="resetStats()" class="navl" id="resetStats">reset</button></li>
       <script>
@@ -26,8 +26,11 @@
     <li><button aria-label="color settings" id="colorButton" class="navl" type="button" onclick="toggleMenu('colorMenu')">Color</button></li>
     <li><button class="navl" onclick="if (confirm('This will reset all playlists and colors and reload!!!! Are you sure?') == true) {localStorage.clear();location.reload();}">reset all</button></li>
   </ul>
-  <div id="playlistmenu" class="hidden border">
-    <button class="pbutt" onclick="exportp()">export</button><button class="pbutt" onclick="copy()">select</button><button class="pbutt" onclick="pull()">pull(c)</button>
+  <div id="playlistmenu" class="hidden border centerflex">
+    <div class="centerflex">
+      <textarea class="navl" placeholder="look→readme" id="fileInput" aria-label="fileinput"></textarea><button id="import" class="navl" onclick="parseLinks()">Import</button>
+    </div>
+    <div><button class="pbutt" onclick="exportp()">export</button><button class="pbutt" onclick="copy()">select</button><button class="pbutt" onclick="pull()">pull(c)</button></div>
     <div id="result" class="pbutt"></div>
   </div>
   <div id="colorMenu" class="border hidden">
@@ -66,7 +69,8 @@
     <button class="editorbutton border" type='button' id="opensearch" onclick='toggleMenu("searchdiv")'>Search</button>
   </div>
   <div id="searchdiv" class="centerflex border hidden">
-    <input type="text" class="border" placeholder="search..." id="songsearch" aria-label="songsearch"></textarea><button id="entersongserach" class="border centerflex" onclick="searchsong()">enter</button>
+    <input type="text" class="border" placeholder="search..." id="songsearch" aria-label="songsearch" oninput="searchsong(this.value)">
+    <ul id="searchresult"></ul>
   </div>
   <ul id="upcoming"></ul>
 
@@ -74,7 +78,7 @@
   <div id="controls">
     <input type="range" id="videoSlider" class="border" aria-label= "timeline" min="0" max="10" value="0" oninput="videoSeek()" onmouseover="seeksmenu(event)" ><br>
     <div id="volume">
-      <button class="controlbutton border centerflex" id="playPauseButton">E</button>
+      <button class="controlbutton border centerflex" id="playPauseButton">▶</button>
       <button class="controlbutton centerflex border" id="skipButton">➝</button>
       <button class="controlbutton centerflex border" id="shufflebutton" onclick="toggleshuffle()">⤮</button>
       <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" class="border" min="0" max="100" value="50" oninput="changeVolume(this.value)""></label>

@@ -119,6 +119,7 @@ body{
   border-width: 0 0 0 1px;
 }
 #fileInput{
+  height: 20px;
   border-radius: 5px 0 0 5px;
   background-color: var(--background-color);
   resize: none;
@@ -137,6 +138,7 @@ body{
   border-radius: 10px;
   position: absolute;
   background: var(--upcoming-color);
+  flex-direction: column;
 }
 #resetcolors{
   border-radius: 3px;
@@ -226,7 +228,7 @@ body{
   padding-bottom: 10px;
   padding-top: 10px;
 }
-#upcoming {
+#upcoming, #searchresult{
   font-size: 1rem;
   max-height: calc(100% - 210px);
   position:absolute;
@@ -242,7 +244,10 @@ body{
   color: var(--songs-color);
   overflow-x: hidden;
 }
-#upcoming > li, #add{
+#searchresult{
+  position:unset;
+}
+#upcoming > li, #add, #searchresult > li{
   padding-left: 10px;
   line-height: 30px;
   border-top: 1px solid #454545;
@@ -307,13 +312,16 @@ button{
   color: var(--secondary-color);
 }
 #searchdiv{
+  flex-direction: column;
   position:absolute;
   padding: 10px 5px;
   left: 50%;
+  top:10%;
   transform: translate(-50%, 0);
   background: color-mix(in srgb, var(--third-color) 90%, transparent);
   border-radius: 8px;
-  width:80%
+  width:80%;
+  max-height: calc(80% - 100px);
 }
 #songsearch{
   max-width: 50%;
@@ -321,18 +329,6 @@ button{
   height: 20px;
   color:var(--main-color);
   border-radius: 5px;
-}
-#entersongserach{
-  height: 0;
-  width: 0;
-  padding: 12px 25px;
-  background: var(--secondary-color);
-  color:var(--main-color);
-  border-radius: 5px;
-}
-#entersongserach:hover{
-  color:var(--background-color);
-  background-color: var(--main-color);
 }
 #videoSlider {
   -webkit-appearance: none;
