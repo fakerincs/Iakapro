@@ -308,9 +308,31 @@ button{
 }
 #searchdiv{
   position:absolute;
-  margin: auto;
+  padding: 10px 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: color-mix(in srgb, var(--third-color) 90%, transparent);
   border-radius: 8px;
   width:80%
+}
+#songsearch{
+  max-width: 50%;
+  background-color: var(--background-color);
+  height: 20px;
+  color:var(--main-color);
+  border-radius: 5px;
+}
+#entersongserach{
+  height: 0;
+  width: 0;
+  padding: 12px 25px;
+  background: var(--secondary-color);
+  color:var(--main-color);
+  border-radius: 5px;
+}
+#entersongserach:hover{
+  color:var(--background-color);
+  background-color: var(--main-color);
 }
 #videoSlider {
   -webkit-appearance: none;
@@ -394,7 +416,6 @@ button{
   display: none;
   position: absolute;
   border-radius: 5px;
-  
 }
 button:hover{
   color:var(--background-color);

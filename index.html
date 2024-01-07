@@ -65,7 +65,9 @@
     <button class="editorbutton border" type='button' id="deletebutton" onclick='deletes()'>Delete</button>
     <button class="editorbutton border" type='button' id="opensearch" onclick='toggleMenu("searchdiv")'>Search</button>
   </div>
-  <div id="searchdiv" class="centerflex border upbg hidden">test</div>
+  <div id="searchdiv" class="centerflex border hidden">
+    <input type="text" class="border" placeholder="search..." id="songsearch" aria-label="songsearch"></textarea><button id="entersongserach" class="border centerflex" onclick="searchsong()">enter</button>
+  </div>
   <ul id="upcoming"></ul>
 
     

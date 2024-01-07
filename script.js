@@ -1016,7 +1016,6 @@ function fixheight() {
       if (el.style.fontSize != "16px"){
         el.style.fontSize = "16px";
       }
-      
       var w = 16;
       while (el.offsetWidth + 20 > upcoming.offsetWidth) {
         w -= 1;
@@ -1048,6 +1047,9 @@ function toggleMenu(id){
       document.getElementById("deletebutton").style.color = "var(--main-color)";
       document.getElementById("deletebutton").style.background = "var(--secondary-color)";
       mode = "select";
+      if (id == "editor" && !document.getElementById('searchdiv').className.includes("hidden")){
+        toggleMenu("searchdiv");
+      }
     }
   }
   else{
