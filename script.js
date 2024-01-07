@@ -1009,7 +1009,7 @@ var prevwidth = upcoming.offsetWidth;
 function fixheight() {
   const myelement = document.getElementById('upcoming');
   var initalh = myelement.offsetHeight;
-  myelement.style.height = "calc(100% - 140px - " + document.getElementById('currentSong').offsetHeight + "px"+ ")";
+  myelement.style.maxHeight = "calc(100% - 140px - " + document.getElementById('currentSong').offsetHeight + "px"+ ")";
   if (prevwidth != upcoming.offsetWidth){
     for (let i = 0; i < playlist.length; i++) {
       var el = document.getElementById(`${i}`);
@@ -1042,22 +1042,17 @@ function ender(){
 
 function toggleMenu(id){
   const menu = document.getElementById(id); 
-  if (menu.style.visibility == "visible"){
-    menu.style.visibility = "hidden";
-    menu.style.display = "none";
+  if (!menu.className.includes("hidden")){
+    menu.classList.add('hidden');
     if (id == "editnamediv" || id == "editor"){
       document.getElementById("deletebutton").style.color = "var(--main-color)";
       document.getElementById("deletebutton").style.background = "var(--secondary-color)";
       mode = "select";
     }
-    
   }
   else{
-    menu.style.visibility = "visible";
-    menu.style.display = "unset";
-    if (menu.className == "editormenu" || id == "editor"){
-      menu.style.display = "flex";
-    }
+    menu.classList.remove('hidden');
+    menu.style.zIndex="2";//slower but less data
     if (id == "editnamediv"){
       mode = "edit";
     }

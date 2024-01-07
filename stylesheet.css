@@ -8,6 +8,7 @@
   --songs-color: #dcdcdc;
   --border-color: #ffffff;
 }
+
 .upbg{
   background-color:var(--upcoming-color);
   padding: 1px;
@@ -19,6 +20,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.hidden{
+  visibility: hidden;
+  display:none;
+  z-index: 2;
 }
 #durationtext{
   pointer-events: none;
@@ -46,7 +52,6 @@ body{
 }
 .nav{
   background-color: var(--third-color);
-  display:flex;
   height: 30px;
   min-width: 100%;
   position: sticky;
@@ -56,10 +61,10 @@ body{
   margin-top: 0px;
   margin-right: -8px;
   padding: 3px;
-  align-items: center;
   overflow:auto;
   white-space: nowrap;
   direction: ltr;
+  justify-content: unset;
 }
 .nav > li{
   -webkit-appearance: none;
@@ -76,7 +81,6 @@ body{
   border-width: 1px;
   border-radius:6px;
 }
-
 ::-webkit-scrollbar {
   height: 4px;
   width:8px
@@ -105,8 +109,6 @@ body{
   max-width: 120px;
   background: var(--secondary-color);
   border-style: none;
-  border-color: var(--border-color);
-  border-width: 1px;
   border-radius: 6px;
   color: var(--main-color);
 }
@@ -122,16 +124,10 @@ body{
   resize: none;
 }
 #colorMenu{
-  visibility: hidden;
-  display:none;
   background-color: var(--third-color);
-  border-style: solid;
-  border-color: var(--border-color);
-  border-width:1px;
   border-radius: 6px;
   padding: 8px;
   position: absolute;
-  z-index: 1;
   right: 0%;
 }
 #playlistmenu{
@@ -139,14 +135,7 @@ body{
   margin-right: 5px;
   padding: 10px;
   border-radius: 10px;
-  display: block;
   position: absolute;
-  visibility: hidden;
-  display:none;
-  border-style: solid;
-  border-width: 1px;
-  border-color: var(--border-color);
-  z-index: 999;
   background: var(--upcoming-color);
 }
 #resetcolors{
@@ -163,7 +152,7 @@ body{
   font-size: 17px;
   background: var(--third-color);
   border-style: solid;
-  border-color: var(--background-color);
+  border-color: color-mix(in srgb, var(--border-color) 50%, transparent);
   border-width: 1px;
   color: var(--main-color);
 }
@@ -190,17 +179,10 @@ body{
   justify-content: center;
 }
 #editor{
-  color: var(--main-color);
-  background-color: var(--upcoming-color);
   padding: 6px;
   border-radius: 5px;
-  border-style: solid;
-  border-color: var(--border-color);
-  border-width:1px;
   position: absolute;
   z-index: 1;
-  visibility: hidden;
-  display:none;
   font-size: small;
   display: flex;
   flex-direction: column;
@@ -215,17 +197,13 @@ body{
 .editorbutton{
   height: min-content;
   background: var(--secondary-color);
-  border-color: var(--border-color);
-  border-width:1px;
   color: var(--main-color);
   border-radius: 5px;
 }
 .editormenu{
+  white-space:nowrap;
   margin-left: 4px;
-  visibility: hidden;
-  display:none;
   line-height: 10px;
-  align-items: center;
 }
 .editormenu > input{
   color: var(--main-color);
@@ -250,7 +228,7 @@ body{
 }
 #upcoming {
   font-size: 1rem;
-  height: calc(100% - 210px);
+  max-height: calc(100% - 210px);
   position:absolute;
   display: inline-block;
   white-space:nowrap;
@@ -314,27 +292,26 @@ button{
   bottom: 0%;
 }
 .controlbutton{
-  text-align: center;
-  display: flex;
   width:0;
   line-height: 0px;
   padding: 24px 24px;
   font-size: 25px;
   margin-right: 5px;
   border-radius: 13px;
-  border-width: 1px;
-  border-color: var(--border-color);
   background-color: var(--secondary-color);
   color: var(--main-color);
-  vertical-align: middle; /* or use display: flex; align-items: center; justify-content: center; */
-  justify-content: center;
 }
 
 .controlbutton:hover {
   background-color: var(--main-color);
   color: var(--secondary-color);
 }
-
+#searchdiv{
+  position:absolute;
+  margin: auto;
+  border-radius: 8px;
+  width:80%
+}
 #videoSlider {
   -webkit-appearance: none;
   width: calc(100% - 35px);
@@ -382,9 +359,7 @@ button{
   background: var(--secondary-color);
   outline: none;
   border-radius: 10px;
-  border-style: solid;
-  border-color: var(--border-color);
-  border-width: 1px;
+
   cursor: pointer;
 }
 #volumeSlider::-webkit-slider-thumb {

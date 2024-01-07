@@ -11,7 +11,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <ul class="nav">
+  <ul class="nav centerflex">
     <li><button aria-label="playlistmenu" id="playlistButton" class="navl" type="button" onclick="toggleMenu('playlistmenu')">P</button></li>
     <li><textarea class="navl" placeholder="look→readme" id="fileInput" aria-label="fileinput"></textarea><button id="import" class="navl" onclick="parseLinks()">Import</button></li>
     <li><button class="navl" id="videoButton">No Video</button></li>
@@ -26,11 +26,11 @@
     <li><button aria-label="color settings" id="colorButton" class="navl" type="button" onclick="toggleMenu('colorMenu')">Color</button></li>
     <li><button class="navl" onclick="if (confirm('This will reset all playlists and colors and reload!!!! Are you sure?') == true) {localStorage.clear();location.reload();}">reset all</button></li>
   </ul>
-  <div id="playlistmenu">
+  <div id="playlistmenu" class="hidden border">
     <button class="pbutt" onclick="exportp()">export</button><button class="pbutt" onclick="copy()">select</button><button class="pbutt" onclick="pull()">pull(c)</button>
     <div id="result" class="pbutt"></div>
   </div>
-  <div id="colorMenu">
+  <div id="colorMenu" class="border hidden">
     <span>Main Color <input aria-label="mcolor" type="color" id="mainColor"></span><br>
     <span>Played Color <input aria-label="pcolor "type="color" id="playedColor"></span><br>
     <span>Background Color <input aria-label="bcolor" type="color" id="backgroundColor"></span><br>
@@ -45,35 +45,37 @@
 
   <div id="playerinfo">
     <div id="currentSong"></div>
-    <button id="editmenubutton" type="button" class="editorbutton" onclick='toggleMenu("editor")'>⚇</button>
+    <button id="editmenubutton" type="button" class="editorbutton border" onclick='toggleMenu("editor")'>⚇</button>
   </div>
-  <div id='editor'>
+  <div id='editor' class="border hidden upbg">
     <span>
-      <div id='addsongdiv' class='editormenu'>
+      <div id='addsongdiv' class='editormenu centerflex hidden'>
         Add Song<input aria-label='input song' type='text' default ='title;link' id='songinput'>
-        <button class="editorbutton" onclick='addSong()'>Enter</button>
+        <button class="editorbutton border" onclick='addSong()'>Enter</button>
       </div>
-      <button class="editorbutton" aria-label='add button' type='button' onclick='toggleMenu("addsongdiv")'>Add</button>
+      <button class="editorbutton border" aria-label='add button' type='button' onclick='toggleMenu("addsongdiv")'>Add</button>
     </span>
     <span>
-      <div id='editnamediv' class='editormenu'>
+      <div id='editnamediv' class='editormenu centerflex hidden'>
         Edit<input aria-label='input name' type='text' default ='title' id='nameinput'>
-        <button class="editorbutton" onclick='editname()'>Enter</button>
+        <button class="editorbutton border" onclick='editname()'>Enter</button>
       </div>
-      <button class="editorbutton" aria-label='edit button' type='button' onclick='toggleMenu("editnamediv")'>Edit</button>
+      <button class="editorbutton border" aria-label='edit button' type='button' onclick='toggleMenu("editnamediv")'>Edit</button>
     </span>
-    <button class="editorbutton" type='button' id="deletebutton" onclick='deletes()'>Delete</button>
+    <button class="editorbutton border" type='button' id="deletebutton" onclick='deletes()'>Delete</button>
+    <button class="editorbutton border" type='button' id="opensearch" onclick='toggleMenu("searchdiv")'>Search</button>
   </div>
+  <div id="searchdiv" class="centerflex border upbg hidden">test</div>
   <ul id="upcoming"></ul>
 
     
   <div id="controls">
     <input type="range" id="videoSlider" class="border" aria-label= "timeline" min="0" max="10" value="0" oninput="videoSeek()" onmouseover="seeksmenu(event)" ><br>
     <div id="volume">
-      <button class="controlbutton" id="playPauseButton">E</button>
-      <button class="controlbutton" id="skipButton">➝</button>
-      <button class="controlbutton" id="shufflebutton" onclick="toggleshuffle()">⤮</button>
-      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" min="0" max="100" value="50" oninput="changeVolume(this.value)""></label>
+      <button class="controlbutton border centerflex" id="playPauseButton">E</button>
+      <button class="controlbutton centerflex border" id="skipButton">➝</button>
+      <button class="controlbutton centerflex border" id="shufflebutton" onclick="toggleshuffle()">⤮</button>
+      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" class="border" min="0" max="100" value="50" oninput="changeVolume(this.value)""></label>
     </div>
   </div>
   <div id="seekmenu" class="upbg"></div>
