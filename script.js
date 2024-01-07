@@ -536,14 +536,12 @@ if (typeof(Storage) !== "undefined") {
     localStorage.setItem("shuffle", shuffle);
   }
   else{
-    console.log(JSON.parse(localStorage.getItem("shuffle")))
     shuffle = JSON.parse(localStorage.getItem("shuffle"));
   }
   if (localStorage.getItem("volume")==null){
     localStorage.setItem("volume", svol);
   }
   else{
-    console.log(JSON.parse(localStorage.getItem("volume")))
     svol = JSON.parse(localStorage.getItem("volume"));
     volumeSlider.value = svol;
   }
@@ -619,7 +617,6 @@ function toggleVideo(){
 
 
 function createPlayer() {
-  const videoSlider = document.getElementById('videoSlider');
   const currentMedia = playlist[shuffledIndices[currentIndex]];
   if (currentIndex != 0){ 
     try{
@@ -640,7 +637,6 @@ function createPlayer() {
   }
   currentSongElement.textContent = `${currentMedia.title}`;
   document.getElementById(`${currentIndex}`).style.color = 'var(--main-color)';
-
   if (currentMedia.type === 'youtube') {
     player.muted(true);
     player.src({
@@ -654,7 +650,6 @@ function createPlayer() {
         }
       };
     };
-    videojs.use('*', myMiddleware);
     player.ready(function() {
       if (currentMedia.type === 'youtube') {
         player.currentTime(0);
@@ -664,21 +659,21 @@ function createPlayer() {
         player.volume(svol / 100); // Set volume to half
       }
     });
-    player.oncanplay = function(){
-      if (currentMedia.type === 'youtube') {
-        player.currentTime(0);
-        player.play();
-        player.muted(false);
-        videojs.use('*', myMiddleware);
-        player.volume(svol / 100);
-        document.getElementById('videoSlider').max = player.duration();
-        console.log(document.getElementById('videoSlider').max);
-        durationtext.innerText = formatTime(player.duration());
-        durationtext.style.right = (document.getElementById('videoSlider').getBoundingClientRect().left -10) + "px";
-        durationtext.style.top = (document.getElementById('videoSlider').getBoundingClientRect().top -2) + "px";
+    // player.oncanplay = function(){
+    //   if (currentMedia.type === 'youtube') {
+    //     player.currentTime(0);
+    //     player.play();
+    //     player.muted(false);
+    //     videojs.use('*', myMiddleware);
+    //     player.volume(svol / 100);
+    //     document.getElementById('videoSlider').max = player.duration();
+    //     console.log(document.getElementById('videoSlider').max);
+    //     durationtext.innerText = formatTime(player.duration());
+    //     durationtext.style.right = (document.getElementById('videoSlider').getBoundingClientRect().left -10) + "px";
+    //     durationtext.style.top = (document.getElementById('videoSlider').getBoundingClientRect().top -2) + "px";
         
-      }
-    }
+    //   }
+    // }
     player.on('timeupdate', videoUpdate);
     player.on('play', function(){
       if (player.currentTime()< .2){
@@ -809,7 +804,9 @@ function seeksmenu(event) {
 
 var firstplay = true;
 function playHandler() {
+  
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
+    playerl.play();
     player.pause();
   }
   firstplay = false;
@@ -817,8 +814,8 @@ function playHandler() {
 }
 function togglePlayback() {
   if (firstplay){
-    player.on('play', playHandler);
     player.play();
+    player.on('play', playHandler);
   }
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     if (player.paused()) {
@@ -946,7 +943,6 @@ function editname(){
 var mode = "select";
 function generateUpcoming(){
   currentIndex = 0;
-  console.log(shuffle);
   if (shuffle){
     shuffleIndices();
   }
@@ -980,7 +976,6 @@ function handleChoose(event){
   }
   else if (mode == "edit"){
     document.getElementById("nameinput").value = playlist[editselection].title;
-    console.log(document.getElementById("nameinput").value);
   }
   else if (mode == "delete"){
     for (let i=0; i<playlists.length; i++){
