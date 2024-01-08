@@ -68,8 +68,11 @@
     <button class="editorbutton border" type='button' id="deletebutton" onclick='deletes()'>Delete</button>
     <button class="editorbutton border" type='button' id="opensearch" onclick='toggleMenu("searchdiv")'>Search</button>
   </div>
-  <div id="searchdiv" class="centerflex border hidden">
-    <input type="text" class="border" placeholder="search..." id="songsearch" aria-label="songsearch" oninput="searchsong(this.value)">
+  <div id="searchdiv" class="hidden">
+    <span>
+      <input type="text" class="border" placeholder="search..." id="songsearch" aria-label="songsearch" oninput="searchsong(this.value)">
+      <button id="xsearch" aria-label='close search' type='button' onclick='toggleMenu("searchdiv")'>X</button>
+    </span>
     <ul id="searchresult"></ul>
   </div>
   <ul id="upcoming"></ul>
@@ -81,7 +84,7 @@
       <button class="controlbutton border centerflex" id="playPauseButton">▶</button>
       <button class="controlbutton centerflex border" id="skipButton">➝</button>
       <button class="controlbutton centerflex border" id="shufflebutton" onclick="toggleshuffle()">⤮</button>
-      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" class="border" min="0" max="100" value="50" oninput="changeVolume(this.value)""></label>
+      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" class="border" min="0" max="150" value="50" oninput="changeVolume(this.value)""></label>
     </div>
   </div>
   <div id="seekmenu" class="upbg"></div>

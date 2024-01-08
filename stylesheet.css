@@ -24,7 +24,6 @@
 .hidden{
   visibility: hidden;
   display:none;
-  z-index: 2;
 }
 #durationtext{
   pointer-events: none;
@@ -179,12 +178,13 @@ body{
   line-height: 0;
   display: flex;
   justify-content: center;
+
 }
 #editor{
   padding: 6px;
   border-radius: 5px;
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   font-size: small;
   display: flex;
   flex-direction: column;
@@ -245,13 +245,24 @@ body{
   overflow-x: hidden;
 }
 #searchresult{
+  background: color-mix(in srgb, var(--upcoming-color) 50%, transparent);
+  max-width: unset;
+  border:none;
   position:unset;
+  width: min-content;
 }
 #upcoming > li, #add, #searchresult > li{
   padding-left: 10px;
   line-height: 30px;
-  border-top: 1px solid #454545;
+  border-style:solid;
+  border-color: color-mix(in srgb, var(--border-color) 50%, transparent);
+  border-width: 0 0 1px 0;
   white-space: nowrap;
+}
+#searchresult > li{
+  width: min-content;
+  background: var(--third-color);
+  border-width: 1px;
 }
 #upcoming > li> button{
   border:none;
@@ -277,7 +288,7 @@ button{
   pointer-events: none;
 }
 #playerContainer {
-  z-index: 2;
+  z-index: 3;
   padding: 10px;
   position: absolute;
   right: 0%;
@@ -312,23 +323,34 @@ button{
   color: var(--secondary-color);
 }
 #searchdiv{
+  display: flex;
   flex-direction: column;
   position:absolute;
-  padding: 10px 5px;
-  left: 50%;
+  max-width: 90%;
+  left: 10%;
   top:10%;
-  transform: translate(-50%, 0);
-  background: color-mix(in srgb, var(--third-color) 90%, transparent);
-  border-radius: 8px;
-  width:80%;
+  background: color-mix(in srgb, var(--third-color) 30%, transparent);
   max-height: calc(80% - 100px);
 }
+input{
+  font-family: 'Roboto Mono';
+}
 #songsearch{
-  max-width: 50%;
+  width: min-content;
+  min-width: 54px;
   background-color: var(--background-color);
   height: 20px;
   color:var(--main-color);
-  border-radius: 5px;
+  border-width: 1px 1px 0px 1px;
+  outline: none;
+}
+#xsearch{
+  color:var(--main-color);
+  background: none;
+}
+#xsearch:hover{
+  color:var(--background-color);
+  background-color: var(--main-color);
 }
 #videoSlider {
   -webkit-appearance: none;

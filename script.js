@@ -408,8 +408,6 @@ let currentIndex = 0;
 let player;
 let playerl;
 let videoOff = true;
-var currentlistindex = 0;
-const playerElement = document.getElementById("player");
 const playerContainer = document.getElementById("playerContainer");
 const currentSongElement = document.getElementById('currentSong');
 const videoButton = document.getElementById('videoButton');
@@ -516,10 +514,10 @@ function exportp(){
     document.getElementById("result").innerHTML = "";
     document.getElementById("result").style.visibility = "hidden";
     document.getElementById("result").style.display = "none";
-    return
+    return;
   }
   else{
-    document.getElementById("result").style.visibility = "visible"
+    document.getElementById("result").style.visibility = "visible";
     document.getElementById("result").style.display = "flex";
   }
   let message = ``
@@ -682,7 +680,7 @@ function createPlayer() {
     // }
     player.on('timeupdate', videoUpdate);
     player.on('play', function(){
-      if (player.currentTime()< .2){
+      if (player.currentTime() < 0.2){
         player.volume(svol / 100);
         player.play();
         player.currentTime(0.21);
@@ -691,7 +689,7 @@ function createPlayer() {
         durationtext.style.right = (document.getElementById('videoSlider').getBoundingClientRect().left -10) + "px";
         durationtext.style.top = (document.getElementById('videoSlider').getBoundingClientRect().top -2) + "px";
       }
-    })
+    });
 
   } else if (currentMedia.type === 'local') {
     if (!videoOff){
@@ -754,7 +752,6 @@ function audioUpdate(){//reason for fix forgotten!
     seekmenu.style.left = (sliderrect.left + (videoSlider.offsetWidth * (videoSlider.value / videoSlider.max)) - seekmenu.offsetWidth/2) + "px";
   }
 }
-var lasttime = -1;
 function videoUpdate(){
   if (playlist[shuffledIndices[currentIndex]].type == 'local'){
     return;
@@ -907,13 +904,15 @@ function addSong(){
   if (inputText==""){
     return;
   }
-
   var regex = /(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
   var match = inputText.match(regex);
+  var id;
+  var title;
+
   if (match) {
-    var title = match[1].trim();
+    title = match[1].trim();
     var url = match[2].trim();
-    var id = url.split('v=')[1];
+    id = url.split('v=')[1];
     
   }
   else{
@@ -949,12 +948,9 @@ function editname(){
 var mode = "select";
 function generateUpcoming(){
   currentIndex = 0;
-  if (shuffle){
-    shuffleIndices();
-  }
+  if (shuffle){shuffleIndices();}
   else{
-    shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
-  }
+    shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);}
   let upcoming = document.getElementById("upcoming");
   upcoming.innerHTML = '';
   for (let i=playlist.length - 1; i >= 0; i--){
@@ -962,16 +958,19 @@ function generateUpcoming(){
     document.getElementById(`${i}`).addEventListener('click', handleChoose);
   }
 }
-function searchsong(input){
+function searchsong(input) {
   let searchresult = document.getElementById("searchresult");
+  document.getElementById("songsearch").style.width = document.getElementById("songsearch").value.length + 'ch';
   searchresult.innerHTML = "";
-  for (let i=0; i < shuffledIndices.length; i++){
+  const escapedInput = input.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+  const regex = new RegExp(escapedInput.toLowerCase(), 'i');
+  for (let i = 0; i < shuffledIndices.length; i++) {
     let searchel = document.getElementById(i);
-    if (searchel.innerText.includes(input)){
+    if (regex.test(searchel.innerText.toLowerCase())) {
       var clonedElement = searchel.cloneNode(true);
       clonedElement.id = clonedElement.id + "s";
       clonedElement.addEventListener('click', handleChoose);
-      if (clonedElement.style.color == 'var(--main-color)'){
+      if (clonedElement.style.color == 'var(--main-color)') {
         clonedElement.style.color = 'var(--songs-color)';
       }
       var liElement = document.createElement('li');
@@ -980,12 +979,13 @@ function searchsong(input){
     }
   }
 }
+
 function deletes(){
   if (mode == "delete"){
     document.getElementById("deletebutton").style.color = "var(--main-color)";
     document.getElementById("deletebutton").style.background = "var(--secondary-color)";
     mode = "select";
-    return
+    return;
   }
   document.getElementById("deletebutton").style.background = "var(--main-color)";
   document.getElementById("deletebutton").style.color = "var(--secondary-color)";
@@ -1015,12 +1015,12 @@ function handleChoose(event){
         }
         playlist.splice(editselection,1);
         shuffledIndices.splice(itemId,1);
-        document.getElementById(itemId).remove()
+        document.getElementById(itemId).remove();//KEEPS LI
         for (let i=0; i<shuffledIndices.length; i++){
           if (i > itemId){
             document.getElementById(i).id = Number(i) - 1;
           }
-          if (shuffledIndices[i] > itemId){
+          if (shuffledIndices[i] >= editselection){
             shuffledIndices[i] = shuffledIndices[i] - 1;
           }
         }
@@ -1034,9 +1034,9 @@ function handleChoose(event){
 }
 var prevwidth = upcoming.offsetWidth;
 function fixheight() {
-  const myelement = document.getElementById('upcoming');
-  var initalh = myelement.offsetHeight;
-  myelement.style.maxHeight = "calc(100% - 140px - " + document.getElementById('currentSong').offsetHeight + "px"+ ")";
+  const upcoming = document.getElementById('upcoming');
+  var initalh = upcoming.offsetHeight;
+  upcoming.style.maxHeight = "calc(100% - 140px - " + document.getElementById('currentSong').offsetHeight + "px"+ ")";
   if (prevwidth != upcoming.offsetWidth){
     for (let i = 0; i < playlist.length; i++) {
       var el = document.getElementById(`${i}`);
@@ -1051,12 +1051,11 @@ function fixheight() {
     }
     prevwidth = upcoming.offsetWidth;
   }
-  if (myelement.offsetHeight - initalh < 0){
-    myelement.scrollTop = myelement.scrollTop - ((myelement.offsetHeight - initalh));
+  if (upcoming.offsetHeight - initalh < 0){
+    upcoming.scrollTop = upcoming.scrollTop - ((upcoming.offsetHeight - initalh));
   }
 }
 function jumptocurrent(){
-  console.log((document.getElementById(`${currentIndex}`).offsetTop));
   upcoming.scrollTop = ((document.getElementById(`${currentIndex}`).offsetTop -10));
 }
 var resizeObserver = new ResizeObserver(fixheight);
@@ -1086,7 +1085,9 @@ function toggleMenu(id){
   }
   else{
     menu.classList.remove('hidden');
-    menu.style.zIndex="2";//slower but less data
+    if (!isNaN(menu.style.zIndex) || parseInt(menu.style.zIndex) < 2){
+      menu.style.zIndex="2";//slower but less data
+    }
     if (wasdispsearch && id == "editor"){
       toggleMenu("searchdiv");
     }
@@ -1133,6 +1134,33 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+playerl = new Audio('songs/Keshin.mp3');//not sure if this is needed
+playerl.pause();
+playerl.addEventListener('ended', function(){
+  localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
+  document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
+  playNextSong();
+});
+playerl.addEventListener('play', function(){
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: playlist[shuffledIndices[currentIndex]].title,
+    // artist: 'faker',
+    album: playlist[shuffledIndices[currentIndex]].type,
+  });
+});
+playerl.addEventListener('timeupdate', audioUpdate);
+
+silence = new Audio('songs/45silence.mp3');
+silence.muted = true;
+silence.play();
+
+silence.addEventListener('timeupdate', function(){
+  if (silence.currentTime> 40){
+    silence.currentTime = 0;
+  }
+  //silence.pause();
+});
+
 var link = document.createElement('link');
 link.href = "https://vjs.zencdn.net/8.3.0/video-js.min.css";
 link.rel = "stylesheet";
@@ -1186,32 +1214,7 @@ script.onload = function () {
 
 document.body.appendChild(script);
 
-playerl = new Audio('songs/Keshin.mp3');//not sure if this is needed
-playerl.pause();
-playerl.addEventListener('ended', function(){
-  localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
-  document.getElementById("plays").innerHTML = localStorage.getItem("playCount");
-  playNextSong();
-});
-playerl.addEventListener('play', function(){
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: playlist[shuffledIndices[currentIndex]].title,
-    // artist: 'faker',
-    album: playlist[shuffledIndices[currentIndex]].type,
-  });
-})
-playerl.addEventListener('timeupdate', audioUpdate);
 
-silence = new Audio('songs/45silence.mp3');
-silence.muted = true;
-silence.play();
-
-silence.addEventListener('timeupdate', function(){
-  if (silence.currentTime> 40){
-    silence.currentTime = 0;
-  }
-  //silence.pause();
-});
 
 navigator.mediaSession.setActionHandler('play', function() {togglePlayback();});
 navigator.mediaSession.setActionHandler('pause', function() {togglePlayback();});
