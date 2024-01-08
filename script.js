@@ -963,7 +963,7 @@ function searchsong(input) {
   document.getElementById("songsearch").style.width = document.getElementById("songsearch").value.length + 'ch';
   searchresult.innerHTML = "";
   const escapedInput = input.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-  console.log(escapedInput);
+  console.log(escapedInput, searchel.innerText.toLowerCase().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
   const regex = new RegExp(escapedInput.toLowerCase(), 'i');
   for (let i = 0; i < shuffledIndices.length; i++) {
     let searchel = document.getElementById(i);
