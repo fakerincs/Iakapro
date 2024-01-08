@@ -962,12 +962,11 @@ function searchsong(input) {
   let searchresult = document.getElementById("searchresult");
   document.getElementById("songsearch").style.width = document.getElementById("songsearch").value.length + 'ch';
   searchresult.innerHTML = "";
-  const escapedInput = input.replace(/[-\/\\^$*+?.()|[\]{}] /g, '');
-  console.log(escapedInput, "don't You want's Me`s".replace(/[-\/\\^$*+?.()|[\]{}] /g, ''));
+  const escapedInput = input.replace(/[\W]/g, '');
   const regex = new RegExp(escapedInput.toLowerCase(), 'i');
   for (let i = 0; i < shuffledIndices.length; i++) {
     let searchel = document.getElementById(i);
-    if (regex.test(searchel.innerText.toLowerCase().replace(/[-\/\\^$*+?.()|[\]{}] /g, ''))) {
+    if (regex.test(searchel.innerText.toLowerCase().replace(/[\W]/g, ''))) {
       var clonedElement = searchel.cloneNode(true);
       clonedElement.id = clonedElement.id + "s";
       clonedElement.addEventListener('click', handleChoose);
