@@ -396,8 +396,6 @@ let playlist = [
   { id: 'Tb68mARvjUc', title: 'Geoxor & poixone - I\'m Here', type: 'youtube' },
   { id: '5eu_fkIbmxc', title: 'Stardust', type: 'youtube' },
   { id: 'XzZ9iyjuYiI', title: '【PSYQUI】Don`t you want me Are you kidding me', type: 'youtube' },
-  
-  
 ];
 var currentname = "default(c)";//and i thought i could escape
 var shuffle = false;
@@ -419,6 +417,9 @@ skipButton.addEventListener('click', skipMedia);
 const volumeSlider = document.getElementById('volumeSlider');
 const videoSlider = document.getElementById('videoSlider');
 const durationtext = document.getElementById('durationtext');
+document.addEventListener('gesturestart', function (e) {
+  e.preventDefault();
+});
 function parseLinks() {
   var inputText = document.getElementById('fileInput').value;
   document.getElementById('fileInput').value="";
@@ -979,7 +980,6 @@ function searchsong(input) {
     }
   }
 }
-
 function deletes(){
   if (mode == "delete"){
     document.getElementById("deletebutton").style.color = "var(--main-color)";

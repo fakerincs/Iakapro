@@ -245,7 +245,7 @@ body{
   overflow-x: hidden;
 }
 #searchresult{
-  background: color-mix(in srgb, var(--upcoming-color) 50%, transparent);
+  background: color-mix(in srgb, var(--upcoming-color) 80%, transparent);
   max-width: unset;
   border:none;
   position:unset;
@@ -262,7 +262,7 @@ body{
 #searchresult > li{
   width: min-content;
   background: var(--third-color);
-  border-width: 1px;
+  border:none;
 }
 #upcoming > li> button{
   border:none;
