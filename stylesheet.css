@@ -109,6 +109,7 @@ body{
   background: var(--secondary-color);
   border-style: none;
   border-radius: 6px;
+  font-size: 14px;
   color: var(--main-color);
 }
 #import, #resetStats{
