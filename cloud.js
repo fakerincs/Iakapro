@@ -396,6 +396,7 @@ let playlist = [
     { id: 'Tb68mARvjUc', title: 'Geoxor & poixone - I\'m Here', type: 'youtube' },
     { id: '5eu_fkIbmxc', title: 'Stardust', type: 'youtube' },
     { id: 'XzZ9iyjuYiI', title: '【PSYQUI】Don`t you want me Are you kidding me', type: 'youtube' },
+    { id: 'fbkQh9UG0BA', title: 'Juwubi - JAZZY C#m', type: 'youtube' },
 ];
 
 var playlists = [{list: playlist, name:"default(c)"}];
