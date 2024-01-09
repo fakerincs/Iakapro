@@ -53,17 +53,19 @@
   <div id='editor' class="border hidden upbg">
     <span>
       <div id='addsongdiv' class='editormenu centerflex hidden'>
-        Add Song<input aria-label='input song' type='text' default ='title;link' id='songinput'>
+        Name<input aria-label='input name' type='text' default ='title' id='songinputN'>
+        YT Link<input aria-label='input link' type='text' default ='https://www.youtube.com/watch?v=ev3CXEpHBNU' id='songinputL'>
         <button class="editorbutton border" onclick='addSong()'>Enter</button>
       </div>
-      <button class="editorbutton border" aria-label='add button' type='button' onclick='toggleMenu("addsongdiv")'>Add</button>
+      <button class="editorbutton border" aria-label='add button' type='button' id='addsongbutton' onclick='toggleMenu("addsongdiv")'>Add</button>
     </span>
     <span>
       <div id='editnamediv' class='editormenu centerflex hidden'>
-        Edit<input aria-label='input name' type='text' default ='title' id='nameinput'>
+        Edit Name<input aria-label='input name' type='text' default ='title' id='editName'>
+        Edit Link<input aria-label='input link' type='text' default ='link' id='editLink'>
         <button class="editorbutton border" onclick='editname()'>Enter</button>
       </div>
-      <button class="editorbutton border" aria-label='edit button' type='button' onclick='toggleMenu("editnamediv")'>Edit</button>
+      <button class="editorbutton border" aria-label='edit button' type='button' id="editsongbutton" onclick='toggleMenu("editnamediv")'>Edit</button>
     </span>
     <button class="editorbutton border" type='button' id="deletebutton" onclick='deletes()'>Delete</button>
     <button class="editorbutton border" type='button' id="opensearch" onclick='toggleMenu("searchdiv")'>Search</button>
@@ -95,6 +97,7 @@
             <source id="testVideoSource">
         </video>
   </div>
+  <script src="cloud.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
