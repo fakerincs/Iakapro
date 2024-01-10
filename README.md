@@ -36,4 +36,4 @@ Be careful not to include the "Recommended videos" that might show up at the bot
 5. paste into import field, press import, then you can select the playlist by pressing the p button top left, you can also rename/delete it
 
 
-You cannot sync playlists changes across devices unless you own the github and change the default playlist.
+You cannot sync playlists changes across devices unless you own the github and change the default playlist then pull(c).
