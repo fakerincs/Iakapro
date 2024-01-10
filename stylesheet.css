@@ -99,10 +99,12 @@ body{
   margin: 0px;
   padding-right: 5px;
   align-self: center;
+  font-size: 14px;
 }
 #plays{
   align-self: center;
   padding-left: 4px;
+  font-size: 14px;
 }
 .navl{
   max-width: 120px;
