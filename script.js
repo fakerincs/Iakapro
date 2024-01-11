@@ -1,6 +1,5 @@
 var currentname = "default(c)";//and i thought i could escape
 var shuffle = false;
-
 let svol = 50;
 let shuffledIndices = [];
 let currentIndex = 0;
@@ -23,6 +22,11 @@ document.addEventListener('gesturestart', function (e) {
 });
 function parseLinks() {
   var inputText = document.getElementById('fileInput').value;
+  if (inputText == "RESET"){
+    localStorage.removeItem("playlists");
+    location.reload();
+    return;
+  }
   document.getElementById('fileInput').value="";
   if (inputText==""){
     return;
@@ -63,7 +67,7 @@ function selectplaylist(name){
 function renameplaylist(name){
   var newName = prompt('Enter a new name for the button:', 'New Button Name');
   // Check if the user entered a name and update the button text
-  if (newName == "") {
+  if (newName == "" || newName==null) {
     return;
   }
   for (let i = 0; i<playlists.length; i++){
@@ -170,6 +174,7 @@ else{
   console.log("idk why i even added this check, website doesnt do anything if it doesnt work");
 }
 function pull(){
+  console.log(currentname)
   if (currentname != "default(c)"){
     alert("Pulling from cloud is to pull from github owner, for the playlist default(c). It will replace the default playlist. If you want to have my playlist, rename your playlist to default(c)");
     return;
