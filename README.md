@@ -1,4 +1,4 @@
-to import your yt playlist:
+to import your yt playlist:  
 1. open the actual playlist page(not playing a song, url is youtube.com/playlist...)
 2. open inspector, usually ctrl-shift-i 
 3. go to console and enter:  
