@@ -1,52 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>home</title>
-  <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Music</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Music streaming with 0 ads, free realestate.">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
   <link href="stylesheet.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" media="print" onload="this.media='all'">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <nav>
-    <input type="password" id='password' type='text'  />
-    <a href="playlists.html" id="playlistButton" onclick="javascript:return validatePass()"> </a>
-    
-    <script>
-      document.getElementById("password").addEventListener("keypress", function(event) {
-        // If the user presses the "Enter" key on the keyboard
-        if (event.key === "Enter") {
-          // Cancel the default action, if needed
-          event.preventDefault();
-          // Trigger the button element with a click
-          document.getElementById("playlistButton").click();
+  <ul class="nav centerflex">
+    <li><button aria-label="playlistmenu" title="playlists" id="playlistButton" class="navl" type="button" onclick="toggleMenu('playlistmenu')">P</button></li>
+    <li><button aria-label="jumptocurrent" title="jump to current song" id="jumptocurrent" class="navl" type="button" onclick="jumptocurrent()">J</button></li>
+    <li><button class="navl" id="videoButton">No Video</button></li>
+    <li><div id="plays"></div><p id="playtext">&nbsp;plays</p><button onclick="resetStats()" class="navl" id="resetStats">reset</button></li>
+      <script>
+        function resetStats(){
+          document.getElementById("plays").textContent = 0;
+          localStorage.setItem("playCount", 0);
         }
-      });
-      function validatePass(){
-          if(document.getElementById('password').value == 'dontlook'){
-              return true;
-          }else{
-              return false;
-          }
-      }
+      </script>
     </script>
-  </nav>
+    <li><button aria-label="color settings" id="colorButton" class="navl" type="button" onclick="toggleMenu('colorMenu')">Color</button></li>
+    <li><button class="navl" onclick="if (confirm('This will reset all playlists and colors and reload!!!! Are you sure?') == true) {localStorage.clear();location.reload();}">reset all</button></li>
+  </ul>
+  <div id="playlistmenu" class="hidden border centerflex">
+    <div class="centerflex">
+      <textarea class="navl" placeholder="look→readme" id="fileInput" aria-label="fileinput"></textarea><button id="import" class="navl" onclick="parseLinks()">Import</button>
+    </div>
+    <div><button class="pbutt" onclick="exportp()">export</button><button class="pbutt" onclick="copy()">select</button><button class="pbutt" onclick="pull()">pull(c)</button></div>
+    <div id="result" class="pbutt"></div>
+  </div>
+  <div id="colorMenu" class="border hidden">
+    <span>Main Color <input aria-label="mcolor" type="color" id="mainColor"></span><br>
+    <span>Played Color <input aria-label="pcolor "type="color" id="playedColor"></span><br>
+    <span>Background Color <input aria-label="bcolor" type="color" id="backgroundColor"></span><br>
+    <span>Secondary Color <input aria-label="scolor" type="color" id="secondaryColor"></span><br>
+    <span>Third Color <input aria-label="tcolor" type="color" id="thirdColor"></span><br>
+    <span>Upcoming Color <input aria-label="ucolor" type="color" id="upcomingColor"></span><br>
+    <span>Songs Color <input aria-label="socolor" type="color" id="songsColor"></span><br>
+    <span>Border Color <input aria-label="bordercolor" type="color" id="borderColor"></span><br>
+    <span><button type="button" class="pbutt" id="resetcolors" onclick="resetcolors()">Reset Colors</button></span><br>
+    <script src="colors.js"></script>
+  </div>
+
+  <div id="playerinfo">
+    <div id="currentSong"></div>
+    <button id="editmenubutton" type="button" class="editorbutton border" onclick='toggleMenu("editor")'>⚇</button>
+  </div>
+  <div id='editor' class="border hidden upbg">
+    <span>
+      <div id='addsongdiv' class='editormenu centerflex hidden'>
+        Name<input aria-label='input name' type='text' default ='title' id='songinputN'>
+        YT Link<input aria-label='input link' type='text' default ='https://www.youtube.com/watch?v=ev3CXEpHBNU' id='songinputL'>
+        <button class="editorbutton border" onclick='addSong()'>Enter</button>
+      </div>
+      <button class="editorbutton border" aria-label='add button' type='button' id='addsongbutton' onclick='toggleMenu("addsongdiv")'>Add</button>
+    </span>
+    <span>
+      <div id='editnamediv' class='editormenu centerflex hidden'>
+        Edit Name<input aria-label='input name' type='text' default ='title' id='editName'>
+        Edit Link<input aria-label='input link' type='text' default ='link' id='editLink'>
+        <button class="editorbutton border" onclick='editname()'>Enter</button>
+      </div>
+      <button class="editorbutton border" aria-label='edit button' type='button' id="editsongbutton" onclick='toggleMenu("editnamediv")'>Edit</button>
+    </span>
+    <button class="editorbutton border" type='button' id="deletebutton" onclick='deletes()'>Delete</button>
+    <button class="editorbutton border" type='button' id="opensearch" onclick='toggleMenu("searchdiv")'>Search</button>
+  </div>
+  <div id="searchdiv" class="hidden">
+    <span>
+      <input type="text" class="border" placeholder="search..." id="songsearch" aria-label="songsearch" oninput="searchsong(this.value)">
+      <button id="xsearch" class='border' aria-label='close search' type='button' onclick='toggleMenu("searchdiv")'>X</button>
+    </span>
+    <ul id="searchresult"></ul>
+  </div>
+  <ul id="upcoming"></ul>
+
+    
+  <div id="controls">
+    <input type="range" id="videoSlider" class="border" aria-label= "timeline" min="0" max="10" value="0" oninput="videoSeek()" onmouseover="seeksmenu(event)" ><br>
+    <div id="volume">
+      <button class="controlbutton border centerflex" id="playPauseButton">▶</button>
+      <button class="controlbutton centerflex border" id="skipButton">➝</button>
+      <button class="controlbutton centerflex border" id="shufflebutton" onclick="toggleshuffle()">⤮</button>
+      <label for="volumeSlider" id="volumelabel">Volume <input type="range" id="volumeSlider" class="border" min="0" max="150" value="50" oninput="changeVolume(this.value)""></label>
+    </div>
+  </div>
+  <div id="seekmenu" class="upbg"></div>
+  <div id="durationtext" class="centerflex"></div>
   <div id="playerContainer">
-    <video id="player" class="video-js">
-      <source id="testVideoSource">
-    </video>
+        <video id="player" class="video-js">
+          <!--  preload='auto' will make mobile not work -->
+            <source id="testVideoSource">
+        </video>
   </div>
-  <p></p>
-  <div>
-    <button id="playPauseButton">Play/Pause</button>
-    <button id="skipButton">Skip</button>
-    <input type="range" id="volumeSlider" min="0" max="100" value="50">
-
-  </div>
-  
-  <div id="currentSong"></div>
-
-  <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.min.js" integrity="sha512-W11MwS4c4ZsiIeMchCx7OtlWx7yQccsPpw2dE94AEsZOa3pmSMbrcFjJ2J7qBSHjnYKe6yRuROHCUHsx8mGmhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="cloud.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
