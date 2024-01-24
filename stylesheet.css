@@ -331,8 +331,8 @@ button{
   flex-direction: column;
   position:absolute;
   max-width: 90%;
-  left: 10%;
-  top:10%;
+  left: 7%;
+  top:9%;
   background: color-mix(in srgb, var(--third-color) 30%, transparent);
   max-height: calc(80% - 100px);
 }
