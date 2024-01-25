@@ -640,6 +640,8 @@ function handleChoose(event){
 }
 var prevwidth = upcoming.offsetWidth;
 function fixheight() {
+  durationtext.style.right = (document.getElementById('videoSlider').getBoundingClientRect().left -10) + "px";
+  durationtext.style.top = (document.getElementById('videoSlider').getBoundingClientRect().top -2) + "px";
   const upcoming = document.getElementById('upcoming');
   var initalh = upcoming.offsetHeight;
   upcoming.style.maxHeight = "calc(100% - 140px - " + document.getElementById('currentSong').offsetHeight + "px"+ ")";
