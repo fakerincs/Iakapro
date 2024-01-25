@@ -640,8 +640,6 @@ function handleChoose(event){
 }
 var prevwidth = upcoming.offsetWidth;
 function fixheight() {
-  durationtext.style.right = (document.getElementById('videoSlider').getBoundingClientRect().left -10) + "px";
-  durationtext.style.top = (document.getElementById('videoSlider').getBoundingClientRect().top -2) + "px";
   const upcoming = document.getElementById('upcoming');
   var initalh = upcoming.offsetHeight;
   upcoming.style.maxHeight = "calc(100% - 140px - " + document.getElementById('currentSong').offsetHeight + "px"+ ")";
@@ -668,7 +666,10 @@ function jumptocurrent(){
 }
 var resizeObserver = new ResizeObserver(fixheight);
 resizeObserver.observe(document.getElementById('currentSong'));
-
+window.addEventListener('resize', function(event){
+  durationtext.style.right = (document.getElementById('videoSlider').getBoundingClientRect().left -10) + "px";
+  durationtext.style.top = (document.getElementById('videoSlider').getBoundingClientRect().top -2) + "px";
+});
 function ender(){
   if(playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     localStorage.setItem("playCount", parseInt(localStorage.getItem("playCount"))+1);
