@@ -415,7 +415,7 @@ function togglePlayback() {
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     if (player.paused()) {
       document.getElementById("playPauseButton").innerHTML = "||";
-      player.play().then(function(){console.log("WINNER WINNER")});
+      player.play().then(function(){if (!player.paused()){console.log("WINNER WINNER")}});
     } else {
       document.getElementById("playPauseButton").innerHTML = "▶";
       player.pause();
