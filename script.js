@@ -414,20 +414,21 @@ function togglePlayback() {
   }
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
     if (player.paused()) {
-      document.getElementById("playPauseButton").innerHTML = "||";
-      player.play().then(function(){if (!player.paused()){console.log("WINNER WINNER")}});
-    } else {
       document.getElementById("playPauseButton").innerHTML = "▶";
-      player.pause();
+      player.play().then(document.getElementById("playPauseButton").innerHTML = "||", function(){console.log("failed to play")});
+    } else {
+      document.getElementById("playPauseButton").innerHTML = "||";
+      player.pause().then(document.getElementById("playPauseButton").innerHTML = "▶", function(){console.log("failed to pause")});
     }
   } else {
     if (playerl.paused){
-      document.getElementById("playPauseButton").innerHTML = "||";
-      playerl.play();
+      document.getElementById("playPauseButton").innerHTML = "▶";
+      
+      playerl.play().then(document.getElementById("playPauseButton").innerHTML = "||", function(){console.log("failed to play")});
     } 
     else {
-      document.getElementById("playPauseButton").innerHTML = "▶";
-      playerl.pause();
+      document.getElementById("playPauseButton").innerHTML = "||";
+      playerl.pause().then(document.getElementById("playPauseButton").innerHTML = "▶", function(){console.log("failed to pause")});
     }
   }
   if (silence.paused){
