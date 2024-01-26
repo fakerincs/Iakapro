@@ -331,10 +331,13 @@ button{
   flex-direction: column;
   position:absolute;
   max-width: 90%;
-  left: 7%;
+  left: 0;
+  right: 0;
+  margin: auto;
   top:9%;
   background: color-mix(in srgb, var(--third-color) 30%, transparent);
   max-height: calc(80% - 100px);
+  align-items: center;
 }
 #songsearch{
   width: min-content;
