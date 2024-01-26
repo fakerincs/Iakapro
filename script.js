@@ -417,8 +417,8 @@ function togglePlayback() {
       document.getElementById("playPauseButton").innerHTML = "▶";
       player.play().then(document.getElementById("playPauseButton").innerHTML = "||", function(){console.log("failed to play")});
     } else {
-      document.getElementById("playPauseButton").innerHTML = "||";
-      player.pause().then(document.getElementById("playPauseButton").innerHTML = "▶", function(){console.log("failed to pause")});
+      document.getElementById("playPauseButton").innerHTML = "▶";
+      player.pause();
     }
   } else {
     if (playerl.paused){
@@ -427,8 +427,8 @@ function togglePlayback() {
       playerl.play().then(document.getElementById("playPauseButton").innerHTML = "||", function(){console.log("failed to play")});
     } 
     else {
-      document.getElementById("playPauseButton").innerHTML = "||";
-      playerl.pause().then(document.getElementById("playPauseButton").innerHTML = "▶", function(){console.log("failed to pause")});
+      document.getElementById("playPauseButton").innerHTML = "▶";
+      playerl.pause();
     }
   }
   if (silence.paused){
