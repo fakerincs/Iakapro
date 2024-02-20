@@ -397,6 +397,14 @@ let playlist = [
     { id: '5eu_fkIbmxc', title: 'Stardust', type: 'youtube' },
     { id: 'XzZ9iyjuYiI', title: '【PSYQUI】Don`t you want me Are you kidding me', type: 'youtube' },
     { id: 'fbkQh9UG0BA', title: 'Juwubi - JAZZY C#m', type: 'youtube' },
+    { id: 'uUO4ZeX2Gkc', title: 'Volta - Answer', type: 'youtube' },
+    { id: 'Tb68mARvjUc', title: 'Geoxor & poixone - I\'m Here', type: 'youtube' },
+    { id: 'jcCCv0re5Gk', title: 'Geoxor - Killa', type: 'youtube' },
+    { id: 'CTElV_6KFxk', title: 'DUST LOVE', type: 'youtube' },
+    { id: '6SSFCoNUr48', title: 'OUTPUT', type: 'youtube' },
+    { id: 'N8nGig78lNs', title: 'Snail\s House - Hot Milk', type: 'youtube' },
+    { id: 'dontthinkpsyquiremix.mp3', title: 'Dont think,スマイル!! PSYQUI REMIX', type: 'local' },
+    
 ];
 
 var playlists = [{list: playlist, name:"default(c)"}];
