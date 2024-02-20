@@ -87,12 +87,18 @@ function renameplaylist(name){
   document.getElementById(newName + "c").setAttribute('onclick', "closer('"+ newName + "')");
   for (let i = 0; i<playlists.length; i++){
     if (playlists[i].name == name){
+
       playlists[i].name = newName;
       currentname = newName;
       localStorage.setItem("playlists", JSON.stringify(playlists));
       return;
     }
+    else if (playlists[i].name === null){
+      playlists[i].name = "null";
+    }
   }
+  currentname = newName;
+
 }
 function closer(name){
   if (playlists.length <= 1){
