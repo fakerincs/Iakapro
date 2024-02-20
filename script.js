@@ -67,7 +67,8 @@ function selectplaylist(name){
 function renameplaylist(name){
   var newName = prompt('Enter a new name for the button:', name);
   // Check if the user entered a name and update the button text
-  if (newName == "" || newName==null) {
+  if (newName == "" || newName===null) {
+    console.log("failed")
     return;
   }
   for (let i = 0; i<playlists.length; i++){
