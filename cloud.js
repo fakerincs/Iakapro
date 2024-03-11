@@ -431,6 +431,7 @@ let playlist = [
     { id: 'FtJrOQJKYR4', title: 'Love Pills (DJ Noriken Remix)', type: 'youtube' },
     { id: 'zukZtQQ2hDU', title: 'Incoming!', type: 'youtube' },
     { id: '1weNnjzaXbY', title: 'Battle!!', type: 'youtube' },
+    { id: 'l7Y00MEXjEs', title: 'Kaleidoscopic Core', type: 'youtube' },
 ];
 
 var playlists = [{list: playlist, name:"default(c)"}];
