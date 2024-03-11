@@ -426,7 +426,9 @@ let playlist = [
     { id: 'epi11AtQo74', title: 'セトナツメ - Cant wait', type: 'youtube' },
     { id: 'EVSxDWMrV6E', title: 'INuya - Tomorrows Rainbow', type: 'youtube' },
     { id: 'yHjj9fWTZdY', title: 'Kirara Magic - Checkmate', type: 'youtube' },
-    
+    { id: 'ZnyjkP_ldko', title: 'Spider Dance (Aidano Remix)(Electro swing)', type: 'youtube' },
+    { id: 'yHjj9fWTZdY', title: 'Kirara Magic - Checkmate', type: 'youtube' },
+    { id: 'FtJrOQJKYR4', title: 'Love Pills (DJ Noriken Remix)', type: 'youtube' },
 ];
 
 var playlists = [{list: playlist, name:"default(c)"}];
