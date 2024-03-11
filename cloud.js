@@ -430,7 +430,7 @@ let playlist = [
     { id: 'yHjj9fWTZdY', title: 'Kirara Magic - Checkmate', type: 'youtube' },
     { id: 'FtJrOQJKYR4', title: 'Love Pills (DJ Noriken Remix)', type: 'youtube' },
     { id: 'zukZtQQ2hDU', title: 'Incoming!', type: 'youtube' },
-    { id: 'cvTb1VgABw8', title: 'Drifting Soul', type: 'youtube' },
+    { id: '1weNnjzaXbY', title: 'Battle!!', type: 'youtube' },
 ];
 
 var playlists = [{list: playlist, name:"default(c)"}];
