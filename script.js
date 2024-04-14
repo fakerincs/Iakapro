@@ -64,6 +64,7 @@ function selectplaylist(name){
     }
   }
   currentIndex = 0;
+  createPlayer();
 }
 function renameplaylist(name){
   var newName = prompt('Enter a new name for the button:', name);
