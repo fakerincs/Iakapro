@@ -63,6 +63,7 @@ function selectplaylist(name){
       document.getElementById(playlists[i].name + 's').style= "color: white; border-color: var(--main-color)";
     }
   }
+  currentIndex = 0;
 }
 function renameplaylist(name){
   var newName = prompt('Enter a new name for the button:', name);
