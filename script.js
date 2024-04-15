@@ -225,9 +225,6 @@ function toggleVideo(){
 
 
 function createPlayer() {
-  console.log(playlist);
-  console.log(currentIndex);
-  console.log(player);
   const currentMedia = playlist[shuffledIndices[currentIndex]];
   if (currentIndex != 0){ 
     try{
