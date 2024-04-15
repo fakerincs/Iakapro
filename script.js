@@ -34,15 +34,14 @@ function parseLinks() {
   var lines = inputText.split('\n');
   var resultArray = [];
 
-  var regex = /(?:VM\d+:?\d*\s*)?(.*?);(https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$)/;
-
+  var regex = /(?:VM\d+:?\d*\s*)?(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
   resultArray.push({ id: 'Recording.mp3', title: 'start', type: 'local' });
   lines.forEach(function (line) {
     var match = line.match(regex);
     if (match) {
       var title = match[1].trim();
       var url = match[2].trim();
-      var id = url.split('v=')[1];
+      var id = url.split('v=')[1].slice(0,11);
       resultArray.push({ id: id, title: title, type: 'youtube' });
     }
   });
@@ -511,7 +510,7 @@ function addSong(){
   if (inputName == "" || inputLink == ""){
     return;
   }
-  var regex = /(https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$)/
+  var regex = /(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
   var match = inputLink.match(regex);
   var id;
   var title;
@@ -519,7 +518,7 @@ function addSong(){
   if (match) {
     title = inputName.trim();
     var url = match[1].trim();
-    id = url.split('v=')[1];
+    id = url.split('v=')[1].slice(0,11);
   }
   else{
     document.getElementById('songinputL').value = "bad link!!";
@@ -543,12 +542,12 @@ function editname(){
   if (newLink=="" || newName==""){
     return;
   }
-  var regex = /(https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$)/
+  var regex = /(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
   var match = newLink.match(regex);
   var id;
   if (match) {
     var url = match[1].trim();
-    id = url.split('v=')[1];
+    id = url.split('v=')[1].slice(0,11)
   }
   else{
     document.getElementById('newLink').value = "bad link!!";
