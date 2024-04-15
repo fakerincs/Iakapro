@@ -34,7 +34,8 @@ function parseLinks() {
   var lines = inputText.split('\n');
   var resultArray = [];
 
-  var regex = /(?:VM\d+:?\d*\s*)?(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
+  var regex = /(?:VM\d+:?\d*\s*)?(.*?);(https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$)/;
+
   resultArray.push({ id: 'Recording.mp3', title: 'start', type: 'local' });
   lines.forEach(function (line) {
     var match = line.match(regex);
@@ -510,7 +511,7 @@ function addSong(){
   if (inputName == "" || inputLink == ""){
     return;
   }
-  var regex = /(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
+  var regex = /(https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$)/
   var match = inputLink.match(regex);
   var id;
   var title;
@@ -542,7 +543,7 @@ function editname(){
   if (newLink=="" || newName==""){
     return;
   }
-  var regex = /(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
+  var regex = /(https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$)/
   var match = newLink.match(regex);
   var id;
   if (match) {
