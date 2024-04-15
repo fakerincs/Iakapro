@@ -192,6 +192,9 @@ function pull(){
   localStorage.removeItem("playlists");
   location.reload();
 }
+
+
+
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
   for (let i = shuffledIndices.length - 1; i > 1; i--) {
@@ -222,6 +225,9 @@ function toggleVideo(){
 
 
 function createPlayer() {
+  console.log(playlist);
+  console.log(currentIndex);
+  console.log(player);
   const currentMedia = playlist[shuffledIndices[currentIndex]];
   if (currentIndex != 0){ 
     try{
@@ -445,7 +451,7 @@ function togglePlayback() {
   }
 }
 
-function playNextSong(index = -1) {
+function playNextSong(index=-1) {
   document.getElementById((currentIndex).toString()).style.color = "var(--played-color)";
   if (index != -1) {
     currentIndex = index;
