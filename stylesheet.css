@@ -340,12 +340,7 @@ button{
   max-height: calc(80% - 100px);
   align-items: center;
 }
-#searchspan{
-  display: inline-flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: center;
-}
+
 #songsearch{
   width: min-content;
   min-width: 54px;
@@ -363,6 +358,12 @@ button{
 #xsearch:hover{
   color:var(--background-color);
   background-color: var(--main-color);
+}
+#searchspan{
+  display: inline-flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
 }
 #videoSlider {
   -webkit-appearance: none;
