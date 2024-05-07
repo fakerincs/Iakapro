@@ -17,9 +17,7 @@ skipButton.addEventListener('click', skipMedia);
 const volumeSlider = document.getElementById('volumeSlider');
 const videoSlider = document.getElementById('videoSlider');
 const durationtext = document.getElementById('durationtext');
-document.addEventListener('gesturestart', function (e) {
-  e.preventDefault();
-});
+
 function parseLinks() {
   var inputText = document.getElementById('fileInput').value;
   if (inputText == "RESET"){

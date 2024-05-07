@@ -3,7 +3,7 @@
 <head>
   <title>Music</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Music streaming with 0 ads, free realestate.">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
   <link href="stylesheet.css" rel="stylesheet">
@@ -71,9 +71,9 @@
     <button class="editorbutton border" type='button' id="opensearch" onclick='toggleMenu("searchdiv")'>Search</button>
   </div>
   <div id="searchdiv" class="centerflex hidden">
-    <span>
+    <span id="searchspan">
       <button id="xsearch" class='border' aria-label='close search' type='button' onclick='toggleMenu("searchdiv")'>X</button>
-      <input type="text" class="border" placeholder="search..." id="songsearch" aria-label="songsearch" oninput="searchsong(this.value)">
+      <input type="text" id="songsearch" class="border" placeholder="search..."  aria-label="songsearch" oninput="searchsong(this.value)">
     </span>
     <ul id="searchresult"></ul>
   </div>

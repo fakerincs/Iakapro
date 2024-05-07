@@ -340,6 +340,12 @@ button{
   max-height: calc(80% - 100px);
   align-items: center;
 }
+#searchspan{
+  display: inline-flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+}
 #songsearch{
   width: min-content;
   min-width: 54px;
