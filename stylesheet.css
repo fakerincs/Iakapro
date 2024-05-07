@@ -343,7 +343,7 @@ button{
 
 #songsearch{
   width: min-content;
-  min-width: 54px;
+  min-width: 75px;
   background-color: var(--background-color);
   height: 20px;
   color:var(--main-color);

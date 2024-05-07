@@ -578,9 +578,6 @@ function generateUpcoming(){
 function searchsong(input) {
   let searchresult = document.getElementById("searchresult");
   document.getElementById("songsearch").style.width = document.getElementById("songsearch").value.length + 'ch';
-  if (document.getElementById("songsearch").offsetWidth < 54){
-  document.getElementById("songsearch").style.width = "54px";
-}
   searchresult.innerHTML = "";
   const escapedInput = input.replace(/[\W]/g, '');
   const regex = new RegExp(escapedInput.toLowerCase(), 'i');
