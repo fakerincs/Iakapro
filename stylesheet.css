@@ -357,7 +357,7 @@ button{
 }
 #xsearch{
   color:var(--main-color);
-  background: none;
+  background: var(--background-color);
 }
 #xsearch:hover{
   color:var(--background-color);
