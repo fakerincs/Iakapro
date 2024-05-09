@@ -251,7 +251,9 @@ body{
 #searchresult{
   background: color-mix(in srgb, var(--upcoming-color) 80%, transparent);
   max-width: unset;
-  border:none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--border-color);
   position:unset;
   width: min-content;
 }
