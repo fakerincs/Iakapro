@@ -807,8 +807,11 @@ script.onload = function () {
       techOrder: ['youtube'],
       autoplay: 'any',
       preload: 'auto',
+      controls: false,
       inactivityTimeout: 0,
       audioOnlyMode: videoOff,
+      suppressNotSupportedError:true,
+      techCanOverridePoster: false,
       poster: "poster.png",
       muted:true,
       sources: [{
