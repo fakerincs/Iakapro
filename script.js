@@ -577,7 +577,7 @@ function generateUpcoming(){
 }
 function searchsong(input) {
   let searchresult = document.getElementById("searchresult");
-  document.getElementById("songsearch").style.width = document.getElementById("songsearch").value.length + 'ch';
+  document.getElementById("songsearch").style.width = (document.getElementById("songsearch").value.length+3) + 'ch';
   searchresult.innerHTML = "";
   const escapedInput = input.replace(/[\W]/g, '');
   const regex = new RegExp(escapedInput.toLowerCase(), 'i');
