@@ -344,7 +344,7 @@ button{
 }
 
 #songsearch{
-  font-size:20px;
+  font-size:16px;
   min-width: 85px;
   width: min-content;
   
@@ -457,7 +457,7 @@ input{
   font-size: 16px;
 }
 input[type="text"] {
-  font-size:20px;
+  font-size:16px;
 }
 textarea,
 input.text,
