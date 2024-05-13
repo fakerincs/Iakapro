@@ -256,6 +256,7 @@ function createPlayer() {
         }
       };
     };
+    player.playbackRate = 0.75 + randomMath.random();
     player.ready(function() {
       if (currentMedia.type === 'youtube') {
         player.currentTime(0);
