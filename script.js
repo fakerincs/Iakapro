@@ -256,7 +256,7 @@ function createPlayer() {
         }
       };
     };
-    player.playbackRate = 2;// 0.75 + randomMath.random()
+    player.playbackRate(0.75 + randomMath.random());// 
     player.ready(function() {
       if (currentMedia.type === 'youtube') {
         player.currentTime(0);
@@ -808,7 +808,7 @@ script.onload = function () {
       techOrder: ['youtube'],
       autoplay: 'any',
       preload: 'auto',
-      controls: false,
+      // controls: false,
       inactivityTimeout: 0,
       audioOnlyMode: videoOff,
       suppressNotSupportedError:true,
