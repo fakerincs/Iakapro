@@ -189,7 +189,7 @@ body{
   padding: 6px;
   border-radius: 5px;
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   font-size: small;
   display: flex;
   flex-direction: column;
