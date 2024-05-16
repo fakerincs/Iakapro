@@ -36,7 +36,7 @@
 .border{
   border-style: solid;
   border-color: var(--border-color);
-  border-width: 1px;
+  border-width: var(--borderw);
 }
 body{
   color: var(--main-color) !important;
