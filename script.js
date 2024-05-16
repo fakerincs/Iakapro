@@ -9,29 +9,29 @@ let videoOff = true;
 const playerContainer = document.getElementById("playerContainer");
 const currentSongElement = document.getElementById('currentSong');
 const videoButton = document.getElementById('videoButton');
-videoButton.addEventListener('click', toggleVideo);
 const playPauseButton = document.getElementById('playPauseButton');
-playPauseButton.addEventListener('click', togglePlayback);
 const skipButton = document.getElementById('skipButton');
-skipButton.addEventListener('click', skipMedia);
 const volumeSlider = document.getElementById('volumeSlider');
 const videoSlider = document.getElementById('videoSlider');
 const durationtext = document.getElementById('durationtext');
+
+videoButton.addEventListener('click', toggleVideo);
+playPauseButton.addEventListener('click', togglePlayback);
+skipButton.addEventListener('click', skipMedia);
 
 function parseLinks() {
   var inputText = document.getElementById('fileInput').value;
   if (inputText == "RESET"){
     localStorage.removeItem("playlists");
     location.reload();
-    return;
-  }
-  document.getElementById('fileInput').value="";
+    return;}
+  
+  document.getElementById('fileInput').value = "";
   if (inputText==""){
-    return;
-  }
+    return;}
+  
   var lines = inputText.split('\n');
   var resultArray = [];
-
   var regex = /(?:VM\d+:?\d*\s*)?(.*?);(https:\/\/www\.youtube\.com\/watch\?v=.*$)/;
   resultArray.push({ id: 'Recording.mp3', title: 'start', type: 'local' });
   lines.forEach(function (line) {
@@ -49,7 +49,7 @@ function parseLinks() {
 }
 function selectplaylist(name){
   for (let i = 0; i<playlists.length; i++){
-    if (JSON.stringify(playlists[i].list) === JSON.stringify(playlist)){
+    if (JSON.stringify(playlists[i].list) == JSON.stringify(playlist)){
       document.getElementById(playlists[i].name + 's').style= "color: var(--main-color); border-color: var(--background-color)";
     }
   }
@@ -87,7 +87,6 @@ function renameplaylist(name){
   document.getElementById(newName + "c").setAttribute('onclick', "closer('"+ newName + "')");
   for (let i = 0; i<playlists.length; i++){
     if (playlists[i].name == name){
-
       playlists[i].name = newName;
       currentname = newName;
       localStorage.setItem("playlists", JSON.stringify(playlists));
@@ -98,7 +97,6 @@ function renameplaylist(name){
     }
   }
   currentname = newName;
-
 }
 function closer(name){
   if (playlists.length <= 1){
@@ -122,23 +120,23 @@ function addplaylistelement(title){
   document.getElementById('playlistmenu').insertAdjacentHTML("beforeend", `<div class="pcont" id=\'${title}\'><button class="pbutt" id=\'${title}s\' style="color:var(--songs-color);" onclick="selectplaylist(\'${title}\')">${title}</button><button class="pbutt" id=\'${title}r\' onclick="renameplaylist(\'${title}\')">R</button><button class="pbutt" id=\'${title}c\' onclick="closer('${title}')">X</button></div>`);//why do i have to code js in html in js....
 }
 function exportp(){
-  if (document.getElementById("result").innerHTML != ""){
-    document.getElementById("result").innerHTML = "";
-    document.getElementById("result").style.visibility = "hidden";
-    document.getElementById("result").style.display = "none";
-    return;
-  }
-  else{
-    document.getElementById("result").style.visibility = "visible";
-    document.getElementById("result").style.display = "flex";
-  }
   let message = ``
   for (let i = 0; i<playlist.length; i++){
     if (playlist[i].type == "youtube"){
       message += playlist[i].title + ";" + "https://www.youtube.com/watch?v=" + playlist[i].id + "\n";// we gonna skip local for now(a long time)
     }
   }
-  document.getElementById("result").innerHTML= message;
+  if (document.getElementById("result").innerHTML == message){
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").style.visibility = "hidden";
+    document.getElementById("result").style.display = "none";
+    return;
+  }
+  else{
+    document.getElementById("result").innerHTML = message;
+    document.getElementById("result").style.visibility = "visible";
+    document.getElementById("result").style.display = "flex";
+  }
 }
 function copy() {
   var container = document.getElementById("result");
@@ -147,6 +145,8 @@ function copy() {
   window.getSelection().removeAllRanges();
   window.getSelection().addRange(range);
 }
+
+
 if (typeof(Storage) !== "undefined") {
   if (localStorage.getItem("shuffle")==null){
     localStorage.setItem("shuffle", shuffle);
@@ -190,9 +190,6 @@ function pull(){
   localStorage.removeItem("playlists");
   location.reload();
 }
-
-
-
 function shuffleIndices() {
   shuffledIndices = Array.from({ length: playlist.length }, (_, index) => index);
   for (let i = shuffledIndices.length - 1; i > 1; i--) {
@@ -200,7 +197,6 @@ function shuffleIndices() {
     [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
   }
 }
-
 function toggleVideo(){
   if (playlist[shuffledIndices[currentIndex]].type == 'local'){return;}
   const playerElement = document.getElementById("player");
@@ -220,22 +216,16 @@ function toggleVideo(){
     playerElement.style.height ="1px"; 
   }
 }
-
-
 function createPlayer() {
   const currentMedia = playlist[shuffledIndices[currentIndex]];
   if (currentIndex != 0){ 
-    try{
-      if (!player.paused()) {
+    try{if (!player.paused()) {
         player.pause();
-      }
-    }
+    }}
     catch{}
-    try{
-      if (!playerl.paused){
+    try{if (!playerl.paused){
         playerl.pause();
-      }
-    } 
+    }} 
     catch{}
     if (silence.paused){
       silence.play();
@@ -256,7 +246,7 @@ function createPlayer() {
         }
       };
     };
-    player.playbackRate(0.75 + Math.random());// 
+    player.playbackRate(0.75 + Math.random()/2);// 
     player.ready(function() {
       if (currentMedia.type === 'youtube') {
         player.currentTime(0);
@@ -337,6 +327,8 @@ function createPlayer() {
 }
 function videoSeek(){
   if (playlist[shuffledIndices[currentIndex]].type === 'youtube'){
+    document.getElementById('videoSlider').max = player.duration();
+    durationtext.innerText = formatTime(player.duration());
     player.currentTime(document.getElementById('videoSlider').value);
   }
   else{
@@ -369,10 +361,10 @@ function videoUpdate(){
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = Math.floor(seconds % 60);
-
   const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   return formattedTime;
 }
+
 document.addEventListener("mousemove", handleMouseMove);
 let clicked = false;
 document.addEventListener('mousedown', function(event) {
@@ -410,7 +402,6 @@ function seeksmenu(event) {
 
 var firstplay = true;
 function playHandler() {
-  
   if (playlist[shuffledIndices[currentIndex]].type === 'local'){
     playerl.play();
     player.pause();
@@ -428,8 +419,8 @@ function togglePlayback() {
       document.getElementById("playPauseButton").innerHTML = "▶";
       player.play().then(document.getElementById("playPauseButton").innerHTML = "||", function(){console.log("failed to play")});
     } else {
-      document.getElementById("playPauseButton").innerHTML = "▶";
-      player.pause();
+      document.getElementById("playPauseButton").innerHTML = "||";
+      player.pause().then(document.getElementById("playPauseButton").innerHTML = "▶", function(){console.log("failed to pause")});
     }
   } else {
     if (playerl.paused){
