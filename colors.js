@@ -1,4 +1,3 @@
-
 function change(event) {
   document.documentElement.style.setProperty(event.target.color, event.target.value);
   event.target.saved = false;
