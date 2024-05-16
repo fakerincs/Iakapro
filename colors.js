@@ -43,6 +43,7 @@ if (typeof(Storage) !== "undefined") {
   picker("upcomingColor", "--upcoming-color");
   picker("songsColor", "--songs-color");
   picker("borderColor", "--border-color");
+  document.documentElement.style.setProperty("borderw", localStorage.getItem("borderw"));
 }
 function resetcolors(){
   localStorage.removeItem("mainColor");
