@@ -19,7 +19,7 @@ videoButton.addEventListener('click', toggleVideo);
 playPauseButton.addEventListener('click', togglePlayback);
 skipButton.addEventListener('click', skipMedia);
 function changeborderwidth(input){
-  localStorage.setItem("borderw", input;
+  localStorage.setItem("borderw", input);
   document.documentElement.style.setProperty(borderw, input + "px");
 }
 function parseLinks() {
