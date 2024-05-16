@@ -43,7 +43,7 @@ if (typeof(Storage) !== "undefined") {
   picker("songsColor", "--songs-color");
   picker("borderColor", "--border-color");
   if (localStorage.getItem("borderw")==null){
-    localStorage.setItem("borderw", getComputedStyle(document.body).getPropertyValue("--borderw"));
+    localStorage.setItem("borderw", "1");
   }  
   document.documentElement.style.setProperty("--borderw", localStorage.getItem("borderw") + "px");
   document.getElementById("borderw").value = localStorage.getItem("borderw");
