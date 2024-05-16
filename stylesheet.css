@@ -78,7 +78,7 @@ body{
   background-color: var(--background-color);
   border-style: solid;
   border-color: var(--border-color);
-  border-width: 1px;
+  border-width: var(--borderw);
   border-radius:6px;
 }
 ::-webkit-scrollbar {
@@ -119,7 +119,7 @@ body{
   border-radius: 0 5px 5px 0;
   border-style: solid;
   border-color: var(--border-color);
-  border-width: 0 0 0 1px;
+  border-width: 0 0 0 var(--borderw);
 }
 #fileInput{
   height: 20px;
@@ -244,7 +244,7 @@ body{
   border-style: solid;
   border-radius: 7px;
   border-color: var(--border-color);
-  border-width: 2px;
+  border-width: var(--borderw);
   background-color: var(--upcoming-color);
   color: var(--songs-color);
   overflow-x: hidden;
@@ -253,7 +253,7 @@ body{
   background: color-mix(in srgb, var(--upcoming-color) 80%, transparent);
   max-width: unset;
   border-style: solid;
-  border-width: 1px;
+  border-width: var(--borderw);
   border-color: var(--border-color);
   position:unset;
   width: min-content;
@@ -263,7 +263,7 @@ body{
   line-height: 30px;
   border-style:solid;
   border-color: color-mix(in srgb, var(--border-color) 50%, transparent);
-  border-width: 0 0 1px 0;
+  border-width: 0 0 var(--borderw) 0;
   white-space: nowrap;
 }
 #searchresult > li{
@@ -352,7 +352,7 @@ button{
   background-color: var(--background-color);
   height: min-content;
   color:var(--main-color);
-  border-width: 1px 1px 0px 1px;
+  border-width: var(--borderw);
   outline: none;
   
 }
@@ -427,12 +427,11 @@ button{
   width: 15px;
   height: 15px;
   border-radius: 100%; 
-  border-style: none;
   background: var(--main-color);
   cursor: pointer;
   border-style: solid;
   border-color:var(--border-color);
-  border-width: 1px;
+  border-width: var(--borderw);
   
 }
 #volumeSlider::-moz-range-thumb {
@@ -440,12 +439,11 @@ button{
   width: 15px;
   height: 15px;
   border-radius: 100%; 
-  border-style: none;
   background: var(--main-color);
   cursor: pointer;
   border-style: solid;
   border-color:var(--border-color);
-  border-width: 1px;
+  border-width: var(--borderw);
 }
 #seekmenu {
   pointer-events: none;
