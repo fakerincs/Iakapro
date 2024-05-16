@@ -44,7 +44,7 @@ if (typeof(Storage) !== "undefined") {
   picker("songsColor", "--songs-color");
   picker("borderColor", "--border-color");
   document.documentElement.style.setProperty("borderw", localStorage.getItem("borderw") + "px");
-}
+  document.getElementById("borderw").value = localStorage.getItem("borderw");
 function resetcolors(){
   localStorage.removeItem("mainColor");
   localStorage.removeItem("playedColor");
