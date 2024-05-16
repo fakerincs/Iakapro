@@ -18,7 +18,10 @@ const durationtext = document.getElementById('durationtext');
 videoButton.addEventListener('click', toggleVideo);
 playPauseButton.addEventListener('click', togglePlayback);
 skipButton.addEventListener('click', skipMedia);
-
+function changeborderwidth(input){
+  localStorage.setItem("borderw", input;
+  document.documentElement.style.setProperty(borderw, input + "px");
+}
 function parseLinks() {
   var inputText = document.getElementById('fileInput').value;
   if (inputText == "RESET"){
