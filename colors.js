@@ -47,6 +47,7 @@ if (typeof(Storage) !== "undefined") {
   }  
   document.documentElement.style.setProperty("--borderw", localStorage.getItem("borderw") + "px");
   document.getElementById("borderw").value = localStorage.getItem("borderw");
+}
 function resetcolors(){
   localStorage.removeItem("mainColor");
   localStorage.removeItem("playedColor");
