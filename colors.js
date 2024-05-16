@@ -53,5 +53,6 @@ function resetcolors(){
   localStorage.removeItem("upcomingColor");
   localStorage.removeItem("songsColor");
   localStorage.removeItem("borderColor");
+  localStorage.removeItem("borderw");
   location.reload();
 }
