@@ -454,6 +454,9 @@ let playlist = [
     { id: 'o_H4e1vAOEU', title: 'Purukichi - Display', type: 'youtube' },
     { id: 'Ub3mEJn6kPo', title: 'Purukichi - Boundary', type: 'youtube' },
     { id: '6jb7YYkRKZg', title: 'Artcore | ÉtudE - Penrose Periodic Tiling', type: 'youtube' },
+    { id: 'zB2l-3h9JPw', title: 'Bring Me Back', type: 'youtube' },
+    { id: 'g6IJyPUwwPM', title: 'ハート111/ゆーり【オリジナル】', type: 'youtube' },
+    { id: 'bQgjWLRIT0w', title: 'III', type: 'youtube' },
 ];
 
 var playlists = [{list: playlist, name:"default(c)"}];
