@@ -457,6 +457,16 @@ let playlist = [
     { id: 'zB2l-3h9JPw', title: 'Bring Me Back', type: 'youtube' },
     { id: 'g6IJyPUwwPM', title: 'ハート111/ゆーり【オリジナル】', type: 'youtube' },
     { id: 'bQgjWLRIT0w', title: 'III', type: 'youtube' },
+    { id: '-oQm8Vk2LBM', title: 'ビビデバ / 星街すいせい (VOLTA remix*)', type: 'youtube' },
+    { id: 'NE2oMN3tM8s', title: 'continue (Remix)', type: 'youtube' },
+    { id: '96EKp2vN4YU', title: 'ANON - Future Girl', type: 'youtube' },
+    { id: 'm3QOFF5XpWg', title: 'ルナティッククレイジー feat. PANXI', type: 'youtube' },
+    { id: 'Go8H3knqJrk', title: 'デフラグ feat. 棗いつき', type: 'youtube' },
+    { id: 'AXSxP8BzOn4', title: 'VOLTA - SAY MY NAME !! [Official Audio]', type: 'youtube' },
+    { id: 'PRgiKhwsprY', title: 'PSYQUI - still in my heart (skybldevs breakcore bootleg) (linux edition)', type: 'youtube' },
+    { id: 'tZN8vEPfAP8', title: 'ヒステリックナイトガール flip', type: 'youtube' },
+    { id: 'bYV23nGiiQs', title: 'Moment feat. mami - Mysteka', type: 'youtube' },
+
 ];
 
 var playlists = [{list: playlist, name:"default(c)"}];
