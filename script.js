@@ -249,7 +249,7 @@ function createPlayer() {
         }
       };
     };
-    player.playbackRate(0.75 + Math.random()/2);// 
+    player.playbackRate(0.95 + Math.random()/10);// 
     player.ready(function() {
       if (currentMedia.type === 'youtube') {
         player.currentTime(0);
