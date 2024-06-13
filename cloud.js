@@ -466,6 +466,21 @@ let playlist = [
     { id: 'PRgiKhwsprY', title: 'PSYQUI - still in my heart (skybldevs breakcore bootleg) (linux edition)', type: 'youtube' },
     { id: 'tZN8vEPfAP8', title: 'ヒステリックナイトガール flip', type: 'youtube' },
     { id: 'bYV23nGiiQs', title: 'Moment feat. mami - Mysteka', type: 'youtube' },
+    { id: 'SkfCR8uk1R8', title: 'tn-shi - Contradiction', type: 'youtube' },
+    { id: '07SengwvqDU', title: 'Star Runner (feat. Pikes)', type: 'youtube' },
+    { id: 'mufZUFoFBjg', title: 'The Veils (feat. Taishi Sato)', type: 'youtube' },
+    { id: 'Tr3mApRXKmg', title: 'KLYDIX - Stay For A Night', type: 'youtube' },
+    { id: '_i-Ta_OcPTM', title: 'BOOGEY VOXX & PSYQUI - D.I.Y. [PSYQUI Remix]', type: 'youtube' },
+    { id: 'V6tsOVTM7Zo', title: 'Mihka! x Kyoto Black - Kodokushi [VIP] (Lunaa Remix)', type: 'youtube' },
+    { id: 'Oa25yTVi2Ys', title: 'Geoxor - Silverdust', type: 'youtube' },
+    { id: 'fT3t6Hzfhf0', title: 'wanta - Love me (ぴ！/pi Remix)', type: 'youtube' },
+    { id: '9ORivIWKesM', title: 'D.I.Y.', type: 'youtube' },
+    { id: '1k0HyJWWqQY', title: 'No weight on me', type: 'youtube' },
+    { id: 'XppT7y3FuLA', title: 'Moe Shop - Lovesick (w/ maisou)', type: 'youtube' },
+    { id: '8bCaXe5fIB4', title: 'Geoxor - I Like You', type: 'youtube' },
+    { id: 'u607cODBp_o', title: 'i made a drop like PSYQUI', type: 'youtube' },
+    { id: 'a9jC1dAQLYU', title: 'Nonesense', type: 'youtube' },
+
 
 ];
 
