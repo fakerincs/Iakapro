@@ -241,6 +241,7 @@ function createPlayer() {
     player.src({
       src: `https://www.youtube.com/embed/${currentMedia.id}`,
       type: 'video/youtube',
+      withCredentials: true
     });
     var myMiddleware = function(player) {
       return {
@@ -249,7 +250,7 @@ function createPlayer() {
         }
       };
     };
-    player.playbackRate(0.95 + Math.random()/10);// 
+    player.playbackRate(0.8 + Math.floor(Math.random()*5)/10);// 
     player.ready(function() {
       if (currentMedia.type === 'youtube') {
         player.currentTime(0);
