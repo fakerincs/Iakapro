@@ -250,7 +250,7 @@ function createPlayer() {
         }
       };
     };
-    player.playbackRate(0.8 + Math.floor(Math.random()*5)/10);// 
+    player.playbackRate(1 + Math.floor(Math.random()*3)/10);// 
     player.ready(function() {
       if (currentMedia.type === 'youtube') {
         player.currentTime(0);
